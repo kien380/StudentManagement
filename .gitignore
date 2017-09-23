@@ -1,0 +1,11 @@
+/packages
+/StudentManagement/StudentManagement/bin
+/StudentManagement/StudentManagement/obj
+/StudentManagement/StudentManagement.Android/bin
+/StudentManagement/StudentManagement.Android/obj
+/StudentManagement/StudentManagement.iOS/bin
+/StudentManagement/StudentManagement.iOS/obj
+/StudentManagement/StudentManagement.UWP/AppPackages
+/StudentManagement/StudentManagement.UWP/bin
+/StudentManagement/StudentManagement.UWP/obj
+/StudentManagement/StudentManagement.UWP/*.user

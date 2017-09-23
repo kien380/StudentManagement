@@ -1,3 +1,0 @@
-StudentManagement, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  StudentManagement.MainPage.xaml
-  StudentManagement.App.xaml

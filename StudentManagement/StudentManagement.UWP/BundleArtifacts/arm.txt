@@ -1,0 +1,6 @@
+MainPackage=D:\XamarinProject\StudentManagement\StudentManagement\StudentManagement.UWP\bin\ARM\Release\StudentManagement.UWP_1.0.2.0_ARM.appx
+SymbolPackage=D:\XamarinProject\StudentManagement\StudentManagement\StudentManagement.UWP\AppPackages\StudentManagement.UWP_1.0.2.0_Test\StudentManagement.UWP_1.0.2.0_ARM.appxsym
+ResourcePack=D:\XamarinProject\StudentManagement\StudentManagement\StudentManagement.UWP\bin\ARM\Release\StudentManagement.UWP_1.0.2.0_scale-100.appx
+ResourcePack=D:\XamarinProject\StudentManagement\StudentManagement\StudentManagement.UWP\bin\ARM\Release\StudentManagement.UWP_1.0.2.0_scale-125.appx
+ResourcePack=D:\XamarinProject\StudentManagement\StudentManagement\StudentManagement.UWP\bin\ARM\Release\StudentManagement.UWP_1.0.2.0_scale-150.appx
+ResourcePack=D:\XamarinProject\StudentManagement\StudentManagement\StudentManagement.UWP\bin\ARM\Release\StudentManagement.UWP_1.0.2.0_scale-400.appx

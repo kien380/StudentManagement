@@ -1,0 +1,2 @@
+D:\XamarinProject\StudentManagement\StudentManagement\StudentManagement.UWP\StudentManagement.UWP.csproj;arm
+D:\XamarinProject\StudentManagement\StudentManagement\StudentManagement\StudentManagement.csproj;neutral

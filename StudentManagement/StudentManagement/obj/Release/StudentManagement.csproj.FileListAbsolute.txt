@@ -1,0 +1,14 @@
+D:\XamarinProject\StudentManagement\StudentManagement\StudentManagement\bin\Release\StudentManagement.dll
+D:\XamarinProject\StudentManagement\StudentManagement\StudentManagement\bin\Release\StudentManagement.pdb
+D:\XamarinProject\StudentManagement\StudentManagement\StudentManagement\bin\Release\Xamarin.Forms.Core.dll
+D:\XamarinProject\StudentManagement\StudentManagement\StudentManagement\bin\Release\Xamarin.Forms.Platform.dll
+D:\XamarinProject\StudentManagement\StudentManagement\StudentManagement\bin\Release\Xamarin.Forms.Xaml.dll
+D:\XamarinProject\StudentManagement\StudentManagement\StudentManagement\bin\Release\Xamarin.Forms.Core.pdb
+D:\XamarinProject\StudentManagement\StudentManagement\StudentManagement\bin\Release\Xamarin.Forms.Core.xml
+D:\XamarinProject\StudentManagement\StudentManagement\StudentManagement\bin\Release\Xamarin.Forms.Platform.pdb
+D:\XamarinProject\StudentManagement\StudentManagement\StudentManagement\bin\Release\Xamarin.Forms.Xaml.pdb
+D:\XamarinProject\StudentManagement\StudentManagement\StudentManagement\bin\Release\Xamarin.Forms.Xaml.xml
+D:\XamarinProject\StudentManagement\StudentManagement\StudentManagement\obj\Release\StudentManagement.MainPage.xaml.g.cs
+D:\XamarinProject\StudentManagement\StudentManagement\StudentManagement\obj\Release\StudentManagement.App.xaml.g.cs
+D:\XamarinProject\StudentManagement\StudentManagement\StudentManagement\obj\Release\StudentManagement.dll
+D:\XamarinProject\StudentManagement\StudentManagement\StudentManagement\obj\Release\StudentManagement.pdb

@@ -1,34 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
+﻿using Prism.Unity;
+using StudentManagement.Helpers;
+using StudentManagement.Views;
 using Xamarin.Forms;
 
 namespace StudentManagement
 {
-    public partial class App : Application
+    public partial class App : PrismApplication
     {
         public App()
         {
+            
+        }
+
+        protected override void OnInitialized()
+        {
             InitializeComponent();
-
-            MainPage = new StudentManagement.MainPage();
+            NavigationService.NavigateAsync(PageManager.MultiplePage(new[]
+            {
+                PageManager.NavigationPage, PageManager.HomePage
+            }));
         }
 
-        protected override void OnStart()
+        protected override void RegisterTypes()
         {
-            // Handle when your app starts
-        }
-
-        protected override void OnSleep()
-        {
-            // Handle when your app sleeps
-        }
-
-        protected override void OnResume()
-        {
-            // Handle when your app resumes
+            Container.RegisterTypeForNavigation<NavigationPage>(PageManager.NavigationPage);
+            Container.RegisterTypeForNavigation<HomePage>(PageManager.HomePage);
         }
     }
 }

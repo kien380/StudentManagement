@@ -2,6 +2,15 @@
   "version": 2,
   "targets": {
     "UAP,Version=v10.0": {
+      "CommonServiceLocator/1.3.0": {
+        "type": "package",
+        "compile": {
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8/Microsoft.Practices.ServiceLocation.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8/Microsoft.Practices.ServiceLocation.dll": {}
+        }
+      },
       "Microsoft.CSharp/4.0.1": {
         "type": "package",
         "dependencies": {
@@ -282,6 +291,42 @@
         },
         "compile": {
           "ref/netstandard1.3/Microsoft.Win32.Primitives.dll": {}
+        }
+      },
+      "Prism.Core/6.3.0": {
+        "type": "package",
+        "compile": {
+          "lib/wpa81/Prism.dll": {}
+        },
+        "runtime": {
+          "lib/wpa81/Prism.dll": {}
+        }
+      },
+      "Prism.Forms/6.3.0": {
+        "type": "package",
+        "dependencies": {
+          "Prism.Core": "6.3.0",
+          "Xamarin.Forms": "2.3.3.193"
+        },
+        "compile": {
+          "lib/UAP10.0/Prism.Forms.dll": {}
+        },
+        "runtime": {
+          "lib/UAP10.0/Prism.Forms.dll": {}
+        }
+      },
+      "Prism.Unity.Forms/6.3.0": {
+        "type": "package",
+        "dependencies": {
+          "Prism.Forms": "6.3.0",
+          "Unity": "4.0.1",
+          "Xamarin.Forms": "2.3.3.193"
+        },
+        "compile": {
+          "lib/UAP10.0/Prism.Unity.Forms.dll": {}
+        },
+        "runtime": {
+          "lib/UAP10.0/Prism.Unity.Forms.dll": {}
         }
       },
       "runtime.native.System.IO.Compression/4.1.0": {
@@ -2140,6 +2185,20 @@
           }
         }
       },
+      "Unity/4.0.1": {
+        "type": "package",
+        "dependencies": {
+          "CommonServiceLocator": "1.3.0"
+        },
+        "compile": {
+          "lib/win8/Microsoft.Practices.Unity.RegistrationByConvention.dll": {},
+          "lib/win8/Microsoft.Practices.Unity.dll": {}
+        },
+        "runtime": {
+          "lib/win8/Microsoft.Practices.Unity.RegistrationByConvention.dll": {},
+          "lib/win8/Microsoft.Practices.Unity.dll": {}
+        }
+      },
       "Xamarin.Forms/2.3.4.224": {
         "type": "package",
         "compile": {
@@ -2163,6 +2222,15 @@
       }
     },
     "UAP,Version=v10.0/win10-arm": {
+      "CommonServiceLocator/1.3.0": {
+        "type": "package",
+        "compile": {
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8/Microsoft.Practices.ServiceLocation.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8/Microsoft.Practices.ServiceLocation.dll": {}
+        }
+      },
       "Microsoft.CSharp/4.0.1": {
         "type": "package",
         "dependencies": {
@@ -2391,6 +2459,42 @@
         },
         "compile": {
           "ref/netstandard1.3/Microsoft.Win32.Primitives.dll": {}
+        }
+      },
+      "Prism.Core/6.3.0": {
+        "type": "package",
+        "compile": {
+          "lib/wpa81/Prism.dll": {}
+        },
+        "runtime": {
+          "lib/wpa81/Prism.dll": {}
+        }
+      },
+      "Prism.Forms/6.3.0": {
+        "type": "package",
+        "dependencies": {
+          "Prism.Core": "6.3.0",
+          "Xamarin.Forms": "2.3.3.193"
+        },
+        "compile": {
+          "lib/UAP10.0/Prism.Forms.dll": {}
+        },
+        "runtime": {
+          "lib/UAP10.0/Prism.Forms.dll": {}
+        }
+      },
+      "Prism.Unity.Forms/6.3.0": {
+        "type": "package",
+        "dependencies": {
+          "Prism.Forms": "6.3.0",
+          "Unity": "4.0.1",
+          "Xamarin.Forms": "2.3.3.193"
+        },
+        "compile": {
+          "lib/UAP10.0/Prism.Unity.Forms.dll": {}
+        },
+        "runtime": {
+          "lib/UAP10.0/Prism.Unity.Forms.dll": {}
         }
       },
       "runtime.any.System.Collections/4.0.11": {
@@ -4409,6 +4513,20 @@
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
+      "Unity/4.0.1": {
+        "type": "package",
+        "dependencies": {
+          "CommonServiceLocator": "1.3.0"
+        },
+        "compile": {
+          "lib/win8/Microsoft.Practices.Unity.RegistrationByConvention.dll": {},
+          "lib/win8/Microsoft.Practices.Unity.dll": {}
+        },
+        "runtime": {
+          "lib/win8/Microsoft.Practices.Unity.RegistrationByConvention.dll": {},
+          "lib/win8/Microsoft.Practices.Unity.dll": {}
+        }
+      },
       "Xamarin.Forms/2.3.4.224": {
         "type": "package",
         "compile": {
@@ -4432,6 +4550,15 @@
       }
     },
     "UAP,Version=v10.0/win10-arm-aot": {
+      "CommonServiceLocator/1.3.0": {
+        "type": "package",
+        "compile": {
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8/Microsoft.Practices.ServiceLocation.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8/Microsoft.Practices.ServiceLocation.dll": {}
+        }
+      },
       "Microsoft.CSharp/4.0.1": {
         "type": "package",
         "dependencies": {
@@ -4661,6 +4788,42 @@
         },
         "compile": {
           "ref/netstandard1.3/Microsoft.Win32.Primitives.dll": {}
+        }
+      },
+      "Prism.Core/6.3.0": {
+        "type": "package",
+        "compile": {
+          "lib/wpa81/Prism.dll": {}
+        },
+        "runtime": {
+          "lib/wpa81/Prism.dll": {}
+        }
+      },
+      "Prism.Forms/6.3.0": {
+        "type": "package",
+        "dependencies": {
+          "Prism.Core": "6.3.0",
+          "Xamarin.Forms": "2.3.3.193"
+        },
+        "compile": {
+          "lib/UAP10.0/Prism.Forms.dll": {}
+        },
+        "runtime": {
+          "lib/UAP10.0/Prism.Forms.dll": {}
+        }
+      },
+      "Prism.Unity.Forms/6.3.0": {
+        "type": "package",
+        "dependencies": {
+          "Prism.Forms": "6.3.0",
+          "Unity": "4.0.1",
+          "Xamarin.Forms": "2.3.3.193"
+        },
+        "compile": {
+          "lib/UAP10.0/Prism.Unity.Forms.dll": {}
+        },
+        "runtime": {
+          "lib/UAP10.0/Prism.Unity.Forms.dll": {}
         }
       },
       "runtime.aot.System.Collections/4.0.10": {
@@ -6717,6 +6880,20 @@
           "runtimes/aot/lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
+      "Unity/4.0.1": {
+        "type": "package",
+        "dependencies": {
+          "CommonServiceLocator": "1.3.0"
+        },
+        "compile": {
+          "lib/win8/Microsoft.Practices.Unity.RegistrationByConvention.dll": {},
+          "lib/win8/Microsoft.Practices.Unity.dll": {}
+        },
+        "runtime": {
+          "lib/win8/Microsoft.Practices.Unity.RegistrationByConvention.dll": {},
+          "lib/win8/Microsoft.Practices.Unity.dll": {}
+        }
+      },
       "Xamarin.Forms/2.3.4.224": {
         "type": "package",
         "compile": {
@@ -6740,6 +6917,15 @@
       }
     },
     "UAP,Version=v10.0/win10-x64": {
+      "CommonServiceLocator/1.3.0": {
+        "type": "package",
+        "compile": {
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8/Microsoft.Practices.ServiceLocation.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8/Microsoft.Practices.ServiceLocation.dll": {}
+        }
+      },
       "Microsoft.CSharp/4.0.1": {
         "type": "package",
         "dependencies": {
@@ -6971,6 +7157,42 @@
         },
         "compile": {
           "ref/netstandard1.3/Microsoft.Win32.Primitives.dll": {}
+        }
+      },
+      "Prism.Core/6.3.0": {
+        "type": "package",
+        "compile": {
+          "lib/wpa81/Prism.dll": {}
+        },
+        "runtime": {
+          "lib/wpa81/Prism.dll": {}
+        }
+      },
+      "Prism.Forms/6.3.0": {
+        "type": "package",
+        "dependencies": {
+          "Prism.Core": "6.3.0",
+          "Xamarin.Forms": "2.3.3.193"
+        },
+        "compile": {
+          "lib/UAP10.0/Prism.Forms.dll": {}
+        },
+        "runtime": {
+          "lib/UAP10.0/Prism.Forms.dll": {}
+        }
+      },
+      "Prism.Unity.Forms/6.3.0": {
+        "type": "package",
+        "dependencies": {
+          "Prism.Forms": "6.3.0",
+          "Unity": "4.0.1",
+          "Xamarin.Forms": "2.3.3.193"
+        },
+        "compile": {
+          "lib/UAP10.0/Prism.Unity.Forms.dll": {}
+        },
+        "runtime": {
+          "lib/UAP10.0/Prism.Unity.Forms.dll": {}
         }
       },
       "runtime.any.System.Collections/4.0.11": {
@@ -8995,6 +9217,20 @@
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
+      "Unity/4.0.1": {
+        "type": "package",
+        "dependencies": {
+          "CommonServiceLocator": "1.3.0"
+        },
+        "compile": {
+          "lib/win8/Microsoft.Practices.Unity.RegistrationByConvention.dll": {},
+          "lib/win8/Microsoft.Practices.Unity.dll": {}
+        },
+        "runtime": {
+          "lib/win8/Microsoft.Practices.Unity.RegistrationByConvention.dll": {},
+          "lib/win8/Microsoft.Practices.Unity.dll": {}
+        }
+      },
       "Xamarin.Forms/2.3.4.224": {
         "type": "package",
         "compile": {
@@ -9018,6 +9254,15 @@
       }
     },
     "UAP,Version=v10.0/win10-x64-aot": {
+      "CommonServiceLocator/1.3.0": {
+        "type": "package",
+        "compile": {
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8/Microsoft.Practices.ServiceLocation.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8/Microsoft.Practices.ServiceLocation.dll": {}
+        }
+      },
       "Microsoft.CSharp/4.0.1": {
         "type": "package",
         "dependencies": {
@@ -9250,6 +9495,42 @@
         },
         "compile": {
           "ref/netstandard1.3/Microsoft.Win32.Primitives.dll": {}
+        }
+      },
+      "Prism.Core/6.3.0": {
+        "type": "package",
+        "compile": {
+          "lib/wpa81/Prism.dll": {}
+        },
+        "runtime": {
+          "lib/wpa81/Prism.dll": {}
+        }
+      },
+      "Prism.Forms/6.3.0": {
+        "type": "package",
+        "dependencies": {
+          "Prism.Core": "6.3.0",
+          "Xamarin.Forms": "2.3.3.193"
+        },
+        "compile": {
+          "lib/UAP10.0/Prism.Forms.dll": {}
+        },
+        "runtime": {
+          "lib/UAP10.0/Prism.Forms.dll": {}
+        }
+      },
+      "Prism.Unity.Forms/6.3.0": {
+        "type": "package",
+        "dependencies": {
+          "Prism.Forms": "6.3.0",
+          "Unity": "4.0.1",
+          "Xamarin.Forms": "2.3.3.193"
+        },
+        "compile": {
+          "lib/UAP10.0/Prism.Unity.Forms.dll": {}
+        },
+        "runtime": {
+          "lib/UAP10.0/Prism.Unity.Forms.dll": {}
         }
       },
       "runtime.aot.System.Collections/4.0.10": {
@@ -11312,6 +11593,20 @@
           "runtimes/aot/lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
+      "Unity/4.0.1": {
+        "type": "package",
+        "dependencies": {
+          "CommonServiceLocator": "1.3.0"
+        },
+        "compile": {
+          "lib/win8/Microsoft.Practices.Unity.RegistrationByConvention.dll": {},
+          "lib/win8/Microsoft.Practices.Unity.dll": {}
+        },
+        "runtime": {
+          "lib/win8/Microsoft.Practices.Unity.RegistrationByConvention.dll": {},
+          "lib/win8/Microsoft.Practices.Unity.dll": {}
+        }
+      },
       "Xamarin.Forms/2.3.4.224": {
         "type": "package",
         "compile": {
@@ -11335,6 +11630,15 @@
       }
     },
     "UAP,Version=v10.0/win10-x86": {
+      "CommonServiceLocator/1.3.0": {
+        "type": "package",
+        "compile": {
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8/Microsoft.Practices.ServiceLocation.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8/Microsoft.Practices.ServiceLocation.dll": {}
+        }
+      },
       "Microsoft.CSharp/4.0.1": {
         "type": "package",
         "dependencies": {
@@ -11566,6 +11870,42 @@
         },
         "compile": {
           "ref/netstandard1.3/Microsoft.Win32.Primitives.dll": {}
+        }
+      },
+      "Prism.Core/6.3.0": {
+        "type": "package",
+        "compile": {
+          "lib/wpa81/Prism.dll": {}
+        },
+        "runtime": {
+          "lib/wpa81/Prism.dll": {}
+        }
+      },
+      "Prism.Forms/6.3.0": {
+        "type": "package",
+        "dependencies": {
+          "Prism.Core": "6.3.0",
+          "Xamarin.Forms": "2.3.3.193"
+        },
+        "compile": {
+          "lib/UAP10.0/Prism.Forms.dll": {}
+        },
+        "runtime": {
+          "lib/UAP10.0/Prism.Forms.dll": {}
+        }
+      },
+      "Prism.Unity.Forms/6.3.0": {
+        "type": "package",
+        "dependencies": {
+          "Prism.Forms": "6.3.0",
+          "Unity": "4.0.1",
+          "Xamarin.Forms": "2.3.3.193"
+        },
+        "compile": {
+          "lib/UAP10.0/Prism.Unity.Forms.dll": {}
+        },
+        "runtime": {
+          "lib/UAP10.0/Prism.Unity.Forms.dll": {}
         }
       },
       "runtime.any.System.Collections/4.0.11": {
@@ -13590,6 +13930,20 @@
           "lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
+      "Unity/4.0.1": {
+        "type": "package",
+        "dependencies": {
+          "CommonServiceLocator": "1.3.0"
+        },
+        "compile": {
+          "lib/win8/Microsoft.Practices.Unity.RegistrationByConvention.dll": {},
+          "lib/win8/Microsoft.Practices.Unity.dll": {}
+        },
+        "runtime": {
+          "lib/win8/Microsoft.Practices.Unity.RegistrationByConvention.dll": {},
+          "lib/win8/Microsoft.Practices.Unity.dll": {}
+        }
+      },
       "Xamarin.Forms/2.3.4.224": {
         "type": "package",
         "compile": {
@@ -13613,6 +13967,15 @@
       }
     },
     "UAP,Version=v10.0/win10-x86-aot": {
+      "CommonServiceLocator/1.3.0": {
+        "type": "package",
+        "compile": {
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8/Microsoft.Practices.ServiceLocation.dll": {}
+        },
+        "runtime": {
+          "lib/portable-net4+sl5+netcore45+wpa81+wp8/Microsoft.Practices.ServiceLocation.dll": {}
+        }
+      },
       "Microsoft.CSharp/4.0.1": {
         "type": "package",
         "dependencies": {
@@ -13845,6 +14208,42 @@
         },
         "compile": {
           "ref/netstandard1.3/Microsoft.Win32.Primitives.dll": {}
+        }
+      },
+      "Prism.Core/6.3.0": {
+        "type": "package",
+        "compile": {
+          "lib/wpa81/Prism.dll": {}
+        },
+        "runtime": {
+          "lib/wpa81/Prism.dll": {}
+        }
+      },
+      "Prism.Forms/6.3.0": {
+        "type": "package",
+        "dependencies": {
+          "Prism.Core": "6.3.0",
+          "Xamarin.Forms": "2.3.3.193"
+        },
+        "compile": {
+          "lib/UAP10.0/Prism.Forms.dll": {}
+        },
+        "runtime": {
+          "lib/UAP10.0/Prism.Forms.dll": {}
+        }
+      },
+      "Prism.Unity.Forms/6.3.0": {
+        "type": "package",
+        "dependencies": {
+          "Prism.Forms": "6.3.0",
+          "Unity": "4.0.1",
+          "Xamarin.Forms": "2.3.3.193"
+        },
+        "compile": {
+          "lib/UAP10.0/Prism.Unity.Forms.dll": {}
+        },
+        "runtime": {
+          "lib/UAP10.0/Prism.Unity.Forms.dll": {}
         }
       },
       "runtime.aot.System.Collections/4.0.10": {
@@ -15907,6 +16306,20 @@
           "runtimes/aot/lib/netcore50/System.Xml.XmlSerializer.dll": {}
         }
       },
+      "Unity/4.0.1": {
+        "type": "package",
+        "dependencies": {
+          "CommonServiceLocator": "1.3.0"
+        },
+        "compile": {
+          "lib/win8/Microsoft.Practices.Unity.RegistrationByConvention.dll": {},
+          "lib/win8/Microsoft.Practices.Unity.dll": {}
+        },
+        "runtime": {
+          "lib/win8/Microsoft.Practices.Unity.RegistrationByConvention.dll": {},
+          "lib/win8/Microsoft.Practices.Unity.dll": {}
+        }
+      },
       "Xamarin.Forms/2.3.4.224": {
         "type": "package",
         "compile": {
@@ -15931,6 +16344,18 @@
     }
   },
   "libraries": {
+    "CommonServiceLocator/1.3.0": {
+      "sha512": "fbjO0SNwbOFPdwVfyqv+B7gIJ2CVBOFPKqn1mDDECK7KER8jFaOdcvroFYoAHa0ktPbxi5s+15qOLnA96f8GSA==",
+      "type": "package",
+      "path": "commonservicelocator/1.3.0",
+      "files": [
+        "commonservicelocator.1.3.0.nupkg.sha512",
+        "commonservicelocator.nuspec",
+        "lib/portable-net4+sl5+netcore45+wpa81+wp8/Microsoft.Practices.ServiceLocation.XML",
+        "lib/portable-net4+sl5+netcore45+wpa81+wp8/Microsoft.Practices.ServiceLocation.dll",
+        "lib/portable-net4+sl5+netcore45+wpa81+wp8/Microsoft.Practices.ServiceLocation.pdb"
+      ]
+    },
     "Microsoft.CSharp/4.0.1": {
       "sha512": "17h8b5mXa87XYKrrVqdgZ38JefSUqLChUQpXgSnpzsM0nDOhE40FTeNWOJ/YmySGV6tG6T8+hjz6vxbknHJr6A==",
       "type": "package",
@@ -16231,6 +16656,89 @@
         "ref/xamarinmac20/_._",
         "ref/xamarintvos10/_._",
         "ref/xamarinwatchos10/_._"
+      ]
+    },
+    "Prism.Core/6.3.0": {
+      "sha512": "8KKRF/1Hx76dXFrYb3XUbkGFWTZjjI99DTGcPt5/aGghb3iYBscxiT4WDVlGmUpfqw7QS/jDI2BGs5ZsAy8XVA==",
+      "type": "package",
+      "path": "prism.core/6.3.0",
+      "files": [
+        "lib/MonoAndroid10/Prism.dll",
+        "lib/MonoAndroid10/Prism.xml",
+        "lib/MonoTouch10/Prism.dll",
+        "lib/MonoTouch10/Prism.xml",
+        "lib/Xamarin.iOS10/Prism.dll",
+        "lib/Xamarin.iOS10/Prism.xml",
+        "lib/net45/Prism.dll",
+        "lib/net45/Prism.xml",
+        "lib/portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10/Prism.dll",
+        "lib/portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10/Prism.xml",
+        "lib/wp8/Prism.dll",
+        "lib/wp8/Prism.xml",
+        "lib/wp81/Prism.dll",
+        "lib/wp81/Prism.xml",
+        "lib/wpa81/Prism.dll",
+        "lib/wpa81/Prism.xml",
+        "prism.core.6.3.0.nupkg.sha512",
+        "prism.core.nuspec"
+      ]
+    },
+    "Prism.Forms/6.3.0": {
+      "sha512": "jti3t5G8/Gl3EDSvBVvJEyaeuLuV918vsqyfCkDEibD3A4DE8X96M2kqVq7aCwTuuZan7Zln1lpJ20i+JsoCcQ==",
+      "type": "package",
+      "path": "prism.forms/6.3.0",
+      "files": [
+        "lib/MonoAndroid1.0/Prism.Forms.dll",
+        "lib/MonoAndroid1.0/Prism.Forms.xml",
+        "lib/MonoTouch1.0/Prism.Forms.dll",
+        "lib/MonoTouch1.0/Prism.Forms.xml",
+        "lib/UAP10.0/Prism.Forms.dll",
+        "lib/UAP10.0/Prism.Forms.xml",
+        "lib/Windows8.1/Prism.Forms.dll",
+        "lib/Windows8.1/Prism.Forms.xml",
+        "lib/WindowsPhone8.0/Prism.Forms.dll",
+        "lib/WindowsPhone8.0/Prism.Forms.xml",
+        "lib/WindowsPhoneApp8.1/Prism.Forms.dll",
+        "lib/WindowsPhoneApp8.1/Prism.Forms.xml",
+        "lib/Xamarin.iOS1.0/Prism.Forms.dll",
+        "lib/Xamarin.iOS1.0/Prism.Forms.xml",
+        "lib/portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10/Prism.Forms.dll",
+        "lib/portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10/Prism.Forms.xml",
+        "prism.forms.6.3.0.nupkg.sha512",
+        "prism.forms.nuspec"
+      ]
+    },
+    "Prism.Unity.Forms/6.3.0": {
+      "sha512": "8NxMcKxye0GqVSnqBGpntcvI5Xt/dlu+yB5Bju1CgjAQy5l76aTucV9rXnMtuu+81t4xB+SARKzmED8v+X7W5Q==",
+      "type": "package",
+      "path": "prism.unity.forms/6.3.0",
+      "files": [
+        "lib/MonoAndroid1.0/Prism.Unity.Forms.dll",
+        "lib/MonoAndroid1.0/Prism.Unity.Forms.dll.config",
+        "lib/MonoAndroid1.0/Prism.Unity.Forms.xml",
+        "lib/MonoTouch1.0/Prism.Unity.Forms.dll",
+        "lib/MonoTouch1.0/Prism.Unity.Forms.dll.config",
+        "lib/MonoTouch1.0/Prism.Unity.Forms.xml",
+        "lib/UAP10.0/Prism.Unity.Forms.dll",
+        "lib/UAP10.0/Prism.Unity.Forms.dll.config",
+        "lib/UAP10.0/Prism.Unity.Forms.xml",
+        "lib/Windows8.1/Prism.Unity.Forms.dll",
+        "lib/Windows8.1/Prism.Unity.Forms.dll.config",
+        "lib/Windows8.1/Prism.Unity.Forms.xml",
+        "lib/WindowsPhone8.0/Prism.Unity.Forms.dll",
+        "lib/WindowsPhone8.0/Prism.Unity.Forms.dll.config",
+        "lib/WindowsPhone8.0/Prism.Unity.Forms.xml",
+        "lib/WindowsPhoneApp8.1/Prism.Unity.Forms.dll",
+        "lib/WindowsPhoneApp8.1/Prism.Unity.Forms.dll.config",
+        "lib/WindowsPhoneApp8.1/Prism.Unity.Forms.xml",
+        "lib/Xamarin.iOS1.0/Prism.Unity.Forms.dll",
+        "lib/Xamarin.iOS1.0/Prism.Unity.Forms.dll.config",
+        "lib/Xamarin.iOS1.0/Prism.Unity.Forms.xml",
+        "lib/portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10/Prism.Unity.Forms.dll",
+        "lib/portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10/Prism.Unity.Forms.dll.config",
+        "lib/portable-win+net45+wp80+win81+wpa81+MonoAndroid10+MonoTouch10+Xamarin.iOS10/Prism.Unity.Forms.xml",
+        "prism.unity.forms.6.3.0.nupkg.sha512",
+        "prism.unity.forms.nuspec"
       ]
     },
     "runtime.any.System.Collections/4.0.11": {
@@ -22097,6 +22605,33 @@
         "system.xml.xmlserializer.nuspec"
       ]
     },
+    "Unity/4.0.1": {
+      "sha512": "RHFTCW13E186hCI0Z4R47tl2SyxQOp3TNaBlilxKktO+u+NUWyOK/nPJ25PWwgPh4j4/GM46PQszSsusui+ikw==",
+      "type": "package",
+      "path": "unity/4.0.1",
+      "files": [
+        "UnityConfiguration30.xsd",
+        "lib/net45/Microsoft.Practices.Unity.Configuration.XML",
+        "lib/net45/Microsoft.Practices.Unity.Configuration.dll",
+        "lib/net45/Microsoft.Practices.Unity.RegistrationByConvention.XML",
+        "lib/net45/Microsoft.Practices.Unity.RegistrationByConvention.dll",
+        "lib/net45/Microsoft.Practices.Unity.dll",
+        "lib/net45/Microsoft.Practices.Unity.xml",
+        "lib/portable-net45+wp80+win8+wpa81+MonoAndroid10+MonoTouch10/Microsoft.Practices.Unity.dll",
+        "lib/portable-net45+wp80+win8+wpa81+MonoAndroid10+MonoTouch10/Microsoft.Practices.Unity.xml",
+        "lib/win8/Microsoft.Practices.Unity.RegistrationByConvention.XML",
+        "lib/win8/Microsoft.Practices.Unity.RegistrationByConvention.dll",
+        "lib/win8/Microsoft.Practices.Unity.RegistrationByConvention.pri",
+        "lib/win8/Microsoft.Practices.Unity.dll",
+        "lib/win8/Microsoft.Practices.Unity.xml",
+        "lib/wp80/Microsoft.Practices.Unity.RegistrationByConvention.XML",
+        "lib/wp80/Microsoft.Practices.Unity.RegistrationByConvention.dll",
+        "lib/wp80/Microsoft.Practices.Unity.dll",
+        "lib/wp80/Microsoft.Practices.Unity.xml",
+        "unity.4.0.1.nupkg.sha512",
+        "unity.nuspec"
+      ]
+    },
     "Xamarin.Forms/2.3.4.224": {
       "sha512": "cjA3h83bCmnEjEYLcvi2n+rPc3rs3kuB/r5z5R/BFtBLp8kgV8AEImKBcYglsZ80uX3OSIVnPXN9lJ25GMGAmg==",
       "type": "package",
@@ -22263,6 +22798,8 @@
   "projectFileDependencyGroups": {
     "": [
       "Microsoft.NETCore.UniversalWindowsPlatform >= 5.2.2",
+      "Prism.Forms >= 6.3.0",
+      "Prism.Unity.Forms >= 6.3.0",
       "Xamarin.Forms >= 2.3.4.224"
     ],
     "UAP,Version=v10.0": []
@@ -22289,6 +22826,8 @@
     },
     "dependencies": {
       "Microsoft.NETCore.UniversalWindowsPlatform": "5.2.2",
+      "Prism.Forms": "6.3.0",
+      "Prism.Unity.Forms": "6.3.0",
       "Xamarin.Forms": "2.3.4.224"
     },
     "frameworks": {

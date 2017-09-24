@@ -7,7 +7,7 @@ namespace StudentManagement.ViewModels
 {
     public class HomePageViewModel : ViewModelBase
     {
-        #region priavte properties
+        #region private properties
 
 
         #endregion

@@ -8,24 +8,33 @@
         <ResourceDictionary>
             <!--#region Text Size-->
             <Color x:Key="PinkColor">#f605ec</Color>
+            <Color x:Key="OrangeColor">#f6934f</Color>
             <Color x:Key="Grade10ClassBackgroundColor">#d7fdcf</Color>
             <Color x:Key="Grade11ClassBackgroundColor">#c6f2f1</Color>
             <Color x:Key="Grade12ClassBackgroundColor">#fde4ff</Color>
             <Color x:Key="Grade10ClassNameColor">#076f30</Color>
             <Color x:Key="Grade11ClassNameColor">#1f4788</Color>
             <Color x:Key="Grade12ClassNameColor">#6e366f</Color>
-            <Color x:Key="OrangeColor">#f6934f</Color>
+            <Color x:Key="MenuBackgroundHeaderColor">#763568</Color>
+            <Color x:Key="MenuHeaderJobColor">#e1c0da</Color>
+            <Color x:Key="MenuBackgroundFeaturesColor">#4d8fac</Color>
             <!--#endregion-->
           
             <!--#region Character code-->
             <x:String x:Key="SearchIcon">&#xF4A4;</x:String>
             <x:String x:Key="PeopleIcon">&#xF39E;</x:String>
             <x:String x:Key="PersonIcon">&#xF3A0;</x:String>
+            <x:String x:Key="PersonAddIcon">&#xF39F;</x:String>
             <x:String x:Key="ManIcon">&#xF202;</x:String>
             <x:String x:Key="WomanIcon">&#xF25D;</x:String>
             <x:String x:Key="MaleIcon">&#xF2A1;</x:String>
             <x:String x:Key="FemaleIcon">&#xF278;</x:String>
             <x:String x:Key="LockIcon">&#xF392;</x:String>
+            <x:String x:Key="LogOutIcon">&#xF29F;</x:String>
+            <x:String x:Key="GearIcon">&#xF13D;</x:String>
+            <x:String x:Key="ListIcon">&#xF453;</x:String>
+            <x:String x:Key="EditIcon">&#xF12C;</x:String>
+            <x:String x:Key="FlagIcon">&#xF279;</x:String>
             <!--#endregion-->
             
             <!--#region Text Size-->
@@ -91,6 +100,8 @@
                 <OnIdiom.Phone>10</OnIdiom.Phone>
                 <OnIdiom.Tablet>20</OnIdiom.Tablet>
             </OnIdiom>
+            <x:Double x:Key="MenuFeaturesColumnSpacing">10</x:Double>
+            <GridLength x:Key="MenuFeaturesIconWidth">30</GridLength>
             <!--#endregion-->
           
             <!--  Font ionicons  -->
@@ -105,6 +116,18 @@
                 <Setter Property="FontFamily" Value="{StaticResource IoniconsFont}"/>
                 <Setter Property="HorizontalTextAlignment" Value="Center"/>
                 <Setter Property="VerticalTextAlignment" Value="Center"/>
+            </Style>
+            <Style x:Key="MenuFeaturesIconStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="{StaticResource MediumIconSize}"/>
+                <Setter Property="FontFamily" Value="{StaticResource IoniconsFont}"/>
+                <Setter Property="HorizontalTextAlignment" Value="Center"/>
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+                <Setter Property="TextColor" Value="White"/>
+            </Style>
+            <Style x:Key="MenuFeaturesLabelStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="{StaticResource XLargeFontSize}"/>
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+                <Setter Property="TextColor" Value="White"/>
             </Style>
             <Style x:Key="ListClassesItemIconStyle" TargetType="Label">
                 <Setter Property="FontSize" Value="{StaticResource MediumFontSize}"/>

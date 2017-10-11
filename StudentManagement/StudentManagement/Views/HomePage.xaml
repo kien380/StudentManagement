@@ -1,22 +1,126 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
+
 <MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="StudentManagement.Views.HomePage"
-             Title="{Binding PageTitle}">
+                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                  x:Class="StudentManagement.Views.HomePage"
+                  Title="{Binding PageTitle}">
     <MasterDetailPage.Master>
-        <NavigationPage Title="Home Page">
-            <x:Arguments>
-                <ContentPage Title="Menu">
-                    <StackLayout VerticalOptions="FillAndExpand"
-                                 Padding="20">
-                        <Button Text="New Button"
-                                HorizontalOptions="FillAndExpand"/>
-                        <Label Text="{Binding Icons}"
-                               FontFamily="{StaticResource IoniconsFont}"
-                               HorizontalTextAlignment="Center"/>
+        <ContentPage Title="Menu">
+            <ScrollView>
+                <StackLayout Spacing="0">
+                    <!--Header-->
+                    <StackLayout BackgroundColor="{StaticResource MenuBackgroundHeaderColor}"
+                                 Padding="30">
+                        <Image Source="teacher_3.png"
+                               WidthRequest="100"
+                               HeightRequest="100"
+                               HorizontalOptions="Center"
+                               Margin="0,20,0,10" />
+                        <Label Text="Giáo viên"
+                               TextColor="{StaticResource MenuHeaderJobColor}"
+                               FontSize="{StaticResource MediumFontSize}"
+                               HorizontalTextAlignment="Center" />
+                        <Label Text="Nguyễn Thị Lung Linh"
+                               TextColor="White"
+                               FontSize="{StaticResource XLargeFontSize}"
+                               FontAttributes="Bold"
+                               HorizontalTextAlignment="Center" />
                     </StackLayout>
-                </ContentPage>
-            </x:Arguments>
-        </NavigationPage>
+
+                    <!--Features-->
+                    <StackLayout VerticalOptions="FillAndExpand"
+                                 BackgroundColor="{StaticResource MenuBackgroundFeaturesColor}"
+                                 Padding="20"
+                                 Spacing="25">
+                        <!--Tiep nhan hoc sinh-->
+                        <Grid ColumnSpacing="{StaticResource MenuFeaturesColumnSpacing}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="{StaticResource MenuFeaturesIconWidth}" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0"
+                                   Text="{StaticResource PersonAddIcon}"
+                                   Style="{StaticResource MenuFeaturesIconStyle}" />
+                            <Label Grid.Column="1"
+                                   Text="Tiếp nhận học sinh"
+                                   Style="{StaticResource MenuFeaturesLabelStyle}" />
+                        </Grid>
+
+                        <!--Danh sach lop-->
+                        <Grid ColumnSpacing="{StaticResource MenuFeaturesColumnSpacing}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="{StaticResource MenuFeaturesIconWidth}" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0"
+                                   Text="{StaticResource ListIcon}"
+                                   Style="{StaticResource MenuFeaturesIconStyle}" />
+                            <Label Grid.Column="1"
+                                   Text="Danh sách lớp"
+                                   Style="{StaticResource MenuFeaturesLabelStyle}" />
+                        </Grid>
+
+                        <!--Nhap bang diem-->
+                        <Grid ColumnSpacing="{StaticResource MenuFeaturesColumnSpacing}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="{StaticResource MenuFeaturesIconWidth}" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0"
+                                   Text="{StaticResource EditIcon}"
+                                   Style="{StaticResource MenuFeaturesIconStyle}" />
+                            <Label Grid.Column="1"
+                                   Text="Nhập bảng điểm"
+                                   Style="{StaticResource MenuFeaturesLabelStyle}" />
+                        </Grid>
+
+                        <!--Bao cao tong ket-->
+                        <Grid ColumnSpacing="{StaticResource MenuFeaturesColumnSpacing}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="{StaticResource MenuFeaturesIconWidth}" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0"
+                                   Text="{StaticResource FlagIcon}"
+                                   Style="{StaticResource MenuFeaturesIconStyle}" />
+                            <Label Grid.Column="1"
+                                   Text="Báo cáo tổng kết"
+                                   Style="{StaticResource MenuFeaturesLabelStyle}" />
+                        </Grid>
+
+                        <!--Thay doi quy dinh-->
+                        <Grid ColumnSpacing="{StaticResource MenuFeaturesColumnSpacing}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="{StaticResource MenuFeaturesIconWidth}" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0"
+                                   Text="{StaticResource GearIcon}"
+                                   Style="{StaticResource MenuFeaturesIconStyle}" />
+                            <Label Grid.Column="1"
+                                   Text="Thay đổi quy định"
+                                   Style="{StaticResource MenuFeaturesLabelStyle}" />
+                        </Grid>
+
+                        <!--Thoat-->
+                        <Grid ColumnSpacing="{StaticResource MenuFeaturesColumnSpacing}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="{StaticResource MenuFeaturesIconWidth}" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0"
+                                   Text="{StaticResource LogOutIcon}"
+                                   Style="{StaticResource MenuFeaturesIconStyle}" />
+                            <Label Grid.Column="1"
+                                   Text="Thoát"
+                                   Style="{StaticResource MenuFeaturesLabelStyle}" />
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding LogOutCommand}" />
+                            </Grid.GestureRecognizers>
+                        </Grid>
+                    </StackLayout>
+                </StackLayout>
+            </ScrollView>
+        </ContentPage>
     </MasterDetailPage.Master>
 </MasterDetailPage>

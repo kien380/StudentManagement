@@ -13,15 +13,5 @@ namespace StudentManagement.Views
         }
 
         public bool IsPresentedAfterNavigation => Device.Idiom != TargetIdiom.Phone;
-
-        protected override void OnAppearing()
-        {
-            IsGestureEnabled = true;
-        }
-
-        protected override void OnDisappearing()
-        {
-            IsGestureEnabled = false;
-        }
     }
 }

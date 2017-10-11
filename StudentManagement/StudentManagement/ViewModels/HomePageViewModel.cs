@@ -13,25 +13,24 @@ namespace StudentManagement.ViewModels
         #endregion
 
         #region public properties
-        public DelegateCommand OkCommand { get; set; }
-        public string Icons { get; set; }
-
-
+        public DelegateCommand LogOutCommand { get; set; }
         #endregion
 
 
         public HomePageViewModel(INavigationService navigationService) : base(navigationService)
         {
             PageTitle = "Home Page";
-            OkCommand = new DelegateCommand(OkExecute);
-            Icons = Ionicons.Transgender;
+            LogOutCommand = new DelegateCommand(LogOutExecute);
         }
 
         #region Methods
 
-        private void OkExecute()
+        private void LogOutExecute()
         {
-            NavigationService.NavigateAsync(PageManager.HomePage);
+            NavigationService.NavigateAsync(PageManager.MultiplePage(new []
+            {
+                PageManager.LoginPage
+            }));
         }
 
         #endregion

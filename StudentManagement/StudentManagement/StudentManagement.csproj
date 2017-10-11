@@ -38,6 +38,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\Ionicons.cs" />
     <Compile Include="Helpers\PageManager.cs" />
     <Compile Include="Interfaces\IDatabaseConnection.cs" />
     <Compile Include="Interfaces\ISQLiteHelper.cs" />

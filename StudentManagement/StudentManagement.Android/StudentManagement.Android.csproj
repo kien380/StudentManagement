@@ -132,6 +132,7 @@
     <Compile Include="Services\LocalDatabase\DatabaseConnection.cs" />
   </ItemGroup>
   <ItemGroup>
+    <AndroidAsset Include="Assets\ionicons.ttf" />
     <None Include="packages.config" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />

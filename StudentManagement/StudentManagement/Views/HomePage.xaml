@@ -7,10 +7,13 @@
         <NavigationPage Title="Home Page">
             <x:Arguments>
                 <ContentPage Title="Menu">
-                    <StackLayout VerticalOptions="CenterAndExpand"
+                    <StackLayout VerticalOptions="FillAndExpand"
                                  Padding="20">
                         <Button Text="New Button"
                                 HorizontalOptions="FillAndExpand"/>
+                        <Label Text="{Binding Icons}"
+                               FontFamily="{StaticResource IoniconsFont}"
+                               HorizontalTextAlignment="Center"/>
                     </StackLayout>
                 </ContentPage>
             </x:Arguments>

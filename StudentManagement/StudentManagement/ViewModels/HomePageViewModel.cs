@@ -14,7 +14,8 @@ namespace StudentManagement.ViewModels
 
         #region public properties
         public DelegateCommand OkCommand { get; set; }
-        
+        public string Icons { get; set; }
+
 
         #endregion
 
@@ -23,6 +24,7 @@ namespace StudentManagement.ViewModels
         {
             PageTitle = "Home Page";
             OkCommand = new DelegateCommand(OkExecute);
+            Icons = Ionicons.Transgender;
         }
 
         #region Methods

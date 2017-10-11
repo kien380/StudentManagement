@@ -14,15 +14,18 @@
             <Color x:Key="Grade10ClassNameColor">#076f30</Color>
             <Color x:Key="Grade11ClassNameColor">#1f4788</Color>
             <Color x:Key="Grade12ClassNameColor">#6e366f</Color>
+            <Color x:Key="OrangeColor">#f6934f</Color>
             <!--#endregion-->
           
             <!--#region Character code-->
             <x:String x:Key="SearchIcon">&#xF4A4;</x:String>
             <x:String x:Key="PeopleIcon">&#xF39E;</x:String>
+            <x:String x:Key="PersonIcon">&#xF3A0;</x:String>
             <x:String x:Key="ManIcon">&#xF202;</x:String>
             <x:String x:Key="WomanIcon">&#xF25D;</x:String>
             <x:String x:Key="MaleIcon">&#xF2A1;</x:String>
             <x:String x:Key="FemaleIcon">&#xF278;</x:String>
+            <x:String x:Key="LockIcon">&#xF392;</x:String>
             <!--#endregion-->
             
             <!--#region Text Size-->
@@ -97,6 +100,12 @@
             </OnPlatform>
         
             <!--#region Styles-->
+            <Style x:Key="MediumLabelIconStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="{StaticResource MediumIconSize}"/>
+                <Setter Property="FontFamily" Value="{StaticResource IoniconsFont}"/>
+                <Setter Property="HorizontalTextAlignment" Value="Center"/>
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+            </Style>
             <Style x:Key="ListClassesItemIconStyle" TargetType="Label">
                 <Setter Property="FontSize" Value="{StaticResource MediumFontSize}"/>
                 <Setter Property="FontFamily" Value="{StaticResource IoniconsFont}"/>

@@ -32,10 +32,7 @@
                     <Grid Padding="5">
                         <Label Text="{StaticResource SearchIcon}"
                                TextColor="Purple"
-                               FontSize="{StaticResource MediumIconSize}"
-                               FontFamily="{StaticResource IoniconsFont}"
-                               HorizontalTextAlignment="Center"
-                               VerticalTextAlignment="Center"/>
+                               Style="{StaticResource MediumLabelIconStyle}"/>
                         <Grid.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding SearchIconCommand}"/>
                         </Grid.GestureRecognizers>

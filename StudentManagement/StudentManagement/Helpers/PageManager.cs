@@ -4,7 +4,8 @@
     {
         public static readonly string HomePage = "HomePage";
         public static readonly string NavigationPage = "NavigationPage";
-        public static readonly string ListClassesPage = "ListClassesPage";
+        public static readonly string ListClassesPage = "ListClassesPage"; 
+        public static readonly string LoginPage = "LoginPage";
 
 
         public static string MultiplePage(string[] pages)

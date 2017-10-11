@@ -26,7 +26,8 @@ namespace StudentManagement
             InitializeComponent();
             NavigationService.NavigateAsync(PageManager.MultiplePage(new[]
             {
-                PageManager.HomePage, PageManager.NavigationPage, PageManager.ListClassesPage
+                PageManager.HomePage, PageManager.NavigationPage, PageManager.ListClassesPage,
+                PageManager.LoginPage
             }));
         }
 
@@ -34,6 +35,7 @@ namespace StudentManagement
         {
             // Register Pages
             Container.RegisterTypeForNavigation<NavigationPage>(PageManager.NavigationPage);
+            Container.RegisterTypeForNavigation<LoginPage>(PageManager.LoginPage);
             Container.RegisterTypeForNavigation<HomePage>(PageManager.HomePage);
             Container.RegisterTypeForNavigation<ListClassesPage>(PageManager.ListClassesPage);
 

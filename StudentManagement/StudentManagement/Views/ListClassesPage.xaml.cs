@@ -6,7 +6,7 @@ using Xamarin.Forms.Xaml;
 namespace StudentManagement.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ListClassesPage : ContentPage
+    public partial class ListClassesPage 
     {
         public ListClassesPage()
         {

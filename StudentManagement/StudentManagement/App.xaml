@@ -6,12 +6,108 @@
                          x:Class="StudentManagement.App">
     <Application.Resources>
         <ResourceDictionary>
+            <!--#region Text Size-->
+            <Color x:Key="PinkColor">#f605ec</Color>
+            <Color x:Key="Grade10ClassBackgroundColor">#d7fdcf</Color>
+            <Color x:Key="Grade11ClassBackgroundColor">#c6f2f1</Color>
+            <Color x:Key="Grade12ClassBackgroundColor">#fde4ff</Color>
+            <Color x:Key="Grade10ClassNameColor">#076f30</Color>
+            <Color x:Key="Grade11ClassNameColor">#1f4788</Color>
+            <Color x:Key="Grade12ClassNameColor">#6e366f</Color>
+            <!--#endregion-->
+          
+            <!--#region Character code-->
+            <x:String x:Key="SearchIcon">&#xF4A4;</x:String>
+            <x:String x:Key="PeopleIcon">&#xF39E;</x:String>
+            <x:String x:Key="ManIcon">&#xF202;</x:String>
+            <x:String x:Key="WomanIcon">&#xF25D;</x:String>
+            <x:String x:Key="MaleIcon">&#xF2A1;</x:String>
+            <x:String x:Key="FemaleIcon">&#xF278;</x:String>
+            <!--#endregion-->
+            
+            <!--#region Text Size-->
+            <OnIdiom x:Key="NanoFontSize" x:TypeArguments="x:Double">
+                <OnIdiom.Phone>9</OnIdiom.Phone>
+                <OnIdiom.Tablet>12</OnIdiom.Tablet>
+            </OnIdiom>
+            <OnIdiom x:Key="MicroFontSize" x:TypeArguments="x:Double">
+                <OnIdiom.Phone>10</OnIdiom.Phone>
+                <OnIdiom.Tablet>13</OnIdiom.Tablet>
+            </OnIdiom>
+            <OnIdiom x:Key="SmallFontSize" x:TypeArguments="x:Double">
+                <OnIdiom.Phone>11</OnIdiom.Phone>
+                <OnIdiom.Tablet>14</OnIdiom.Tablet>
+            </OnIdiom>
+            <OnIdiom x:Key="MediumFontSize" x:TypeArguments="x:Double">
+                <OnIdiom.Phone>13</OnIdiom.Phone>
+                <OnIdiom.Tablet>16</OnIdiom.Tablet>
+            </OnIdiom>
+            <OnIdiom x:Key="LargeFontSize" x:TypeArguments="x:Double">
+                <OnIdiom.Phone>15</OnIdiom.Phone>
+                <OnIdiom.Tablet>18</OnIdiom.Tablet>
+            </OnIdiom>
+            <OnIdiom x:Key="XLargeFontSize" x:TypeArguments="x:Double">
+                <OnIdiom.Phone>17</OnIdiom.Phone>
+                <OnIdiom.Tablet>20</OnIdiom.Tablet>
+            </OnIdiom>
+            <OnIdiom x:Key="XxLargeFontSize" x:TypeArguments="x:Double">
+                <OnIdiom.Phone>19</OnIdiom.Phone>
+                <OnIdiom.Tablet>22</OnIdiom.Tablet>
+            </OnIdiom>
+            <OnIdiom x:Key="XxxLargeFontSize" x:TypeArguments="x:Double">
+                <OnIdiom.Phone>21</OnIdiom.Phone>
+                <OnIdiom.Tablet>24</OnIdiom.Tablet>
+            </OnIdiom>
+            <!--#endregion-->
 
+            <!--#region Image & Icon size-->
+            <OnIdiom x:Key="SmallIconSize" x:TypeArguments="x:Double">
+                <OnIdiom.Phone>15</OnIdiom.Phone>
+                <OnIdiom.Tablet>20</OnIdiom.Tablet>
+            </OnIdiom>
+            <OnIdiom x:Key="MediumIconSize" x:TypeArguments="x:Double">
+                <OnIdiom.Phone>20</OnIdiom.Phone>
+                <OnIdiom.Tablet>35</OnIdiom.Tablet>
+            </OnIdiom>
+            <OnIdiom x:Key="LargeIconSize" x:TypeArguments="x:Double">
+                <OnIdiom.Phone>30</OnIdiom.Phone>
+                <OnIdiom.Tablet>50</OnIdiom.Tablet>
+            </OnIdiom>
+            <!--#endregion-->
+
+            <!--#region Distance-->
+            <OnIdiom x:Key="SmallSpacing" x:TypeArguments="x:Double">
+                <OnIdiom.Phone>3</OnIdiom.Phone>
+                <OnIdiom.Tablet>10</OnIdiom.Tablet>
+            </OnIdiom>
+            <OnIdiom x:Key="MediumSpacing" x:TypeArguments="x:Double">
+                <OnIdiom.Phone>6</OnIdiom.Phone>
+                <OnIdiom.Tablet>15</OnIdiom.Tablet>
+            </OnIdiom>
+            <OnIdiom x:Key="LargeSpacing" x:TypeArguments="x:Double">
+                <OnIdiom.Phone>10</OnIdiom.Phone>
+                <OnIdiom.Tablet>20</OnIdiom.Tablet>
+            </OnIdiom>
+            <!--#endregion-->
+          
             <!--  Font ionicons  -->
             <OnPlatform x:Key="IoniconsFont" x:TypeArguments="x:String">
                 <On Platform="Android" Value="ionicons.ttf#Ionicons" />
                 <On Platform="iOS" Value="Ionicons" />
             </OnPlatform>
+        
+            <!--#region Styles-->
+            <Style x:Key="ListClassesItemIconStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="{StaticResource MediumFontSize}"/>
+                <Setter Property="FontFamily" Value="{StaticResource IoniconsFont}"/>
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+            </Style>
+            <Style x:Key="ListClassesItemNumberStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="{StaticResource SmallFontSize}"/>
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+                <Setter Property="Margin" Value="0,0,20,0"/>
+            </Style>
+            <!--#endregion-->
         </ResourceDictionary>
     </Application.Resources>
 </dryIoc:PrismApplication>

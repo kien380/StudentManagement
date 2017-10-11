@@ -1,16 +1,20 @@
 ﻿using Prism.Mvvm;
 using Prism.Navigation;
+using StudentManagement.Interfaces;
 
 namespace StudentManagement.ViewModels.Base
 {
     public class ViewModelBase : BindableBase, INavigationAware
     {
         protected INavigationService NavigationService;
+        protected ISQLiteHelper Database;
 
-
-        public ViewModelBase(INavigationService navigationService = null)
+        public ViewModelBase(
+            INavigationService navigationService = null,
+            ISQLiteHelper sqLiteHelper = null)
         {
             if (navigationService != null) NavigationService = navigationService;
+            if (sqLiteHelper != null) Database = sqLiteHelper;
         }
 
         public void OnNavigatedFrom(NavigationParameters parameters)

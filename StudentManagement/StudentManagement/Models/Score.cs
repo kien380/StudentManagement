@@ -6,14 +6,11 @@ namespace StudentManagement.Models
     {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
-
-        [PrimaryKey]
+        
         public int StudentId { get; set; }
-
-        [PrimaryKey]
+        
         public int SubjectId { get; set; }
-
-        [PrimaryKey]
+        
         public int Semester { get; set; }
 
         public float Score15M { get; set; }

@@ -1,5 +1,8 @@
-﻿using Prism.Unity;
+﻿using DryIoc;
+using Prism.DryIoc;
 using StudentManagement.Helpers;
+using StudentManagement.Interfaces;
+using StudentManagement.Services.LocalDatabase;
 using StudentManagement.Views;
 using Xamarin.Forms;
 
@@ -7,6 +10,11 @@ namespace StudentManagement
 {
     public partial class App : PrismApplication
     {
+        #region Properties
+
+        private ISQLiteHelper _sqLiteHelper;
+        #endregion
+
         public App()
         {
             
@@ -14,6 +22,7 @@ namespace StudentManagement
 
         protected override void OnInitialized()
         {
+            InitDatabase();
             InitializeComponent();
             NavigationService.NavigateAsync(PageManager.MultiplePage(new[]
             {
@@ -23,8 +32,18 @@ namespace StudentManagement
 
         protected override void RegisterTypes()
         {
+            // Register Pages
             Container.RegisterTypeForNavigation<NavigationPage>(PageManager.NavigationPage);
             Container.RegisterTypeForNavigation<HomePage>(PageManager.HomePage);
+
+            // Register Services
+            Container.Register<ISQLiteHelper, SQLiteHelper>(Reuse.ScopedOrSingleton);
+        }
+
+        private void InitDatabase()
+        {
+            var connectionService = DependencyService.Get<IDatabaseConnection>();
+            _sqLiteHelper = new SQLiteHelper(connectionService);
         }
     }
 }

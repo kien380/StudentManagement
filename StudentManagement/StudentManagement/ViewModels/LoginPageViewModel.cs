@@ -1,4 +1,5 @@
-﻿using System.Windows.Input;
+﻿using System;
+using System.Windows.Input;
 using Prism.Commands;
 using Prism.Navigation;
 using Prism.Services;
@@ -48,7 +49,11 @@ namespace StudentManagement.ViewModels
 
         private void LoginExecute()
         {
-            NavigationService.GoBackAsync();
+            string uri = PageManager.MultiplePage(new[]
+            {
+                PageManager.HomePage, PageManager.NavigationPage, PageManager.ListClassesPage
+            });
+            NavigationService.NavigateAsync(new Uri($"https://kienhht.com/{uri}"));
         }
 
         #endregion

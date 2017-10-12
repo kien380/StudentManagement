@@ -26,7 +26,6 @@ namespace StudentManagement
             InitializeComponent();
             NavigationService.NavigateAsync(PageManager.MultiplePage(new[]
             {
-                PageManager.HomePage, PageManager.NavigationPage, PageManager.ListClassesPage,
                 PageManager.LoginPage
             }));
         }

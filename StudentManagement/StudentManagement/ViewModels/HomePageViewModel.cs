@@ -1,7 +1,9 @@
-﻿using Prism.Commands;
+﻿using System;
+using Prism.Commands;
 using Prism.Navigation;
 using StudentManagement.Helpers;
 using StudentManagement.ViewModels.Base;
+using Xamarin.Forms;
 
 namespace StudentManagement.ViewModels
 {
@@ -9,6 +11,7 @@ namespace StudentManagement.ViewModels
     {
         #region private properties
 
+        private bool _isLogOut = false;
 
         #endregion
 
@@ -23,14 +26,20 @@ namespace StudentManagement.ViewModels
             LogOutCommand = new DelegateCommand(LogOutExecute);
         }
 
+        #region Overrides
+
+        public override void OnNavigatedFrom(NavigationParameters parameters)
+        {
+        }
+
+        #endregion
+
         #region Methods
 
         private void LogOutExecute()
         {
-            NavigationService.NavigateAsync(PageManager.MultiplePage(new []
-            {
-                PageManager.LoginPage
-            }));
+            _isLogOut = true;
+            NavigationService.NavigateAsync(new Uri($"https://kienhht.com/{PageManager.LoginPage}"));
         }
 
         #endregion

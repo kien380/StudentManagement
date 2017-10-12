@@ -102,7 +102,7 @@
                                    Style="{StaticResource MenuFeaturesLabelStyle}" />
                         </Grid>
 
-                        <!--Thoat-->
+                        <!--Dang xuat-->
                         <Grid ColumnSpacing="{StaticResource MenuFeaturesColumnSpacing}">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="{StaticResource MenuFeaturesIconWidth}" />
@@ -112,7 +112,7 @@
                                    Text="{StaticResource LogOutIcon}"
                                    Style="{StaticResource MenuFeaturesIconStyle}" />
                             <Label Grid.Column="1"
-                                   Text="Thoát"
+                                   Text="Đăng xuất"
                                    Style="{StaticResource MenuFeaturesLabelStyle}" />
                             <Grid.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding LogOutCommand}" />

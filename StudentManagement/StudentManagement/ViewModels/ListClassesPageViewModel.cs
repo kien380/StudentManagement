@@ -71,7 +71,7 @@ namespace StudentManagement.ViewModels
 
         public void ClassesItemTapped(Class _class)
         {
-            Dialog.DisplayAlertAsync("Item tapped", "List classes item tapped", "OK");
+            NavigationService.NavigateAsync(PageManager.DetailClassPage);
         }
         #endregion
     }

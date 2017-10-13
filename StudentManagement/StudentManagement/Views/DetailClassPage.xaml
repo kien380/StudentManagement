@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="StudentManagement.Views.DetailClassPage"
+             Title="{Binding PageTitle}">
+    <ContentPage.Content>
+        <Grid Padding="10"
+              RowSpacing="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="30"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            
+            <!--Class name-->
+            <Label Text="{Binding ClassName}" 
+                   TextColor="{StaticResource Grade10ClassNameColor}"
+                   FontAttributes="Bold"
+                   FontSize="{StaticResource XLargeFontSize}"
+                   HorizontalTextAlignment="Center"
+                   Grid.Row="0"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="3"
+                   Margin="0,20,0,30"/>
+            
+            <!--So luong hoc sinh-->
+            <Label Text="{StaticResource PeopleIcon}"
+                   TextColor="Purple"
+                   Style="{StaticResource MediumLabelIconStyle}"
+                   Grid.Row="1"
+                   Grid.Column="0"/>
+            <Label Text="Số lượng học sinh:"
+                   Grid.Row="1"
+                   Grid.Column="1"/>
+            <Label Text="{Binding NumberOfStudent}"
+                   Grid.Row="1"
+                   Grid.Column="2"/>
+            
+            <!--So luong Nam-->
+            <Label Text="{StaticResource MaleIcon}"
+                   TextColor="Green"
+                   Style="{StaticResource MediumLabelIconStyle}"
+                   Grid.Row="2"
+                   Grid.Column="0"/>
+            <Label Text="Số lượng Nam:"
+                   Grid.Row="2"
+                   Grid.Column="1"/>
+            <Label Text="{Binding NumberOfBoy}"
+                   Grid.Row="2"
+                   Grid.Column="2"/>
+            
+            <!--So luong Nu-->
+            <Label Text="{StaticResource FemaleIcon}"
+                   TextColor="{StaticResource PinkColor}"
+                   Style="{StaticResource MediumLabelIconStyle}"
+                   Grid.Row="3"
+                   Grid.Column="0"/>
+            <Label Text="Số lượng Nữ:"
+                   Grid.Row="3"
+                   Grid.Column="1"/>
+            <Label Text="{Binding NumberOfGirl}"
+                   Grid.Row="3"
+                   Grid.Column="2"/>
+            
+            <!--Xem danh sach lop-->
+            <Button Grid.Column="0"
+                    Grid.Row="4"
+                    Grid.ColumnSpan="3"
+                    Text="Xem danh sách lớp"
+                    Command="{Binding ViewListStudentCommand}"
+                    VerticalOptions="End"/>
+
+            <!--Xem bang diem lop-->
+            <Button Grid.Column="0"
+                    Grid.Row="5"
+                    Grid.ColumnSpan="3"
+                    Text="Xem bảng điểm lớp"
+                    Command="{Binding ViewScoreBoardCommand}"/>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

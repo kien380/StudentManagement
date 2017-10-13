@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using Prism.Navigation;
 using Prism.Services;
+using StudentManagement.Helpers;
 using StudentManagement.Interfaces;
 using StudentManagement.Models;
 using StudentManagement.ViewModels.Base;
@@ -45,7 +46,7 @@ namespace StudentManagement.ViewModels
 
         public void StudentItemTapped(Student student)
         {
-            Dialog.DisplayAlertAsync("Message", "Clicked a student", "OK");
+            NavigationService.NavigateAsync(PageManager.DetailStudentPage);
         }
 
         #endregion

@@ -107,7 +107,7 @@ namespace StudentManagement.ViewModels
 
         private void AcceptExecute()
         {
-            
+            NavigationService.NavigateAsync(PageManager.DetailStudentPage);
         }
 
         private void SwitchPageMode(DetailClassPageType type)

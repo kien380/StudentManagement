@@ -40,6 +40,7 @@ namespace StudentManagement
             Container.RegisterTypeForNavigation<ListClassesPage>(PageManager.ListClassesPage);
             Container.RegisterTypeForNavigation<ListStudentPage>(PageManager.ListStudentsPage);
             Container.RegisterTypeForNavigation<DetailClassPage>(PageManager.DetailClassPage);
+            Container.RegisterTypeForNavigation<DetailStudentPage>(PageManager.DetailStudentPage);
             Container.RegisterTypeForNavigation<AddNewStudentPage>(PageManager.AddNewStudentPage);
             Container.RegisterTypeForNavigation<ChooseClassPage>(PageManager.ChooseClassPage);
 

@@ -1,12 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:controls="clr-namespace:StudentManagement.Controls;assembly=StudentManagement"
-             x:Class="StudentManagement.Views.AddNewStudentPage"
+             x:Class="StudentManagement.Views.DetailStudentPage"
              Title="{Binding PageTitle}">
     <ContentPage.Content>
-        <Grid Padding="20"
-              RowSpacing="10">
+        <Grid RowSpacing="10">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
@@ -19,56 +17,61 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
+            
+            <!--Background-->
+            <BoxView Color="{StaticResource Grade10ClassBackgroundColor}"
+                     Grid.Row="0"
+                     Grid.Column="0"
+                     Grid.RowSpan="2"
+                     Grid.ColumnSpan="2"/>
+            
+            <!--Avatar-->
+            <Image Source="student_boy.png"
+                   HorizontalOptions="Center"
+                   WidthRequest="100"
+                   HeightRequest="100"
+                   Grid.Row="0"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="2"
+                   Margin="20,20,20,0"/>
 
-            <Label Text="Tiếp nhận học sinh" 
+            <Label Text="{Binding FullName}" 
                    TextColor="{StaticResource Grade10ClassNameColor}"
                    FontAttributes="Bold"
                    FontSize="{StaticResource XLargeFontSize}"
                    HorizontalTextAlignment="Center"
-                   Grid.Row="0"
+                   Grid.Row="1"
                    Grid.Column="0"
                    Grid.ColumnSpan="2"
-                   Margin="0,20,0,30"/>
-
-            <!--Họ và tên-->
-            <Label Text="{StaticResource PersonIcon}"
-                   TextColor="Purple"
-                   Style="{StaticResource MediumLabelIconStyle}"
-                   Grid.Row="1"
-                   Grid.Column="0"/>
-            <Entry 
-                Text="{Binding FullName}"
-                Placeholder="Họ và tên"
-                FontSize="{StaticResource MediumFontSize}"
-                Grid.Row="1"
-                Grid.Column="1"/>
+                   Margin="20,10,20,15"/>
 
             <!--Ngày sinh-->
             <Label Text="{StaticResource CalendarIcon}"
                    TextColor="Purple"
                    Style="{StaticResource MediumLabelIconStyle}"
+                   Margin="20,0,10,0"
                    Grid.Row="2"
                    Grid.Column="0"/>
-            <controls:CustomDatePicker 
-                Border="Normal"
-                Placeholder="Ngày sinh"
-                HasPlaceholder="True"
+            <Label 
+                Text="{Binding DoB}"
                 FontSize="{StaticResource MediumFontSize}"
+                Margin="0,0,20,0"
                 Grid.Row="2"
-                Grid.Column="1"
-                Date="{Binding DoB}"/>
+                Grid.Column="1"/>
 
             <!--Giới tính-->
             <Label Text="{StaticResource GenderIcon}"
                    TextColor="Purple"
                    Style="{StaticResource MediumLabelIconStyle}"
+                   Margin="20,0,10,0"
                    Grid.Row="3"
                    Grid.Column="0"/>
-            <controls:CustomPicker
-                Border="Normal"
+            <Label 
+                Text="{Binding Gender}"
                 FontSize="{StaticResource MediumFontSize}"
-                Title="Giới tính"
+                Margin="0,0,20,0"
                 Grid.Row="3"
                 Grid.Column="1"/>
 
@@ -76,12 +79,13 @@
             <Label Text="{StaticResource EmailIcon}"
                    TextColor="Purple"
                    Style="{StaticResource MediumLabelIconStyle}"
+                   Margin="20,0,10,0"
                    Grid.Row="4"
                    Grid.Column="0"/>
-            <Entry 
+            <Label 
                 Text="{Binding Email}"
-                Placeholder="Email"
                 FontSize="{StaticResource MediumFontSize}"
+                Margin="0,0,20,0"
                 Grid.Row="4"
                 Grid.Column="1"/>
 
@@ -89,22 +93,32 @@
             <Label Text="{StaticResource LocationIcon}"
                    TextColor="Purple"
                    Style="{StaticResource MediumLabelIconStyle}"
+                   Margin="20,0,10,0"
                    Grid.Row="5"
                    Grid.Column="0"/>
-            <Entry 
+            <Label 
                 Text="{Binding Address}"
-                Placeholder="Địa chỉ"
                 FontSize="{StaticResource MediumFontSize}"
+                Margin="0,0,20,0"
                 Grid.Row="5"
                 Grid.Column="1"/>
-            
-            <!--Continue Button-->
-            <Button Text="Tiếp theo"
+
+            <!--Xem thong tin lop-->
+            <Button Text="Xem thông tin lớp"
                     Grid.Row="6"
                     Grid.Column="0"
                     Grid.ColumnSpan="2"
                     VerticalOptions="End"
-                    Command="{Binding ContinueCommand}"/>
+                    Command="{Binding ViewClassInfoCommand}"
+                    Margin="20,0"/>
+            
+            <!--Xem bang diem-->
+            <Button Text="Xem bảng điểm"
+                    Grid.Row="7"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    Command="{Binding ViewScoreBoardCommand}"
+                    Margin="20,0,20,20"/>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

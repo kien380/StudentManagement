@@ -7,6 +7,7 @@
         public static readonly string HomePage = "HomePage";
         public static readonly string ListClassesPage = "ListClassesPage";
         public static readonly string ListStudentsPage = "ListStudentsPage";
+        public static readonly string ListAllStudentsPage = "ListAllStudentsPage";
         public static readonly string DetailClassPage = "DetailClassPage";
         public static readonly string DetailStudentPage = "DetailStudentPage";
         public static readonly string AddNewStudentPage = "AddNewStudentPage";

@@ -14,6 +14,7 @@ namespace StudentManagement.ViewModels
     {
         #region private properties
 
+        private string _className;
         private string _fullName;
         private string _doB;
         private string _gender;
@@ -23,6 +24,11 @@ namespace StudentManagement.ViewModels
         #endregion
 
         #region public properties
+        public string ClassName
+        {
+            get => _className;
+            set => SetProperty(ref _className, value);
+        }
         public string FullName
         {
             get => _fullName;
@@ -57,6 +63,7 @@ namespace StudentManagement.ViewModels
             : base(navigationService, dialogService, sqLiteHelper)
         {
             // Set values
+            ClassName = "10A4";
             PageTitle = "Thông tin học sinh";
             FullName = "Nguyễn Văn A";
             DoB = "19/5/1996";

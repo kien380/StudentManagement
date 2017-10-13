@@ -63,6 +63,7 @@
     <Compile Include="ViewModels\DetailClassPageViewModel.cs" />
     <Compile Include="ViewModels\DetailStudentPageViewModel.cs" />
     <Compile Include="ViewModels\HomePageViewModel.cs" />
+    <Compile Include="ViewModels\ListAllStudentPageViewModel.cs" />
     <Compile Include="ViewModels\ListClassesPageViewModel.cs" />
     <Compile Include="ViewModels\ListStudentPageViewModel.cs" />
     <Compile Include="ViewModels\LoginPageViewModel.cs" />
@@ -80,6 +81,9 @@
     </Compile>
     <Compile Include="Views\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ListAllStudentPage.xaml.cs">
+      <DependentUpon>ListAllStudentPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ListClassesPage.xaml.cs">
       <DependentUpon>ListClassesPage.xaml</DependentUpon>
@@ -182,6 +186,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\DetailStudentPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\ListAllStudentPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

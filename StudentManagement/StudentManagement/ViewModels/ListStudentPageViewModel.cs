@@ -40,5 +40,14 @@ namespace StudentManagement.ViewModels
 
             // Commands
         }
+
+        #region Methods
+
+        public void StudentItemTapped(Student student)
+        {
+            Dialog.DisplayAlertAsync("Message", "Clicked a student", "OK");
+        }
+
+        #endregion
     }
 }

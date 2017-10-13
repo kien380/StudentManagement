@@ -43,7 +43,9 @@
     <Compile Include="Controls\CustomEntry.cs" />
     <Compile Include="Controls\CustomPicker.cs" />
     <Compile Include="Enums\BorderType.cs" />
+    <Compile Include="Enums\DetailClassPageType.cs" />
     <Compile Include="Enums\GenderType.cs" />
+    <Compile Include="Enums\ParamKey.cs" />
     <Compile Include="Helpers\Ionicons.cs" />
     <Compile Include="Helpers\PageManager.cs" />
     <Compile Include="Interfaces\IDatabaseConnection.cs" />
@@ -57,6 +59,7 @@
     <Compile Include="Services\LocalDatabase\SQLiteHelper.cs" />
     <Compile Include="ViewModels\AddNewStudentPageViewModel.cs" />
     <Compile Include="ViewModels\Base\ViewModelBase.cs" />
+    <Compile Include="ViewModels\ChooseClassPageViewModel.cs" />
     <Compile Include="ViewModels\DetailClassPageViewModel.cs" />
     <Compile Include="ViewModels\HomePageViewModel.cs" />
     <Compile Include="ViewModels\ListClassesPageViewModel.cs" />
@@ -64,6 +67,9 @@
     <Compile Include="ViewModels\LoginPageViewModel.cs" />
     <Compile Include="Views\AddNewStudentPage.xaml.cs">
       <DependentUpon>AddNewStudentPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ChooseClassPage.xaml.cs">
+      <DependentUpon>ChooseClassPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\DetailClassPage.xaml.cs">
       <DependentUpon>DetailClassPage.xaml</DependentUpon>
@@ -160,6 +166,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\AddNewStudentPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\ChooseClassPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

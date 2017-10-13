@@ -10,12 +10,13 @@ namespace StudentManagement.ViewModels
     public class HomePageViewModel : ViewModelBase
     {
         #region private properties
-        
+
 
         #endregion
 
         #region public properties
         public ICommand AddNewStudentCommand { get; set; }
+        public ICommand ListClassesCommand { get; set; }
         public ICommand LogOutCommand { get; set; }
         #endregion
 
@@ -27,6 +28,7 @@ namespace StudentManagement.ViewModels
 
             // Commands
             AddNewStudentCommand = new DelegateCommand(AddNewStudentExecute);
+            ListClassesCommand = new DelegateCommand(ListClassesExecute);
             LogOutCommand = new DelegateCommand(LogOutExecute);
         }
 
@@ -45,6 +47,14 @@ namespace StudentManagement.ViewModels
             NavigationService.NavigateAsync(PageManager.MultiplePage(new []
             {
                 PageManager.NavigationPage, PageManager.AddNewStudentPage
+            }));
+        }
+
+        private void ListClassesExecute()
+        {
+            NavigationService.NavigateAsync(PageManager.MultiplePage(new[]
+            {
+                PageManager.NavigationPage, PageManager.ListClassesPage
             }));
         }
 

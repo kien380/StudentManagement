@@ -3,6 +3,7 @@ using System.Windows.Input;
 using Prism.Commands;
 using Prism.Navigation;
 using Prism.Services;
+using StudentManagement.Helpers;
 using StudentManagement.Interfaces;
 using StudentManagement.ViewModels.Base;
 
@@ -66,7 +67,7 @@ namespace StudentManagement.ViewModels
 
         private void ContinueExecute()
         {
-            
+            NavigationService.NavigateAsync(PageManager.ChooseClassPage);
         }
 
         #endregion

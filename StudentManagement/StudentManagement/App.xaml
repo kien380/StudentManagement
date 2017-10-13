@@ -40,6 +40,8 @@
             <x:String x:Key="PersonIcon">&#xF3A0;</x:String>
             <x:String x:Key="SearchIcon">&#xF4A4;</x:String>
             <x:String x:Key="WomanIcon">&#xF25D;</x:String>
+            <x:String x:Key="CircleNoticeIcon">&#xF35B;</x:String>
+            <x:String x:Key="CircleCheckIcon">&#xF120;</x:String>
             <!--#endregion-->
             
             <!--#region Text Size-->

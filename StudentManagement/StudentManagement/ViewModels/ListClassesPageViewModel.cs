@@ -3,6 +3,7 @@ using System.Windows.Input;
 using Prism.Commands;
 using Prism.Navigation;
 using Prism.Services;
+using StudentManagement.Enums;
 using StudentManagement.Helpers;
 using StudentManagement.Interfaces;
 using StudentManagement.Models;
@@ -71,7 +72,11 @@ namespace StudentManagement.ViewModels
 
         public void ClassesItemTapped(Class _class)
         {
-            NavigationService.NavigateAsync(PageManager.DetailClassPage);
+            var navParam = new NavigationParameters
+            {
+                { ParamKey.DetailClassPageType.ToString(), DetailClassPageType.ClassInfo }
+            };
+            NavigationService.NavigateAsync(PageManager.DetailClassPage, navParam);
         }
         #endregion
     }

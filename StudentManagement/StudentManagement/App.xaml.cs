@@ -38,6 +38,7 @@ namespace StudentManagement
             Container.RegisterTypeForNavigation<LoginPage>(PageManager.LoginPage);
             Container.RegisterTypeForNavigation<HomePage>(PageManager.HomePage);
             Container.RegisterTypeForNavigation<ListClassesPage>(PageManager.ListClassesPage);
+            Container.RegisterTypeForNavigation<ListStudentPage>(PageManager.ListStudentsPage);
             Container.RegisterTypeForNavigation<DetailClassPage>(PageManager.DetailClassPage);
 
             // Register Services

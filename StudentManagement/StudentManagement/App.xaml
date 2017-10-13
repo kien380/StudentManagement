@@ -35,6 +35,8 @@
             <x:String x:Key="ListIcon">&#xF453;</x:String>
             <x:String x:Key="EditIcon">&#xF12C;</x:String>
             <x:String x:Key="FlagIcon">&#xF279;</x:String>
+            <x:String x:Key="CalendarIcon">&#xF117;</x:String>
+            <x:String x:Key="LocationIcon">&#xF456;</x:String>
             <!--#endregion-->
             
             <!--#region Text Size-->
@@ -129,12 +131,12 @@
                 <Setter Property="VerticalTextAlignment" Value="Center"/>
                 <Setter Property="TextColor" Value="White"/>
             </Style>
-            <Style x:Key="ListClassesItemIconStyle" TargetType="Label">
+            <Style x:Key="ListSmallItemIconStyle" TargetType="Label">
                 <Setter Property="FontSize" Value="{StaticResource MediumFontSize}"/>
                 <Setter Property="FontFamily" Value="{StaticResource IoniconsFont}"/>
                 <Setter Property="VerticalTextAlignment" Value="Center"/>
             </Style>
-            <Style x:Key="ListClassesItemNumberStyle" TargetType="Label">
+            <Style x:Key="ListSmallItemLabelStyle" TargetType="Label">
                 <Setter Property="FontSize" Value="{StaticResource SmallFontSize}"/>
                 <Setter Property="VerticalTextAlignment" Value="Center"/>
                 <Setter Property="Margin" Value="0,0,20,0"/>

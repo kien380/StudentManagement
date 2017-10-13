@@ -1,10 +1,9 @@
-﻿using System.Collections.ObjectModel;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using Prism.Commands;
 using Prism.Navigation;
 using Prism.Services;
+using StudentManagement.Helpers;
 using StudentManagement.Interfaces;
-using StudentManagement.Models;
 using StudentManagement.ViewModels.Base;
 
 namespace StudentManagement.ViewModels
@@ -67,7 +66,7 @@ namespace StudentManagement.ViewModels
 
         private void ViewListStudentExecute()
         {
-            
+            NavigationService.NavigateAsync(PageManager.ListStudentsPage);
         }
 
         private void ViewScoreBoardExecute()

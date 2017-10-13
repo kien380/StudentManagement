@@ -1,35 +1,45 @@
-﻿using Prism.Commands;
+﻿using System;
+using Prism.Commands;
 using Prism.Navigation;
 using StudentManagement.Helpers;
 using StudentManagement.ViewModels.Base;
+using Xamarin.Forms;
 
 namespace StudentManagement.ViewModels
 {
     public class HomePageViewModel : ViewModelBase
     {
-        #region priavte properties
+        #region private properties
 
+        private bool _isLogOut = false;
 
         #endregion
 
         #region public properties
-        public DelegateCommand OkCommand { get; set; }
-        
-
+        public DelegateCommand LogOutCommand { get; set; }
         #endregion
 
 
         public HomePageViewModel(INavigationService navigationService) : base(navigationService)
         {
             PageTitle = "Home Page";
-            OkCommand = new DelegateCommand(OkExecute);
+            LogOutCommand = new DelegateCommand(LogOutExecute);
         }
+
+        #region Overrides
+
+        public override void OnNavigatedFrom(NavigationParameters parameters)
+        {
+        }
+
+        #endregion
 
         #region Methods
 
-        private void OkExecute()
+        private void LogOutExecute()
         {
-            NavigationService.NavigateAsync(PageManager.HomePage);
+            _isLogOut = true;
+            NavigationService.NavigateAsync(new Uri($"https://kienhht.com/{PageManager.LoginPage}"));
         }
 
         #endregion

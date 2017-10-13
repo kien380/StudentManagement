@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:StudentManagement.Controls;assembly=StudentManagement"
+             x:Class="StudentManagement.Views.ListClassesPage"
+             Title="{Binding PageTitle}"
+             x:Name="RootPage">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Search"
+                     Icon="ic_search_white.png"
+                     Command="{Binding SearchToolbarItemsCommand}"/>
+    </ContentPage.ToolbarItems>
+    
+    <ContentPage.Content>
+        <StackLayout Padding="10"
+                     Spacing="10">
+            <!--Search Box-->
+            <Frame CornerRadius="10"
+                   BackgroundColor="White"
+                   Padding="10,0"
+                   IsVisible="{Binding ShowSearchBox}">
+                <StackLayout Orientation="Horizontal">
+                    <controls:CustomEntry
+                        Text="{Binding SearchText}"
+                        FontSize="{StaticResource MediumFontSize}"
+                        Border="None"
+                        Placeholder="Nhập tên lớp"
+                        HorizontalOptions="FillAndExpand" />
+                    <BoxView WidthRequest="0.5"
+                             VerticalOptions="FillAndExpand"
+                             Color="Gray"/>
+                    <Grid Padding="5">
+                        <Label Text="{StaticResource SearchIcon}"
+                               TextColor="Purple"
+                               Style="{StaticResource MediumLabelIconStyle}"/>
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding SearchIconCommand}"/>
+                        </Grid.GestureRecognizers>
+                    </Grid>
+                </StackLayout>
+            </Frame>
+            
+            <!--List Classes-->
+            <ListView x:Name="ListViewClasses"
+                      ItemsSource="{Binding Classes}"
+                      SeparatorVisibility="None"
+                      HasUnevenRows="True"
+                      ItemTapped="ListView_OnItemTapped">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Frame Margin="2,4"
+                                   Padding="10"
+                                   BackgroundColor="{StaticResource Grade10ClassBackgroundColor}"
+                                   CornerRadius="5">
+                                <StackLayout Orientation="Horizontal">
+                                    <!--Class name-->
+                                    <Label Text="10A4"
+                                           TextColor="{StaticResource Grade10ClassNameColor}"
+                                           FontSize="{StaticResource LargeFontSize}"
+                                           FontAttributes="Bold"
+                                           VerticalTextAlignment="Center"
+                                           HorizontalOptions="FillAndExpand"
+                                           Margin="20,0,0,0"/>
+                                    
+                                    <!--Si so-->
+                                    <Label Text="{StaticResource PeopleIcon}"
+                                           TextColor="Purple"
+                                           Style="{StaticResource ListClassesItemIconStyle}"
+                                           Margin="0,3,0,0"/>
+                                    <Label Text="30"
+                                           Style="{StaticResource ListClassesItemNumberStyle}"/>
+
+                                    <!--Nam-->
+                                    <Label Text="{StaticResource MaleIcon}"
+                                           TextColor="Green"
+                                           Style="{StaticResource ListClassesItemIconStyle}"
+                                           FontSize="{StaticResource LargeFontSize}"/>
+                                    <Label Text="10"
+                                           Style="{StaticResource ListClassesItemNumberStyle}"/>
+
+                                    <!--Nu-->
+                                    <Label Text="{StaticResource FemaleIcon}"
+                                           TextColor="{StaticResource PinkColor}"
+                                           Style="{StaticResource ListClassesItemIconStyle}"
+                                           FontSize="{StaticResource LargeFontSize}"/>
+                                    <Label Text="20"
+                                           Style="{StaticResource ListClassesItemNumberStyle}"/>
+                                </StackLayout>
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

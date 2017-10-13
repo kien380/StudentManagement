@@ -10,3 +10,7 @@
 /StudentManagement/StudentManagement.UWP/obj
 /StudentManagement/StudentManagement.UWP/*.user
 /.vs
+/StudentManagement/StudentManagement.Android/StudentManagement.Android.csproj.user
+/StudentManagement/StudentManagement.UWP/StudentManagement.UWP.nuget.targets
+/StudentManagement/StudentManagement.UWP/project.lock.json
+/StudentManagement/StudentManagement.Android/Resources/Resource.Designer.cs

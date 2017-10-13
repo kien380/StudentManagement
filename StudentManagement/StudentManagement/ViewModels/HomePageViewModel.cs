@@ -1,28 +1,32 @@
 ﻿using System;
+using System.Windows.Input;
 using Prism.Commands;
 using Prism.Navigation;
 using StudentManagement.Helpers;
 using StudentManagement.ViewModels.Base;
-using Xamarin.Forms;
 
 namespace StudentManagement.ViewModels
 {
     public class HomePageViewModel : ViewModelBase
     {
         #region private properties
-
-        private bool _isLogOut = false;
+        
 
         #endregion
 
         #region public properties
-        public DelegateCommand LogOutCommand { get; set; }
+        public ICommand AddNewStudentCommand { get; set; }
+        public ICommand LogOutCommand { get; set; }
         #endregion
 
 
         public HomePageViewModel(INavigationService navigationService) : base(navigationService)
         {
+            // Set values
             PageTitle = "Home Page";
+
+            // Commands
+            AddNewStudentCommand = new DelegateCommand(AddNewStudentExecute);
             LogOutCommand = new DelegateCommand(LogOutExecute);
         }
 
@@ -36,9 +40,16 @@ namespace StudentManagement.ViewModels
 
         #region Methods
 
+        private void AddNewStudentExecute()
+        {
+            NavigationService.NavigateAsync(PageManager.MultiplePage(new []
+            {
+                PageManager.NavigationPage, PageManager.AddNewStudentPage
+            }));
+        }
+
         private void LogOutExecute()
         {
-            _isLogOut = true;
             NavigationService.NavigateAsync(new Uri($"https://kienhht.com/{PageManager.LoginPage}"));
         }
 

@@ -8,6 +8,7 @@
         public static readonly string ListClassesPage = "ListClassesPage";
         public static readonly string ListStudentsPage = "ListStudentsPage";
         public static readonly string DetailClassPage = "DetailClassPage";
+        public static readonly string AddNewStudentPage = "AddNewStudentPage";
 
 
         public static string MultiplePage(string[] pages)

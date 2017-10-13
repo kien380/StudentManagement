@@ -44,6 +44,9 @@
                             <Label Grid.Column="1"
                                    Text="Tiếp nhận học sinh"
                                    Style="{StaticResource MenuFeaturesLabelStyle}" />
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding AddNewStudentCommand}"/>
+                            </Grid.GestureRecognizers>
                         </Grid>
 
                         <!--Danh sach lop-->

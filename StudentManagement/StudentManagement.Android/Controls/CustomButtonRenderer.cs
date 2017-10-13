@@ -12,7 +12,6 @@ namespace StudentManagement.Droid.Controls
         {
             base.OnElementChanged(e);
 
-            base.OnElementChanged(e);
             var control = (Android.Widget.Button)Control;
             var element = (CustomButton)Element;
 

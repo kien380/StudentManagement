@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="StudentManagement.Views.ListAllStudentPage"
+             Title="{Binding PageTitle}">
+    <ContentPage.Content>
+        <StackLayout Padding="10">
+            <Label Text="Danh sách học sinh" 
+                   TextColor="{StaticResource Grade10ClassNameColor}"
+                   FontAttributes="Bold"
+                   FontSize="{StaticResource XLargeFontSize}"
+                   HorizontalTextAlignment="Center"/>
+
+            <!--List Student-->
+            <ListView x:Name="ListViewStudents"
+                      ItemsSource="{Binding Students}"
+                      SeparatorVisibility="None"
+                      HasUnevenRows="True"
+                      ItemTapped="ListView_OnItemTapped">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Frame Margin="2,4"
+                                   Padding="10"
+                                   CornerRadius="5">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="47"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+
+                                    <!--Avatar & Student ID-->
+                                    <StackLayout Grid.Row="0"
+                                                 Grid.Column="0"
+                                                 Grid.RowSpan="3"
+                                                 Margin="0,0,7,0">
+                                        <Image Source="student_boy.png"/>
+                                        <Frame BackgroundColor="Pink"
+                                               CornerRadius="3"
+                                               Padding="0"
+                                               WidthRequest="30"
+                                               HorizontalOptions="Center">
+                                            <Label Text="1"
+                                                   FontSize="{StaticResource SmallFontSize}"
+                                                   HorizontalTextAlignment="Center"/>
+                                        </Frame>
+                                    </StackLayout>
+
+                                    <!--Student Name-->
+                                    <Label Text="Nguyễn Văn A"
+                                           TextColor="{StaticResource Grade10ClassNameColor}"
+                                           FontSize="{StaticResource LargeFontSize}"
+                                           FontAttributes="Bold"
+                                           Grid.Row="0"
+                                           Grid.Column="1"
+                                           Grid.ColumnSpan="3"/>
+
+                                    <!--Class-->
+                                    <Label Text="{StaticResource FlagIcon}"
+                                           TextColor="Blue"
+                                           Style="{StaticResource ListSmallItemIconStyle}"
+                                           Grid.Row="1"
+                                           Grid.Column="1"/>
+                                    <StackLayout Orientation="Horizontal"
+                                                 Grid.Row="1"
+                                                 Grid.Column="2"
+                                                 Grid.ColumnSpan="2">
+                                        <Label Text="Lớp:"
+                                               Style="{StaticResource ListSmallItemLabelStyle}"
+                                               Margin="0"/>
+                                        <Label Text="10A4"
+                                               Style="{StaticResource ListSmallItemLabelStyle}"/>
+                                    </StackLayout>
+
+                                    <!--Diem HK 1-->
+                                    <Label Text="{StaticResource StarIcon}"
+                                           TextColor="Blue"
+                                           Style="{StaticResource ListSmallItemIconStyle}"
+                                           Grid.Row="2"
+                                           Grid.Column="1"/>
+                                    <StackLayout Orientation="Horizontal"
+                                                 Grid.Row="2"
+                                                 Grid.Column="2"
+                                                 Grid.ColumnSpan="2">
+                                        <Label Text="HK1:"
+                                               Style="{StaticResource ListSmallItemLabelStyle}"
+                                               Margin="0"/>
+                                        <Label Text="9.0"
+                                               Style="{StaticResource ListSmallItemLabelStyle}"/>
+                                    </StackLayout>
+
+                                    <!--Diem HK 2-->
+                                    <StackLayout Orientation="Horizontal"
+                                                 Grid.Row="2"
+                                                 Grid.Column="3">
+                                        <Label Text="{StaticResource StarIcon}"
+                                               TextColor="Blue"
+                                               Style="{StaticResource ListSmallItemIconStyle}"/>
+                                        <Label Text="HK2:"
+                                               Style="{StaticResource ListSmallItemLabelStyle}"
+                                               Margin="0"/>
+                                        <Label Text="9.0"
+                                               Style="{StaticResource ListSmallItemLabelStyle}"/>
+                                    </StackLayout>
+                                </Grid>
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

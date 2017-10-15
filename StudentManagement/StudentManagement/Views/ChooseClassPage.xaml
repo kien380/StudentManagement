@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="StudentManagement.Views.ChooseClassPage"
+             Title="{Binding PageTitle}">
+    <ContentPage.Content>
+        <StackLayout Padding="10">
+            <Label Text="Chọn lớp:" 
+                   TextColor="{StaticResource Grade10ClassNameColor}"
+                   FontAttributes="Bold"
+                   FontSize="{StaticResource XLargeFontSize}"
+                   HorizontalTextAlignment="Center"
+                   Margin="0,20,0,30"/>
+
+            <!--List Classes-->
+            <ListView x:Name="ListViewClasses"
+                      ItemsSource="{Binding Classes}"
+                      SeparatorVisibility="None"
+                      HasUnevenRows="True"
+                      ItemTapped="ListView_OnItemTapped">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Frame Margin="2,4"
+                                   Padding="10"
+                                   BackgroundColor="{StaticResource Grade10ClassBackgroundColor}"
+                                   CornerRadius="5">
+                                <StackLayout Orientation="Horizontal">
+                                    <!--Class name-->
+                                    <Label Text="10A4"
+                                           TextColor="{StaticResource Grade10ClassNameColor}"
+                                           FontSize="{StaticResource LargeFontSize}"
+                                           FontAttributes="Bold"
+                                           VerticalTextAlignment="Center"
+                                           HorizontalOptions="FillAndExpand"
+                                           Margin="20,0,0,0"/>
+
+                                    <!--Si so-->
+                                    <Label Text="{StaticResource PeopleIcon}"
+                                           TextColor="Purple"
+                                           Style="{StaticResource ListSmallItemIconStyle}"
+                                           Margin="0,3,0,0"/>
+                                    <Label Text="30"
+                                           Style="{StaticResource ListSmallItemLabelStyle}"
+                                           Margin="0"/>
+                                    <Label Text="/"
+                                           Style="{StaticResource ListSmallItemLabelStyle}"
+                                           Margin="0"/>
+                                    <Label Text="30"
+                                           Style="{StaticResource ListSmallItemLabelStyle}"/>
+
+                                    <!--Trang thai-->
+                                    <Label Text="{StaticResource CircleNoticeIcon}"
+                                           TextColor="Red"
+                                           Style="{StaticResource ListSmallItemIconStyle}"
+                                           FontSize="{StaticResource LargeFontSize}"/>
+                                    <Label Text="Đầy"
+                                           Style="{StaticResource ListSmallItemLabelStyle}"
+                                           TextColor="Red"/>
+                                </StackLayout>
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

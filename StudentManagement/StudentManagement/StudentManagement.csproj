@@ -39,8 +39,14 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\CustomButton.cs" />
+    <Compile Include="Controls\CustomDatePicker.cs" />
     <Compile Include="Controls\CustomEntry.cs" />
+    <Compile Include="Controls\CustomPicker.cs" />
     <Compile Include="Enums\BorderType.cs" />
+    <Compile Include="Enums\DetailClassPageType.cs" />
+    <Compile Include="Enums\GenderType.cs" />
+    <Compile Include="Enums\ParamKey.cs" />
+    <Compile Include="Enums\ScoreBoardPageType.cs" />
     <Compile Include="Helpers\Ionicons.cs" />
     <Compile Include="Helpers\PageManager.cs" />
     <Compile Include="Interfaces\IDatabaseConnection.cs" />
@@ -52,22 +58,46 @@
     <Compile Include="Models\Subject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\LocalDatabase\SQLiteHelper.cs" />
+    <Compile Include="ViewModels\AddNewStudentPageViewModel.cs" />
     <Compile Include="ViewModels\Base\ViewModelBase.cs" />
+    <Compile Include="ViewModels\ChooseClassPageViewModel.cs" />
     <Compile Include="ViewModels\DetailClassPageViewModel.cs" />
+    <Compile Include="ViewModels\DetailStudentPageViewModel.cs" />
     <Compile Include="ViewModels\HomePageViewModel.cs" />
+    <Compile Include="ViewModels\ListAllStudentPageViewModel.cs" />
     <Compile Include="ViewModels\ListClassesPageViewModel.cs" />
+    <Compile Include="ViewModels\ListStudentPageViewModel.cs" />
     <Compile Include="ViewModels\LoginPageViewModel.cs" />
+    <Compile Include="ViewModels\ScoreBoardPageViewModel.cs" />
+    <Compile Include="Views\AddNewStudentPage.xaml.cs">
+      <DependentUpon>AddNewStudentPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ChooseClassPage.xaml.cs">
+      <DependentUpon>ChooseClassPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\DetailClassPage.xaml.cs">
       <DependentUpon>DetailClassPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DetailStudentPage.xaml.cs">
+      <DependentUpon>DetailStudentPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ListAllStudentPage.xaml.cs">
+      <DependentUpon>ListAllStudentPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ListClassesPage.xaml.cs">
       <DependentUpon>ListClassesPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ListStudentPage.xaml.cs">
+      <DependentUpon>ListStudentPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ScoreBoardPage.xaml.cs">
+      <DependentUpon>ScoreBoardPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -137,6 +167,42 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\DetailClassPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\ListStudentPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\AddNewStudentPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\ChooseClassPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\DetailStudentPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\ListAllStudentPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\ScoreBoardPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

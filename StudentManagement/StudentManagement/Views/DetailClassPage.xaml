@@ -17,7 +17,6 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             
             <!--Class name-->
@@ -70,20 +69,33 @@
                    Grid.Row="3"
                    Grid.Column="2"/>
             
-            <!--Xem danh sach lop-->
+            <!--#region Thong tin lop-->
+            <StackLayout
+                Grid.Column="0"
+                Grid.Row="4"
+                Grid.ColumnSpan="3"
+                VerticalOptions="End"
+                IsVisible="{Binding IsClassInfo}">
+                <!--Xem danh sach lop-->
+                <Button Text="Xem danh sách lớp"
+                        Command="{Binding ViewListStudentCommand}"/>
+
+                <!--Xem bang diem lop-->
+                <Button Text="Xem bảng điểm lớp"
+                        Command="{Binding ViewScoreBoardCommand}"/>
+            </StackLayout>
+            <!--#endregion-->
+
+            <!--#region Tiep nhan hoc sinh-->
+            <!--Dong y-->
             <Button Grid.Column="0"
                     Grid.Row="4"
                     Grid.ColumnSpan="3"
-                    Text="Xem danh sách lớp"
-                    Command="{Binding ViewListStudentCommand}"
-                    VerticalOptions="End"/>
-
-            <!--Xem bang diem lop-->
-            <Button Grid.Column="0"
-                    Grid.Row="5"
-                    Grid.ColumnSpan="3"
-                    Text="Xem bảng điểm lớp"
-                    Command="{Binding ViewScoreBoardCommand}"/>
+                    Text="Đồng ý"
+                    Command="{Binding AcceptCommand}"
+                    VerticalOptions="End"
+                    IsVisible="{Binding IsClassAcceptStudent}"/>
+            <!--#endregion-->
         </Grid>
     </ContentPage.Content>
 </ContentPage>

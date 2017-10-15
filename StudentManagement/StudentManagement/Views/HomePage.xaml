@@ -44,6 +44,9 @@
                             <Label Grid.Column="1"
                                    Text="Tiếp nhận học sinh"
                                    Style="{StaticResource MenuFeaturesLabelStyle}" />
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding AddNewStudentCommand}"/>
+                            </Grid.GestureRecognizers>
                         </Grid>
 
                         <!--Danh sach lop-->
@@ -58,6 +61,26 @@
                             <Label Grid.Column="1"
                                    Text="Danh sách lớp"
                                    Style="{StaticResource MenuFeaturesLabelStyle}" />
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ListClassesCommand}"/>
+                            </Grid.GestureRecognizers>
+                        </Grid>
+
+                        <!--Danh sach hoc sinh-->
+                        <Grid ColumnSpacing="{StaticResource MenuFeaturesColumnSpacing}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="{StaticResource MenuFeaturesIconWidth}" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0"
+                                   Text="{StaticResource PeopleIcon}"
+                                   Style="{StaticResource MenuFeaturesIconStyle}" />
+                            <Label Grid.Column="1"
+                                   Text="Danh sách học sinh"
+                                   Style="{StaticResource MenuFeaturesLabelStyle}" />
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ListAllStudentCommand}"/>
+                            </Grid.GestureRecognizers>
                         </Grid>
 
                         <!--Nhap bang diem-->
@@ -72,6 +95,9 @@
                             <Label Grid.Column="1"
                                    Text="Nhập bảng điểm"
                                    Style="{StaticResource MenuFeaturesLabelStyle}" />
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding InputScoreBoardCommand}"/>
+                            </Grid.GestureRecognizers>
                         </Grid>
 
                         <!--Bao cao tong ket-->

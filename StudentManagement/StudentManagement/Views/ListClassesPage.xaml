@@ -66,26 +66,26 @@
                                     <!--Si so-->
                                     <Label Text="{StaticResource PeopleIcon}"
                                            TextColor="Purple"
-                                           Style="{StaticResource ListClassesItemIconStyle}"
+                                           Style="{StaticResource ListSmallItemIconStyle}"
                                            Margin="0,3,0,0"/>
                                     <Label Text="30"
-                                           Style="{StaticResource ListClassesItemNumberStyle}"/>
+                                           Style="{StaticResource ListSmallItemLabelStyle}"/>
 
                                     <!--Nam-->
                                     <Label Text="{StaticResource MaleIcon}"
                                            TextColor="Green"
-                                           Style="{StaticResource ListClassesItemIconStyle}"
+                                           Style="{StaticResource ListSmallItemIconStyle}"
                                            FontSize="{StaticResource LargeFontSize}"/>
                                     <Label Text="10"
-                                           Style="{StaticResource ListClassesItemNumberStyle}"/>
+                                           Style="{StaticResource ListSmallItemLabelStyle}"/>
 
                                     <!--Nu-->
                                     <Label Text="{StaticResource FemaleIcon}"
                                            TextColor="{StaticResource PinkColor}"
-                                           Style="{StaticResource ListClassesItemIconStyle}"
+                                           Style="{StaticResource ListSmallItemIconStyle}"
                                            FontSize="{StaticResource LargeFontSize}"/>
                                     <Label Text="20"
-                                           Style="{StaticResource ListClassesItemNumberStyle}"/>
+                                           Style="{StaticResource ListSmallItemLabelStyle}"/>
                                 </StackLayout>
                             </Frame>
                         </ViewCell>

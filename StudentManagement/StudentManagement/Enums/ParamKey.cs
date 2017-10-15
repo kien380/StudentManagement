@@ -2,6 +2,7 @@
 {
     public enum ParamKey
     {
-        DetailClassPageType
+        DetailClassPageType,
+        ScoreBoardPageType
     }
 }

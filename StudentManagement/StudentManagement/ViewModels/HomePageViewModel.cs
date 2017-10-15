@@ -2,6 +2,7 @@
 using System.Windows.Input;
 using Prism.Commands;
 using Prism.Navigation;
+using StudentManagement.Enums;
 using StudentManagement.Helpers;
 using StudentManagement.ViewModels.Base;
 
@@ -18,6 +19,7 @@ namespace StudentManagement.ViewModels
         public ICommand AddNewStudentCommand { get; set; }
         public ICommand ListClassesCommand { get; set; }
         public ICommand ListAllStudentCommand { get; set; }
+        public ICommand InputScoreBoardCommand { get; set; }
         public ICommand LogOutCommand { get; set; }
         #endregion
 
@@ -31,6 +33,7 @@ namespace StudentManagement.ViewModels
             AddNewStudentCommand = new DelegateCommand(AddNewStudentExecute);
             ListClassesCommand = new DelegateCommand(ListClassesExecute);
             ListAllStudentCommand = new DelegateCommand(ListAllStudentExecute);
+            InputScoreBoardCommand = new DelegateCommand(InputScoreBoardExecute);
             LogOutCommand = new DelegateCommand(LogOutExecute);
         }
 
@@ -66,6 +69,18 @@ namespace StudentManagement.ViewModels
             {
                 PageManager.NavigationPage, PageManager.ListAllStudentsPage
             }));
+        }
+
+        private void InputScoreBoardExecute()
+        {
+            var navParam = new NavigationParameters
+            {
+                { ParamKey.ScoreBoardPageType.ToString(), ScoreBoardPageType.InputScoreBoard }
+            };
+            NavigationService.NavigateAsync(PageManager.MultiplePage(new[]
+            {
+                PageManager.NavigationPage, PageManager.ScoreBoardPage
+            }), navParam);
         }
 
         private void LogOutExecute()

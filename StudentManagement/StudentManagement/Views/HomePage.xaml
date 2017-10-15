@@ -95,6 +95,9 @@
                             <Label Grid.Column="1"
                                    Text="Nhập bảng điểm"
                                    Style="{StaticResource MenuFeaturesLabelStyle}" />
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding InputScoreBoardCommand}"/>
+                            </Grid.GestureRecognizers>
                         </Grid>
 
                         <!--Bao cao tong ket-->

@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="StudentManagement.Views.StudentScorePage"
+             Title="{Binding PageTitle}">
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <!--Background-->
+            <BoxView Color="{StaticResource Grade10ClassBackgroundColor}"
+                     Grid.Row="0"
+                     Grid.Column="0"
+                     Grid.RowSpan="2"/>
+
+            <!--Avatar-->
+            <Image Source="student_boy.png"
+                   HorizontalOptions="Center"
+                   WidthRequest="100"
+                   HeightRequest="100"
+                   Grid.Row="0"
+                   Grid.Column="0"
+                   Margin="20,20,20,0"/>
+
+            <!--Name-->
+            <Label Text="{Binding Name}" 
+                   TextColor="{StaticResource Grade10ClassNameColor}"
+                   FontAttributes="Bold"
+                   FontSize="{StaticResource XLargeFontSize}"
+                   HorizontalTextAlignment="Center"
+                   Grid.Row="1"
+                   Grid.Column="0"
+                   Margin="20,10,20,15"/>
+            
+            <!--Diem 15 phut-->
+            <Label Text="Điểm 15 phút:"
+                   FontSize="{StaticResource MediumFontSize}"
+                   Margin="20,10,20,0"
+                   Grid.Row="2"
+                   Grid.Column="0"/>
+            <Entry Text="9.0"
+                   FontSize="{StaticResource LargeFontSize}"
+                   Grid.Row="3"
+                   Grid.Column="0"
+                   Margin="20,0,20,0"/>
+
+            <!--Diem 45 phut-->
+            <Label Text="Điểm 45 phút:"
+                   FontSize="{StaticResource MediumFontSize}"
+                   Margin="20,10,20,0"
+                   Grid.Row="4"
+                   Grid.Column="0"/>
+            <Entry Text="9.0"
+                   FontSize="{StaticResource LargeFontSize}"
+                   Grid.Row="5"
+                   Grid.Column="0"
+                   Margin="20,0,20,0"/>
+
+            <!--Diem cuoi ky-->
+            <Label Text="Điểm cuối kỳ:"
+                   FontSize="{StaticResource MediumFontSize}"
+                   Margin="20,10,20,0"
+                   Grid.Row="6"
+                   Grid.Column="0"/>
+            <Entry Text="9.0"
+                   FontSize="{StaticResource LargeFontSize}"
+                   Grid.Row="7"
+                   Grid.Column="0"
+                   Margin="20,0,20,0"/>
+
+            <!--Diem trung binh-->
+            <Label Text="Điểm trung bình:"
+                   FontSize="{StaticResource MediumFontSize}"
+                   HorizontalTextAlignment="Center"
+                   Margin="20,10,20,0"
+                   Grid.Row="8"
+                   Grid.Column="0"/>
+            <Label Text="9.0" 
+                   TextColor="Blue"
+                   FontAttributes="Bold"
+                   FontSize="{StaticResource XLargeFontSize}"
+                   HorizontalTextAlignment="Center"
+                   Grid.Row="9"
+                   Grid.Column="0"
+                   Margin="20,10,20,15"/>
+
+            <!--Bottom buttons-->
+            <Grid Grid.Row="10"
+                  Grid.Column="0"
+                  VerticalOptions="End">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                
+                <Button Text="Clear"
+                        Command="{Binding ClearCommand}"
+                        Grid.Column="0"/>
+                <Button Text="Save"
+                        Command="{Binding SaveCommand}"
+                        Grid.Column="1"/>
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

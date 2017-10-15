@@ -83,7 +83,7 @@
                             </Grid.GestureRecognizers>
                         </Grid>
 
-                        <!--Nhap bang diem-->
+                        <!--Nhap bang diem--><!--
                         <Grid ColumnSpacing="{StaticResource MenuFeaturesColumnSpacing}">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="{StaticResource MenuFeaturesIconWidth}" />
@@ -98,7 +98,7 @@
                             <Grid.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding InputScoreBoardCommand}"/>
                             </Grid.GestureRecognizers>
-                        </Grid>
+                        </Grid>-->
 
                         <!--Bao cao tong ket-->
                         <Grid ColumnSpacing="{StaticResource MenuFeaturesColumnSpacing}">

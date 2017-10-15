@@ -80,8 +80,8 @@
                 <Button Text="Xem danh sách lớp"
                         Command="{Binding ViewListStudentCommand}"/>
 
-                <!--Xem bang diem lop-->
-                <Button Text="Xem bảng điểm lớp"
+                <!--Bang diem lop-->
+                <Button Text="Bảng điểm lớp"
                         Command="{Binding ViewScoreBoardCommand}"/>
             </StackLayout>
             <!--#endregion-->

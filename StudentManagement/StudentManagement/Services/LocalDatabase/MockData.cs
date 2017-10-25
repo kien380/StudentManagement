@@ -19,13 +19,16 @@ namespace StudentManagement.Services.LocalDatabase
         {
             InitSetting();
             InitStudent();
+            InitClass();
             InitSubject();
             InitScore();
-            InitClass();
         }
 
         private void InitClass()
         {
+            // Insert or Replace student
+            MockClassData mockClassData = new MockClassData();
+            _db.InsertAll(mockClassData.Classes);
         }
 
         private void InitStudent()

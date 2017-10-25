@@ -14,5 +14,7 @@ namespace StudentManagement.Models
         public int MinStudentAge { get; set; }
 
         public float SubjectPassScore { get; set; }
+
+        public bool IsInitData { get; set; }
     }
 }

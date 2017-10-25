@@ -55,10 +55,10 @@ namespace StudentManagement.ViewModels
 
         public void ScoreBoardItemTapped(Student student)
         {
-            if (_pageType != ScoreBoardPageType.InputScoreBoard)
-                return;
+            //if (_pageType != ScoreBoardPageType.InputScoreBoard)
+            //    return;
 
-            NavigationService.NavigateAsync(PageManager.DetailStudentPage);
+            NavigationService.NavigateAsync(PageManager.StudentScorePage);
         }
 
         #endregion

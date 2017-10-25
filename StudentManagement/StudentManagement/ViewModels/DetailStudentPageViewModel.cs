@@ -58,6 +58,7 @@ namespace StudentManagement.ViewModels
         public ICommand ViewClassInfoCommand { get; set; }
         public ICommand ViewScoreBoardCommand { get; set; }
         #endregion
+
         public DetailStudentPageViewModel(INavigationService navigationService, IPageDialogService dialogService,
             ISQLiteHelper sqLiteHelper)
             : base(navigationService, dialogService, sqLiteHelper)

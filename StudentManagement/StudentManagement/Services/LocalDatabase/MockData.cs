@@ -26,7 +26,7 @@ namespace StudentManagement.Services.LocalDatabase
 
         private void InitClass()
         {
-            // Insert or Replace student
+            // Insert or Replace Class
             MockClassData mockClassData = new MockClassData();
             _db.InsertAll(mockClassData.Classes);
         }
@@ -40,7 +40,9 @@ namespace StudentManagement.Services.LocalDatabase
 
         private void InitSubject()
         {
-            
+            // Insert or Replace Subject
+            MockSubjectData mockSubjectData = new MockSubjectData();
+            _db.InsertAll(mockSubjectData.Subjects);
         }
 
         private void InitScore()

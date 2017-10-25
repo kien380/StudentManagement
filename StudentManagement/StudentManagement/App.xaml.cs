@@ -71,15 +71,10 @@ namespace StudentManagement
                     var mockData = new MockData(_sqLiteHelper);
                     mockData.InitMockData();
                 }
-                //else
-                //{
-                //    List<Class> classes = _sqLiteHelper.GetList<Class>(s => s.Id > 0).ToList();
-                //    foreach (var c in classes)
-                //    {
-                //        c.CountStudent(_sqLiteHelper);
-                //    }
-                //    var cl = classes[0];
-                //}
+                else
+                {
+                    List<Subject> subjects = _sqLiteHelper.GetList<Subject>(s => s.Id > 0).ToList();
+                }
             }
             else
             {

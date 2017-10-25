@@ -41,20 +41,20 @@
                                                  Grid.Column="0"
                                                  Grid.RowSpan="3"
                                                  Margin="0,0,7,0">
-                                        <Image Source="student_boy.png"/>
+                                        <Image Source="{Binding Avatar}"/>
                                         <Frame BackgroundColor="Pink"
                                                CornerRadius="3"
                                                Padding="0"
                                                WidthRequest="30"
                                                HorizontalOptions="Center">
-                                            <Label Text="1"
+                                            <Label Text="{Binding Id}"
                                                    FontSize="{StaticResource SmallFontSize}"
                                                    HorizontalTextAlignment="Center"/>
                                         </Frame>
                                     </StackLayout>
 
                                     <!--Student Name-->
-                                    <Label Text="Nguyễn Văn A"
+                                    <Label Text="{Binding FullName}"
                                            TextColor="{StaticResource Grade10ClassNameColor}"
                                            FontSize="{StaticResource LargeFontSize}"
                                            FontAttributes="Bold"
@@ -75,7 +75,7 @@
                                         <Label Text="Lớp:"
                                                Style="{StaticResource ListSmallItemLabelStyle}"
                                                Margin="0"/>
-                                        <Label Text="10A4"
+                                        <Label Text="{Binding ClassName}"
                                                Style="{StaticResource ListSmallItemLabelStyle}"/>
                                     </StackLayout>
 

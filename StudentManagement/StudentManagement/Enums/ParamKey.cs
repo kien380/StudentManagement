@@ -3,6 +3,8 @@
     public enum ParamKey
     {
         DetailClassPageType,
-        ScoreBoardPageType
+        ScoreBoardPageType,
+        ClassInfo,
+        StudentInfo
     }
 }

@@ -5,6 +5,7 @@ using Prism.Services;
 using StudentManagement.Enums;
 using StudentManagement.Helpers;
 using StudentManagement.Interfaces;
+using StudentManagement.Models;
 using StudentManagement.ViewModels.Base;
 
 namespace StudentManagement.ViewModels
@@ -19,6 +20,7 @@ namespace StudentManagement.ViewModels
         private int _numberOfGirl;
         private bool _isClassInfo;
         private bool _isClassAcceptStudent;
+        private Class _class;
 
         #endregion
 
@@ -64,12 +66,6 @@ namespace StudentManagement.ViewModels
             ISQLiteHelper sqLiteHelper)
             : base(navigationService, dialogService, sqLiteHelper)
         {
-            // Set values
-            ClassName = "10A4";
-            NumberOfStudent = 30;
-            NumberOfBoy = 10;
-            NumberOfGirl = 20;
-
             // Commands
             ViewListStudentCommand = new DelegateCommand(ViewListStudentExecute);
             ViewScoreBoardCommand = new DelegateCommand(ViewScoreBoardExecute);
@@ -88,7 +84,20 @@ namespace StudentManagement.ViewModels
                 {
                     SwitchPageMode((DetailClassPageType)parameters[ParamKey.DetailClassPageType.ToString()]);
                 }
+                if (parameters.ContainsKey(ParamKey.ClassInfo.ToString()))
+                {
+                    SetClassInfo((Class)parameters[ParamKey.ClassInfo.ToString()]);
+                }
             }
+        }
+
+        private void SetClassInfo(Class classInfo)
+        {
+            _class = classInfo;
+            ClassName = classInfo.Name;
+            NumberOfStudent = classInfo.Students;
+            NumberOfBoy = classInfo.Boys;
+            NumberOfGirl = classInfo.Girls;
         }
 
         #endregion
@@ -97,7 +106,11 @@ namespace StudentManagement.ViewModels
 
         private void ViewListStudentExecute()
         {
-            NavigationService.NavigateAsync(PageManager.ListStudentsPage);
+            var navParam = new NavigationParameters
+            {
+                { ParamKey.ClassInfo.ToString(), _class }
+            };
+            NavigationService.NavigateAsync(PageManager.ListStudentsPage, navParam);
         }
 
         private void ViewScoreBoardExecute()

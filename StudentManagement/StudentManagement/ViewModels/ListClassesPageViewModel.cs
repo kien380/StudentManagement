@@ -51,7 +51,10 @@ namespace StudentManagement.ViewModels
             // Set values
             PageTitle = "Danh sách các lớp";
             ShowSearchBox = false;
-            Classes = new ObservableCollection<Class>{new Class(), new Class(), new Class()};
+
+            var classes = sqLiteHelper.GetList<Class>(c => c.Id > 0);
+            foreach (var c in classes) c.CountStudent(sqLiteHelper); 
+            Classes = new ObservableCollection<Class>(classes);
 
             // Commands
             SearchToolbarItemsCommand = new DelegateCommand(SearchToolbarItemsExecute);
@@ -74,7 +77,8 @@ namespace StudentManagement.ViewModels
         {
             var navParam = new NavigationParameters
             {
-                { ParamKey.DetailClassPageType.ToString(), DetailClassPageType.ClassInfo }
+                { ParamKey.DetailClassPageType.ToString(), DetailClassPageType.ClassInfo },
+                { ParamKey.ClassInfo.ToString(), _class }
             };
             NavigationService.NavigateAsync(PageManager.DetailClassPage, navParam);
         }

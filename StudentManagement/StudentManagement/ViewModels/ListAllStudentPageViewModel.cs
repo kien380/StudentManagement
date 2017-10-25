@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using Prism.Navigation;
 using Prism.Services;
+using StudentManagement.Enums;
 using StudentManagement.Helpers;
 using StudentManagement.Interfaces;
 using StudentManagement.Models;
@@ -28,14 +29,20 @@ namespace StudentManagement.ViewModels
             : base(navigationService, dialogService, sqLiteHelper)
         {
             PageTitle = "Danh sách học sinh";
-            Students = new ObservableCollection<Student> { new Student(), new Student(), new Student(), new Student(), new Student(), new Student() };
+
+            var students = sqLiteHelper.GetList<Student>(s => s.Id > 0);
+            Students = new ObservableCollection<Student>(students);
         }
 
         #region Methods
 
         public void StudentItemTapped(Student student)
         {
-            NavigationService.NavigateAsync(PageManager.DetailStudentPage);
+            var navParam = new NavigationParameters
+            {
+                { ParamKey.StudentInfo.ToString(), student }
+            };
+            NavigationService.NavigateAsync(PageManager.DetailStudentPage, navParam);
         }
 
         #endregion

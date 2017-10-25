@@ -45,20 +45,20 @@
                                                  Grid.Column="0"
                                                  Grid.RowSpan="3"
                                                  Margin="0,0,7,0">
-                                        <Image Source="student_boy.png"/>
+                                        <Image Source="{Binding Avatar}"/>
                                         <Frame BackgroundColor="Pink"
                                                CornerRadius="3"
                                                Padding="0"
                                                WidthRequest="30"
                                                HorizontalOptions="Center">
-                                            <Label Text="1"
+                                            <Label Text="{Binding Id}"
                                                    FontSize="{StaticResource SmallFontSize}"
                                                    HorizontalTextAlignment="Center"/>
                                         </Frame>
                                     </StackLayout>
 
                                     <!--Student Name-->
-                                    <Label Text="Nguyễn Văn A"
+                                    <Label Text="{Binding FullName}"
                                            TextColor="{StaticResource Grade10ClassNameColor}"
                                            FontSize="{StaticResource LargeFontSize}"
                                            FontAttributes="Bold"
@@ -67,12 +67,12 @@
                                            Grid.ColumnSpan="4"/>
 
                                     <!--Gender-->
-                                    <Label Text="{StaticResource MaleIcon}"
-                                           TextColor="Green"
+                                    <Label Text="{Binding GenderIcon}"
+                                           TextColor="{Binding GenderColor}"
                                            Style="{StaticResource ListSmallItemIconStyle}"
                                            Grid.Row="1"
                                            Grid.Column="1"/>
-                                    <Label Text="Nam"
+                                    <Label Text="{Binding GenderString}"
                                            Style="{StaticResource ListSmallItemLabelStyle}"
                                            Grid.Row="1"
                                            Grid.Column="2"/>
@@ -83,7 +83,7 @@
                                            Style="{StaticResource ListSmallItemIconStyle}"
                                            Grid.Row="1"
                                            Grid.Column="3"/>
-                                    <Label Text="10-10-1996"
+                                    <Label Text="{Binding DoBstring}"
                                            Style="{StaticResource ListSmallItemLabelStyle}"
                                            Grid.Row="1"
                                            Grid.Column="4"/>
@@ -94,7 +94,7 @@
                                            Style="{StaticResource ListSmallItemIconStyle}"
                                            Grid.Row="2"
                                            Grid.Column="1"/>
-                                    <Label Text="Linh Trung, Thủ Đức, TP HCM"
+                                    <Label Text="{Binding Address}"
                                            Style="{StaticResource ListSmallItemLabelStyle}"
                                            Grid.Row="2"
                                            Grid.Column="2"

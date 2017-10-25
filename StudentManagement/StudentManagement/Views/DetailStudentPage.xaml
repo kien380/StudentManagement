@@ -28,7 +28,7 @@
                      Grid.ColumnSpan="2"/>
             
             <!--Avatar-->
-            <Image Source="student_boy.png"
+            <Image Source="{Binding Avatar}"
                    HorizontalOptions="Center"
                    WidthRequest="100"
                    HeightRequest="100"

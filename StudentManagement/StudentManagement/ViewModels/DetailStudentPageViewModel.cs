@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.Windows.Input;
 using Prism.Commands;
 using Prism.Navigation;
@@ -6,6 +7,7 @@ using Prism.Services;
 using StudentManagement.Enums;
 using StudentManagement.Helpers;
 using StudentManagement.Interfaces;
+using StudentManagement.Models;
 using StudentManagement.ViewModels.Base;
 
 namespace StudentManagement.ViewModels
@@ -13,13 +15,15 @@ namespace StudentManagement.ViewModels
     public class DetailStudentPageViewModel : ViewModelBase
     {
         #region private properties
-
+        
+        private Student _student;
         private string _className;
         private string _fullName;
         private string _doB;
         private string _gender;
         private string _email;
         private string _address;
+        private string _avatar;
 
         #endregion
 
@@ -54,6 +58,11 @@ namespace StudentManagement.ViewModels
             get => _address;
             set => SetProperty(ref _address, value);
         }
+        public string Avatar
+        {
+            get => _avatar;
+            set => SetProperty(ref _avatar, value);
+        }
         // Commands
         public ICommand ViewClassInfoCommand { get; set; }
         public ICommand ViewScoreBoardCommand { get; set; }
@@ -64,18 +73,41 @@ namespace StudentManagement.ViewModels
             : base(navigationService, dialogService, sqLiteHelper)
         {
             // Set values
-            ClassName = "10A4";
             PageTitle = "Thông tin học sinh";
-            FullName = "Nguyễn Văn A";
-            DoB = "19/5/1996";
-            Gender = "Nam";
-            Email = "nguyenvana@gmail.com";
-            Address = "Linh Trung, Thủ Đức, TP HCM";
 
             // Commands
             ViewClassInfoCommand = new DelegateCommand(ViewClassInfoExecute);
             ViewScoreBoardCommand = new DelegateCommand(ViewScoreBoardExecute);
         }
+
+        #region override
+
+        public override void OnNavigatedTo(NavigationParameters parameters)
+        {
+            base.OnNavigatedTo(parameters);
+
+            if (parameters != null)
+            {
+                if (parameters.ContainsKey(ParamKey.StudentInfo.ToString()))
+                {
+                    SetStudentInfo((Student)parameters[ParamKey.StudentInfo.ToString()]);
+                }
+            }
+        }
+
+        private void SetStudentInfo(Student student)
+        {
+            _student = student;
+            ClassName = student.ClassName;
+            FullName = student.FullName;
+            DoB = student.DoB.ToString("dd/MM/yyyy");
+            Gender = student.GenderString;
+            Email = student.Email;
+            Address = student.Address;
+            Avatar = student.Avatar;
+        }
+
+        #endregion
 
         #region Methods
 

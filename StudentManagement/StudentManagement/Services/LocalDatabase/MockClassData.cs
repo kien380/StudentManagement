@@ -24,7 +24,7 @@ namespace StudentManagement.Services.LocalDatabase
                 new Class{ Id = 2006, Name = "11A2" },
                 new Class{ Id = 2007, Name = "11A3" },
                 new Class{ Id = 2008, Name = "12A1" },
-                new Class{ Id = 2009, Name = "12A3" },
+                new Class{ Id = 2009, Name = "12A2" },
             };
         }
     }

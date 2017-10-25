@@ -57,6 +57,9 @@
     <Compile Include="Models\Student.cs" />
     <Compile Include="Models\Subject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\LocalDatabase\MockClassData.cs" />
+    <Compile Include="Services\LocalDatabase\MockData.cs" />
+    <Compile Include="Services\LocalDatabase\MockStudentData.cs" />
     <Compile Include="Services\LocalDatabase\SQLiteHelper.cs" />
     <Compile Include="ViewModels\AddNewStudentPageViewModel.cs" />
     <Compile Include="ViewModels\Base\ViewModelBase.cs" />

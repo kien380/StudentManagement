@@ -1,7 +1,10 @@
-﻿using DryIoc;
+﻿using System.Collections.Generic;
+using System.Linq;
+using DryIoc;
 using Prism.DryIoc;
 using StudentManagement.Helpers;
 using StudentManagement.Interfaces;
+using StudentManagement.Models;
 using StudentManagement.Services.LocalDatabase;
 using StudentManagement.Views;
 using Xamarin.Forms;
@@ -23,6 +26,7 @@ namespace StudentManagement
         protected override void OnInitialized()
         {
             InitDatabase();
+            InitMockData();
             InitializeComponent();
             NavigationService.NavigateAsync(PageManager.MultiplePage(new[]
             {
@@ -55,6 +59,29 @@ namespace StudentManagement
         {
             var connectionService = DependencyService.Get<IDatabaseConnection>();
             _sqLiteHelper = new SQLiteHelper(connectionService);
+        }
+
+        private void InitMockData()
+        {
+            var setting = _sqLiteHelper.Get<Setting>("1");
+            if (setting != null)
+            {
+                if (!setting.IsInitData)
+                {
+                    var mockData = new MockData(_sqLiteHelper);
+                    mockData.InitMockData();
+                }
+                //else
+                //{
+                //    List<Student> students = _sqLiteHelper.GetList<Student>(s => s.Id > 0).ToList();
+                //    var student = _sqLiteHelper.Get<Student>("10008");
+                //}
+            }
+            else
+            {
+                var mockData = new MockData(_sqLiteHelper);
+                mockData.InitMockData();
+            }
         }
     }
 }

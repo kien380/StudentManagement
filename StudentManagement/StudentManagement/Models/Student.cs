@@ -10,6 +10,10 @@ namespace StudentManagement.Models
 
         public string FullName { get; set; }
 
+        public int ClassId { get; set; }
+
+        public string ClassName { get; set; }
+
         public int Gender { get; set; }
 
         public DateTime DoB { get; set; }

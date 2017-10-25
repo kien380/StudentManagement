@@ -59,6 +59,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\LocalDatabase\MockClassData.cs" />
     <Compile Include="Services\LocalDatabase\MockData.cs" />
+    <Compile Include="Services\LocalDatabase\MockScoreData.cs" />
     <Compile Include="Services\LocalDatabase\MockStudentData.cs" />
     <Compile Include="Services\LocalDatabase\MockSubjectData.cs" />
     <Compile Include="Services\LocalDatabase\SQLiteHelper.cs" />

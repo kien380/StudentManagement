@@ -73,7 +73,7 @@ namespace StudentManagement
                 }
                 else
                 {
-                    List<Subject> subjects = _sqLiteHelper.GetList<Subject>(s => s.Id > 0).ToList();
+                    List<Score> scores = _sqLiteHelper.GetList<Score>(s => s.Id >= 0).ToList();
                 }
             }
             else

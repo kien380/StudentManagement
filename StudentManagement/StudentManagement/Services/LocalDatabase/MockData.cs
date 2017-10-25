@@ -17,11 +17,11 @@ namespace StudentManagement.Services.LocalDatabase
 
         public void InitMockData()
         {
-            InitSetting();
             InitStudent();
             InitClass();
             InitSubject();
             InitScore();
+            InitSetting();
         }
 
         private void InitClass()
@@ -47,7 +47,9 @@ namespace StudentManagement.Services.LocalDatabase
 
         private void InitScore()
         {
-            
+            // Insert or Replace Score
+            MockScoreData mockScoreData = new MockScoreData();
+            _db.InsertAll(mockScoreData.Scores);
         }
 
         private void InitSetting()

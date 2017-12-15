@@ -70,7 +70,13 @@
                 FontSize="{StaticResource MediumFontSize}"
                 Title="Giới tính"
                 Grid.Row="3"
-                Grid.Column="1"/>
+                Grid.Column="1"
+                SelectedItem="{Binding Gender}">
+                <controls:CustomPicker.Items>
+                    <x:String>Nam</x:String>
+                    <x:String>Nữ</x:String>
+                </controls:CustomPicker.Items>
+            </controls:CustomPicker>
 
             <!--Email-->
             <Label Text="{StaticResource EmailIcon}"

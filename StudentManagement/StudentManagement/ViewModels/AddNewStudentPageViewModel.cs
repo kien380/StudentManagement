@@ -62,6 +62,7 @@ namespace StudentManagement.ViewModels
         {
             // Set values
             PageTitle = "Tiếp nhận học sinh";
+            DoB = new DateTime(2001,1,1);
 
             // Commands
             ContinueCommand = new DelegateCommand(ContinueExecute);
@@ -71,6 +72,18 @@ namespace StudentManagement.ViewModels
 
         private async void ContinueExecute()
         {
+            if (string.IsNullOrEmpty(FullName) || string.IsNullOrEmpty(Gender) ||
+                string.IsNullOrEmpty(Email) || string.IsNullOrEmpty(Address))
+            {
+                await Dialog.DisplayAlertAsync("Thông báo", "Bạn cần nhập đầy đủ thông tin học sinh", "OK");
+                return;
+            }
+
+            if (DoB.Year < 2017 - 18 || DoB.Year > 2017 - 16)
+            {
+                await Dialog.DisplayAlertAsync("Thông báo", "Tuổi của học sinh không hợp lệ", "OK");
+            }
+
             LoadingPopup.Instance.ShowLoading();
             // Add Student into database
             await Task.Run(() =>

@@ -146,6 +146,38 @@ namespace StudentManagement.Services.LocalDatabase
                 }
             }
         }
+
+        public Setting GetSetting()
+        {
+            try
+            {
+                var setting = Database.Get<Setting>(s => s.Id == 1);
+                if (setting == null)
+                    return new Setting
+                    {
+                        Id = 1,
+                        IsInitData = true,
+                        MinStudentAge = 15,
+                        MaxStudentAge = 20,
+                        MaxStudentPerClass = 40,
+                        SubjectPassScore = 5.0f
+                    };
+                return setting;
+            }
+            catch (Exception e)
+            {
+                return new Setting
+                {
+                    Id = 1,
+                    IsInitData = true,
+                    MinStudentAge = 15,
+                    MaxStudentAge = 20,
+                    MaxStudentPerClass = 40,
+                    SubjectPassScore = 5.0f
+                };
+            }
+        }
+
         #endregion
 
         #region Searchs

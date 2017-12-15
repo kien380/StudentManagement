@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using StudentManagement.Models;
 
 namespace StudentManagement.Interfaces
 {
@@ -12,6 +13,7 @@ namespace StudentManagement.Interfaces
         T Get<T>(string primarykey) where T : class, new();
         T Get<T>(Expression<Func<T, bool>> predicate) where T : class, new();
         IEnumerable<T> GetList<T>(Expression<Func<T, bool>> predicate) where T : class, new();
+        Setting GetSetting();
         #endregion
 
         #region Searchs

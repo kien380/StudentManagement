@@ -72,6 +72,8 @@ namespace StudentManagement.ViewModels
 
         private async void ContinueExecute()
         {
+            var settings = Database.GetSetting();
+
             if (string.IsNullOrEmpty(FullName) || string.IsNullOrEmpty(Gender) ||
                 string.IsNullOrEmpty(Email) || string.IsNullOrEmpty(Address))
             {
@@ -79,9 +81,10 @@ namespace StudentManagement.ViewModels
                 return;
             }
 
-            if (DoB.Year < 2017 - 18 || DoB.Year > 2017 - 16)
+            if (settings.MinStudentAge > 2017 - DoB.Year || settings.MaxStudentAge < 2017 - DoB.Year)
             {
                 await Dialog.DisplayAlertAsync("Thông báo", "Tuổi của học sinh không hợp lệ", "OK");
+                return;
             }
 
             LoadingPopup.Instance.ShowLoading();

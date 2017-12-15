@@ -49,6 +49,7 @@
     <Compile Include="Enums\ScoreBoardPageType.cs" />
     <Compile Include="Helpers\Ionicons.cs" />
     <Compile Include="Helpers\PageManager.cs" />
+    <Compile Include="Helpers\StringHelper.cs" />
     <Compile Include="Interfaces\IDatabaseConnection.cs" />
     <Compile Include="Interfaces\ISQLiteHelper.cs" />
     <Compile Include="Models\Class.cs" />

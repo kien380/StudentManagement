@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using SQLite.Net.Attributes;
+using StudentManagement.Helpers;
 using Xamarin.Forms;
 
 namespace StudentManagement.Models
@@ -30,7 +32,7 @@ namespace StudentManagement.Models
         public string GenderString => Gender == 0 ? "Nữ" : "Nam";
         
         [Ignore]
-        public string GenderIcon => Gender == 0 ? "\uf278" : "\uf2a1";
+        public string GenderIcon => Gender == 0 ? Ionicons.Female: Ionicons.Male;
 
         [Ignore]
         public Color GenderColor => Gender == 0 
@@ -39,5 +41,30 @@ namespace StudentManagement.Models
 
         [Ignore]
         public string DoBstring => DoB.ToString("dd-MM-yyyy");
+
+        /// <summary>
+        /// Average Score in Semester 1
+        /// </summary>
+        [Ignore]
+        public float ScoreAvg1 { get; private set; }
+
+        /// <summary>
+        /// Average Score in Semester 2
+        /// </summary>
+        [Ignore]
+        public float ScoreAvg2 { get; private set; }
+
+        public void GetAvgScore(List<Score> scores)
+        {
+            float totalScore1 = 0;
+            float totalScore2 = 0;
+            foreach (var score in scores)
+            {
+                if (score.Semester == 1) totalScore1 += score.ScoreAverage;
+                else totalScore2 += score.ScoreAverage;
+            }
+            ScoreAvg1 = (float)Math.Round(totalScore1 / (scores.Count / 2), 1);
+            ScoreAvg2 = (float)Math.Round(totalScore2 / (scores.Count / 2), 1);
+        }
     }
 }

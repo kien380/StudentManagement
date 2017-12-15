@@ -1,8 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:StudentManagement.Controls;assembly=StudentManagement"
              x:Class="StudentManagement.Views.ListAllStudentPage"
              Title="{Binding PageTitle}">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Search"
+                     Icon="ic_search_white.png"
+                     Command="{Binding SearchToolbarItemsCommand}"/>
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout Padding="10">
             <Label Text="Danh sách học sinh" 
@@ -10,6 +16,32 @@
                    FontAttributes="Bold"
                    FontSize="{StaticResource XLargeFontSize}"
                    HorizontalTextAlignment="Center"/>
+            
+            <!--Search Box-->
+            <Frame CornerRadius="10"
+                   BackgroundColor="White"
+                   Padding="10,0"
+                   IsVisible="{Binding ShowSearchBox}">
+                <StackLayout Orientation="Horizontal">
+                    <controls:CustomEntry
+                        Text="{Binding SearchText}"
+                        FontSize="{StaticResource MediumFontSize}"
+                        Border="None"
+                        Placeholder="Nhập tên học sinh"
+                        HorizontalOptions="FillAndExpand" />
+                    <BoxView WidthRequest="0.5"
+                             VerticalOptions="FillAndExpand"
+                             Color="Gray"/>
+                    <Grid Padding="5">
+                        <Label Text="{StaticResource SearchIcon}"
+                               TextColor="Purple"
+                               Style="{StaticResource MediumLabelIconStyle}"/>
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding SearchIconCommand}"/>
+                        </Grid.GestureRecognizers>
+                    </Grid>
+                </StackLayout>
+            </Frame>
 
             <!--List Student-->
             <ListView x:Name="ListViewStudents"
@@ -45,7 +77,7 @@
                                         <Frame BackgroundColor="Pink"
                                                CornerRadius="3"
                                                Padding="0"
-                                               WidthRequest="30"
+                                               WidthRequest="40"
                                                HorizontalOptions="Center">
                                             <Label Text="{Binding Id}"
                                                    FontSize="{StaticResource SmallFontSize}"
@@ -92,7 +124,7 @@
                                         <Label Text="HK1:"
                                                Style="{StaticResource ListSmallItemLabelStyle}"
                                                Margin="0"/>
-                                        <Label Text="9.0"
+                                        <Label Text="{Binding ScoreAvg1}"
                                                Style="{StaticResource ListSmallItemLabelStyle}"/>
                                     </StackLayout>
 
@@ -106,7 +138,7 @@
                                         <Label Text="HK2:"
                                                Style="{StaticResource ListSmallItemLabelStyle}"
                                                Margin="0"/>
-                                        <Label Text="9.0"
+                                        <Label Text="{Binding ScoreAvg2}"
                                                Style="{StaticResource ListSmallItemLabelStyle}"/>
                                     </StackLayout>
                                 </Grid>

@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Prism.Commands;
 using Prism.Navigation;
 using Prism.Services;
 using StudentManagement.Helpers;
 using StudentManagement.Interfaces;
+using StudentManagement.Models;
 using StudentManagement.ViewModels.Base;
 
 namespace StudentManagement.ViewModels
@@ -67,6 +69,21 @@ namespace StudentManagement.ViewModels
 
         private void ContinueExecute()
         {
+            // Add Student into database
+            Task.Run(() =>
+            {
+                var student = new Student
+                {
+                    Id = 19999,
+                    FullName = FullName,
+                    DoB = DoB,
+                    Gender = Gender == "Nam" ? 1 : 0,
+                    Email = Email,
+                    Address = Address
+                };
+                Database.Insert(student);
+            });
+
             NavigationService.NavigateAsync(PageManager.ChooseClassPage);
         }
 

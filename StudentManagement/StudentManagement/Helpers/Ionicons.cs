@@ -225,7 +225,7 @@
         public const string ErlenmeyerFlaskBubbles = "\uf3c4";
         public const string Eye = "\uf133";
         public const string EyeDisabled = "\uf306";
-        public const string Eemale = "\uf278";
+        public const string Female = "\uf278";
         public const string Filing = "\uf134";
         public const string FilmMarker = "\uf135";
         public const string Fireball = "\uf319";

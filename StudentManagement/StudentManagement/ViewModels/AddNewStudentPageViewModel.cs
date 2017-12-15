@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Prism.Commands;
@@ -74,9 +75,12 @@ namespace StudentManagement.ViewModels
             // Add Student into database
             await Task.Run(() =>
             {
+                var students = Database.GetList<Student>(s => s.Id > 0);
+                int idMax = students.Select(s => s.Id).Concat(new[] {0}).Max();
+
                 var student = new Student
                 {
-                    Id = 19999,
+                    Id = ++idMax,
                     FullName = FullName,
                     DoB = DoB,
                     Gender = Gender == "Nam" ? 1 : 0,
@@ -85,7 +89,6 @@ namespace StudentManagement.ViewModels
                 };
                 Database.Insert(student);
             });
-            await Task.Delay(1000);
             LoadingPopup.Instance.HideLoading();
 
             await NavigationService.NavigateAsync(PageManager.ChooseClassPage);

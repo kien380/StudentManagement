@@ -10,6 +10,7 @@ using StudentManagement.Helpers;
 using StudentManagement.Interfaces;
 using StudentManagement.Models;
 using StudentManagement.ViewModels.Base;
+using StudentManagement.Views.Popups;
 
 namespace StudentManagement.ViewModels
 {
@@ -59,9 +60,10 @@ namespace StudentManagement.ViewModels
             SearchIconCommand = new DelegateCommand(SearchIconExecute);
         }
 
-        private void SetListStudentData()
+        private async void SetListStudentData()
         {
-            Task.Run(() =>
+            LoadingPopup.Instance.ShowLoading();
+            await Task.Run(() =>
             {
                 var students = Database.GetList<Student>(s => s.Id > 0);
                 foreach (var student in students)
@@ -70,6 +72,7 @@ namespace StudentManagement.ViewModels
                 }
                 Students = _allStudents = new ObservableCollection<Student>(students);
             });
+            LoadingPopup.Instance.HideLoading();
         }
 
         #region Methods

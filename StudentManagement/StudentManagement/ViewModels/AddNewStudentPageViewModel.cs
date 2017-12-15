@@ -8,6 +8,7 @@ using StudentManagement.Helpers;
 using StudentManagement.Interfaces;
 using StudentManagement.Models;
 using StudentManagement.ViewModels.Base;
+using StudentManagement.Views.Popups;
 
 namespace StudentManagement.ViewModels
 {
@@ -69,7 +70,7 @@ namespace StudentManagement.ViewModels
 
         private async void ContinueExecute()
         {
-
+            LoadingPopup.Instance.ShowLoading();
             // Add Student into database
             await Task.Run(() =>
             {
@@ -84,6 +85,8 @@ namespace StudentManagement.ViewModels
                 };
                 Database.Insert(student);
             });
+            await Task.Delay(1000);
+            LoadingPopup.Instance.HideLoading();
 
             await NavigationService.NavigateAsync(PageManager.ChooseClassPage);
         }

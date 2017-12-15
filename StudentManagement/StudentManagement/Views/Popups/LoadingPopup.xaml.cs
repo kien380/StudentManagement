@@ -37,7 +37,7 @@ namespace StudentManagement.Views.Popups
 
         #region StopProcessing
 
-        public void StopProcessing()
+        public void HideLoading()
         {
             if(LoadingIndicator.IsRunning)
             {

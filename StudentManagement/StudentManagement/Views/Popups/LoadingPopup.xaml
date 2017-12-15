@@ -17,16 +17,20 @@
             HasBackgroundAnimation="True"/>
     </pages:PopupPage.Animation>
 
-    <Frame BackgroundColor="#88333333"
+    <Frame BackgroundColor="#88000000"
            VerticalOptions="CenterAndExpand"
-           HorizontalOptions="CenterAndExpand">
+           HorizontalOptions="CenterAndExpand"
+           Padding="10"
+           CornerRadius="15"
+           HasShadow="False">
         <StackLayout>
             <ActivityIndicator x:Name="LoadingIndicator"
                                HorizontalOptions="CenterAndExpand"
-                               WidthRequest="40"
-                               HeightRequest="40"/>
+                               WidthRequest="45"
+                               HeightRequest="45"/>
             <Label x:Name="LabelLoadingMessage"
                    Text="Loading..."
+                   TextColor="White"
                    HorizontalOptions="CenterAndExpand" />
         </StackLayout>
     </Frame>

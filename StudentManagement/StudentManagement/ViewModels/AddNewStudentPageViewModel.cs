@@ -67,10 +67,11 @@ namespace StudentManagement.ViewModels
 
         #region Methods
 
-        private void ContinueExecute()
+        private async void ContinueExecute()
         {
+
             // Add Student into database
-            Task.Run(() =>
+            await Task.Run(() =>
             {
                 var student = new Student
                 {
@@ -84,7 +85,7 @@ namespace StudentManagement.ViewModels
                 Database.Insert(student);
             });
 
-            NavigationService.NavigateAsync(PageManager.ChooseClassPage);
+            await NavigationService.NavigateAsync(PageManager.ChooseClassPage);
         }
 
         #endregion

@@ -72,7 +72,8 @@ namespace StudentManagement.ViewModels
         {
             var navParam = new NavigationParameters
             {
-                { ParamKey.StudentInfo.ToString(), student }
+                { ParamKey.StudentInfo.ToString(), student },
+                { ParamKey.DetailStudentPageType.ToString(), DetailStudentPageType.StudentInfo }
             };
             NavigationService.NavigateAsync(PageManager.DetailStudentPage, navParam);
         }

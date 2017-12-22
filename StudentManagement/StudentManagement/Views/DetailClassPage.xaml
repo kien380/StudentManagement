@@ -24,7 +24,7 @@
                    TextColor="{StaticResource Grade10ClassNameColor}"
                    FontAttributes="Bold"
                    FontSize="{StaticResource XLargeFontSize}"
-                   HorizontalTextAlignment="Center"
+                   HorizontalOptions="Center"
                    Grid.Row="0"
                    Grid.Column="0"
                    Grid.ColumnSpan="3"

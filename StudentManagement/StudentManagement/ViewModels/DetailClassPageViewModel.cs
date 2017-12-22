@@ -1,4 +1,5 @@
-﻿using System.Windows.Input;
+﻿using System;
+using System.Windows.Input;
 using Prism.Commands;
 using Prism.Navigation;
 using Prism.Services;
@@ -21,6 +22,7 @@ namespace StudentManagement.ViewModels
         private bool _isClassInfo;
         private bool _isClassAcceptStudent;
         private Class _class;
+        private Student _student;
 
         #endregion
 
@@ -88,6 +90,10 @@ namespace StudentManagement.ViewModels
                 {
                     SetClassInfo((Class)parameters[ParamKey.ClassInfo.ToString()]);
                 }
+                if (parameters.ContainsKey(ParamKey.StudentInfo.ToString()))
+                {
+                    _student = (Student)parameters[ParamKey.StudentInfo.ToString()];
+                }
             }
         }
 
@@ -108,7 +114,8 @@ namespace StudentManagement.ViewModels
         {
             var navParam = new NavigationParameters
             {
-                { ParamKey.ClassInfo.ToString(), _class }
+                { ParamKey.ClassInfo.ToString(), _class },
+                { ParamKey.StudentInfo.ToString(), _student }
             };
             NavigationService.NavigateAsync(PageManager.ListStudentsPage, navParam);
         }
@@ -124,7 +131,25 @@ namespace StudentManagement.ViewModels
 
         private void AcceptExecute()
         {
-            NavigationService.NavigateAsync(PageManager.DetailStudentPage);
+            // Add student to class
+            _student.ClassId = _class.Id;
+            _student.ClassName = _class.Name;
+            Database.Insert(_student);
+
+            Dialog.DisplayAlertAsync("Thông báo", "Tiếp nhận học sinh thành công", "OK");
+
+            // Show info student after adding
+            string uri = PageManager.MultiplePage(new[]
+            {
+                PageManager.HomePage, PageManager.NavigationPage,
+                PageManager.ListClassesPage, PageManager.DetailStudentPage
+            });
+            var navParam = new NavigationParameters
+            {
+                { ParamKey.StudentInfo.ToString(), _student },
+                { ParamKey.DetailStudentPageType.ToString(), DetailStudentPageType.AddNewStudent }
+            };
+            NavigationService.NavigateAsync(new Uri($"https://kienhht.com/{uri}"), navParam);
         }
 
         private void SwitchPageMode(DetailClassPageType type)

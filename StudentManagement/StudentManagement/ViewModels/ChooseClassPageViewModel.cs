@@ -15,6 +15,7 @@ namespace StudentManagement.ViewModels
     {
         #region private properties
         private ObservableCollection<Class> _classes;
+        private Student _student;
         #endregion
 
         #region public properties
@@ -47,12 +48,35 @@ namespace StudentManagement.ViewModels
             });
         }
 
+        #region override
+
+        public override void OnNavigatedTo(NavigationParameters parameters)
+        {
+            if (parameters != null)
+            {
+                if (parameters.ContainsKey(ParamKey.StudentInfo.ToString()))
+                {
+                    _student = (Student) parameters[ParamKey.StudentInfo.ToString()];
+                }
+            }
+        }
+
+        #endregion
+
         #region
         public void ClassesItemTapped(Class _class)
         {
+            if (_class.IsFull)
+            {
+                Dialog.DisplayAlertAsync("Thông báo", "Lớp học đã đầy, vui lòng chọn lớp học khác", "OK");
+                return;
+            }
+
             var navParam = new NavigationParameters
             {
-                { ParamKey.DetailClassPageType.ToString(), DetailClassPageType.ClassAcceptStudent }
+                { ParamKey.DetailClassPageType.ToString(), DetailClassPageType.ClassAcceptStudent },
+                { ParamKey.ClassInfo.ToString(), _class },
+                { ParamKey.StudentInfo.ToString(), _student }
             };
             NavigationService.NavigateAsync(PageManager.DetailClassPage, navParam);
         }

@@ -46,6 +46,7 @@
     <Compile Include="Converters\BoolToStringConverter.cs" />
     <Compile Include="Enums\BorderType.cs" />
     <Compile Include="Enums\DetailClassPageType.cs" />
+    <Compile Include="Enums\DetailStudentPageType.cs" />
     <Compile Include="Enums\GenderType.cs" />
     <Compile Include="Enums\ParamKey.cs" />
     <Compile Include="Enums\ScoreBoardPageType.cs" />

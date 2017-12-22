@@ -5,6 +5,7 @@ using System.Windows.Input;
 using Prism.Commands;
 using Prism.Navigation;
 using Prism.Services;
+using StudentManagement.Enums;
 using StudentManagement.Helpers;
 using StudentManagement.Interfaces;
 using StudentManagement.Models;
@@ -88,26 +89,29 @@ namespace StudentManagement.ViewModels
             }
 
             LoadingPopup.Instance.ShowLoading();
-            // Add Student into database
+            var student = new Student();
+
+            // Get student ID
             await Task.Run(() =>
             {
                 var students = Database.GetList<Student>(s => s.Id > 0);
                 int idMax = students.Select(s => s.Id).Concat(new[] {0}).Max();
 
-                var student = new Student
-                {
-                    Id = ++idMax,
-                    FullName = FullName,
-                    DoB = DoB,
-                    Gender = Gender == "Nam" ? 1 : 0,
-                    Email = Email,
-                    Address = Address
-                };
-                Database.Insert(student);
+                student.Id = ++idMax;
+                student.FullName = FullName;
+                student.DoB = DoB;
+                student.Gender = Gender == "Nam" ? 1 : 0;
+                student.Email = Email;
+                student.Address = Address;
+
             });
             LoadingPopup.Instance.HideLoading();
 
-            await NavigationService.NavigateAsync(PageManager.ChooseClassPage);
+            var navParam = new NavigationParameters
+            {
+                { ParamKey.StudentInfo.ToString(), student }
+            };
+            await NavigationService.NavigateAsync(PageManager.ChooseClassPage, navParam);
         }
 
         #endregion

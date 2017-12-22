@@ -24,6 +24,8 @@ namespace StudentManagement.ViewModels
         private string _email;
         private string _address;
         private string _avatar;
+        private bool _isStudentInfo;
+        private bool _isAddNewStudent;
 
         #endregion
 
@@ -63,6 +65,18 @@ namespace StudentManagement.ViewModels
             get => _avatar;
             set => SetProperty(ref _avatar, value);
         }
+        public bool IsStudentInfo
+        {
+            get => _isStudentInfo;
+            set => SetProperty(ref _isStudentInfo, value);
+        }
+        public bool IsAddNewStudent
+        {
+            get => _isAddNewStudent;
+            set => SetProperty(ref _isAddNewStudent, value);
+        }
+
+
         // Commands
         public ICommand ViewClassInfoCommand { get; set; }
         public ICommand ViewScoreBoardCommand { get; set; }
@@ -91,6 +105,10 @@ namespace StudentManagement.ViewModels
                 if (parameters.ContainsKey(ParamKey.StudentInfo.ToString()))
                 {
                     SetStudentInfo((Student)parameters[ParamKey.StudentInfo.ToString()]);
+                }
+                if (parameters.ContainsKey(ParamKey.DetailStudentPageType.ToString()))
+                {
+                    SwitchPageMode((DetailStudentPageType)parameters[ParamKey.DetailStudentPageType.ToString()]);
                 }
             }
         }
@@ -125,6 +143,21 @@ namespace StudentManagement.ViewModels
 
         }
 
+        private void SwitchPageMode(DetailStudentPageType type)
+        {
+            switch (type)
+            {
+                case DetailStudentPageType.StudentInfo:
+                    IsAddNewStudent = false;
+                    IsStudentInfo = true;
+                    break;
+
+                case DetailStudentPageType.AddNewStudent:
+                    IsAddNewStudent = true;
+                    IsStudentInfo = false;
+                    break;
+            }
+        }
         #endregion
     }
 }

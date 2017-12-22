@@ -125,11 +125,13 @@
                 <!--Xem thong tin lop-->
                 <Button Text="Xem thông tin lớp"
                         Command="{Binding ViewClassInfoCommand}"
-                        Margin="20,0"/>
+                        Margin="20,0"
+                        IsVisible="{Binding IsStudentInfo}"/>
                 <!--Xem bang diem-->
                 <Button Text="Xem bảng điểm"
                         Command="{Binding ViewScoreBoardCommand}"
-                        Margin="20,0,20,20"/>
+                        Margin="20,0,20,20"
+                        IsVisible="{Binding IsStudentInfo}"/>
             </StackLayout>
         </Grid>
     </ContentPage.Content>

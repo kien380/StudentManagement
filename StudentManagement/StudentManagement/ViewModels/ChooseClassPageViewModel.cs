@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using Prism.Navigation;
 using Prism.Services;
 using StudentManagement.Enums;
@@ -6,6 +7,7 @@ using StudentManagement.Helpers;
 using StudentManagement.Interfaces;
 using StudentManagement.Models;
 using StudentManagement.ViewModels.Base;
+using StudentManagement.Views.Popups;
 
 namespace StudentManagement.ViewModels
 {
@@ -29,7 +31,20 @@ namespace StudentManagement.ViewModels
         {
             // Set values
             PageTitle = "Chọn lớp";
-            Classes = new ObservableCollection<Class> { new Class(), new Class(), new Class() };
+            LoadClass();
+        }
+
+        private async void LoadClass()
+        {
+            await Task.Run(() =>
+            {
+                var classes = Database.GetList<Class>(c => c.Id > 0);
+                foreach (var c in classes)
+                {
+                    c.CountStudent(Database);
+                }
+                Classes = new ObservableCollection<Class> (classes);
+            });
         }
 
         #region

@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using SQLite.Net.Attributes;
 using StudentManagement.Helpers;
+using StudentManagement.Interfaces;
 using Xamarin.Forms;
 
 namespace StudentManagement.Models
@@ -42,6 +44,13 @@ namespace StudentManagement.Models
         [Ignore]
         public string DoBstring => DoB.ToString("dd-MM-yyyy");
 
+
+        /// <summary>
+        /// Get score for 1 subject in 1 semester of 1 student
+        /// </summary>
+        [Ignore]
+        public Score Score { get; private set; }
+
         /// <summary>
         /// Average Score in Semester 1
         /// </summary>
@@ -65,6 +74,14 @@ namespace StudentManagement.Models
             }
             ScoreAvg1 = (float)Math.Round(totalScore1 / (scores.Count / 2), 1);
             ScoreAvg2 = (float)Math.Round(totalScore2 / (scores.Count / 2), 1);
+        }
+
+        public void GetScore(ISQLiteHelper db, int subjectId, int semester)
+        {
+            var score = db.Get<Score>(s =>
+                s.StudentId == this.Id && s.SubjectId == subjectId && s.Semester == semester);
+            if (score != null)
+                this.Score = score;
         }
     }
 }

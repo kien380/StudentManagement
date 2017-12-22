@@ -122,11 +122,12 @@ namespace StudentManagement.ViewModels
 
         private void ViewScoreBoardExecute()
         {
-            //var navParam = new NavigationParameters
-            //{
-            //    { ParamKey.ScoreBoardPageType.ToString(), ScoreBoardPageType.ViewScoreBoard }
-            //};
-            NavigationService.NavigateAsync(PageManager.ScoreBoardPage);
+            var navParam = new NavigationParameters
+            {
+                //{ ParamKey.ScoreBoardPageType.ToString(), ScoreBoardPageType.ViewScoreBoard },
+                { ParamKey.ClassInfo.ToString(), _class }
+            };
+            NavigationService.NavigateAsync(PageManager.ScoreBoardPage, navParam);
         }
 
         private void AcceptExecute()

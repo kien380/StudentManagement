@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
 using Prism.Navigation;
 using Prism.Services;
 using StudentManagement.Enums;
@@ -116,28 +117,36 @@ namespace StudentManagement.ViewModels
             }
         }
 
-        private void LoadListSubjects()
+        private async void LoadListSubjects()
         {
-            Subjects = new ObservableCollection<Subject>(Database.GetList<Subject>(s=>s.Id > 0));
-            if (SubjectNames != null)
-                if(SubjectNames.Count > 0)
-                    SubjectNameSelected = SubjectNames[0];
+            await Task.Run(() => {
+                Subjects = new ObservableCollection<Subject>(Database.GetList<Subject>(s => s.Id > 0));
+                if (SubjectNames != null)
+                    if (SubjectNames.Count > 0)
+                        SubjectNameSelected = SubjectNames[0];
+            });
         }
 
-        private void LoadListStudents()
+        private async void LoadListStudents()
         {
-            Students = new ObservableCollection<Student>(Database.GetList<Student>(s => s.ClassId == _class.Id));
-        }
-
-        private void LoadListScoreBoard()
-        {
-            var students = new ObservableCollection<Student>();
-            foreach (var student in Students)
+            await Task.Run(() =>
             {
-                student.GetScore(Database, _subjectSelected.Id, _semester);
-                students.Add(student);
-            }
-            Students = students;
+                Students = new ObservableCollection<Student>(Database.GetList<Student>(s => s.ClassId == _class.Id));
+            });
+        }
+
+        private async void LoadListScoreBoard()
+        {
+            await Task.Run(() =>
+            {
+                var students = new ObservableCollection<Student>();
+                foreach (var student in Students)
+                {
+                    student.GetScore(Database, _subjectSelected.Id, _semester);
+                    students.Add(student);
+                }
+                Students = students;
+            });
         }
 
         #endregion

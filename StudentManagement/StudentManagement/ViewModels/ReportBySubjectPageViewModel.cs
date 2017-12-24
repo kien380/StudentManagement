@@ -97,17 +97,21 @@ namespace StudentManagement.ViewModels
         }
 
         #region Methods
-        private void LoadListSubjects()
+        private async void LoadListSubjects()
         {
-            Subjects = new ObservableCollection<Subject>(Database.GetList<Subject>(s => s.Id > 0));
-            if (SubjectNames != null)
-                if (SubjectNames.Count > 0)
-                    SubjectNameSelected = SubjectNames[0];
+            await Task.Run(() => {
+                Subjects = new ObservableCollection<Subject>(Database.GetList<Subject>(s => s.Id > 0));
+                if (SubjectNames != null)
+                    if (SubjectNames.Count > 0)
+                        SubjectNameSelected = SubjectNames[0];
+            });
         }
 
-        private void LoadListClasses()
+        private async void LoadListClasses()
         {
-            Classes = new ObservableCollection<Class>(Database.GetList<Class>(c => c.Id > 0));
+            await Task.Run(() => {
+                Classes = new ObservableCollection<Class>(Database.GetList<Class>(c => c.Id > 0));
+            });
         }
 
         private async void LoadListClassReport()

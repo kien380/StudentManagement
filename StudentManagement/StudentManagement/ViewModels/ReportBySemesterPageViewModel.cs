@@ -65,9 +65,11 @@ namespace StudentManagement.ViewModels
 
         #region Methods
 
-        private void LoadListClasses()
+        private async void LoadListClasses()
         {
-            Classes = new ObservableCollection<Class>(Database.GetList<Class>(c => c.Id > 0));
+            await Task.Run(() => {
+                Classes = new ObservableCollection<Class>(Database.GetList<Class>(c => c.Id > 0));
+            });
         }
 
         private async void LoadListClassReport()

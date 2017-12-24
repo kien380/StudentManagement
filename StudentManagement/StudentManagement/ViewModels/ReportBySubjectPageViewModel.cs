@@ -1,4 +1,6 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Prism.Navigation;
@@ -111,25 +113,35 @@ namespace StudentManagement.ViewModels
 
         private async void LoadListClassReport()
         {
-            if(_isBusy) return;
-            _isBusy = true;
-            LoadingPopup.Instance.ShowLoading();
-
-            await Task.Run(() =>
+            try
             {
-                var temp = new ObservableCollection<Class>();
-                foreach (var c in Classes)
-                {
-                    c.CountStudent(Database);
-                    c.GetReportBySubject(Database, _subjectSelected.Id, _semester);
-                    temp.Add(c);
-                }
-                Classes = temp;
-            });
+                if (_isBusy) return;
+                _isBusy = true;
+                LoadingPopup.Instance.ShowLoading();
 
-            await Task.Delay(500);
-            LoadingPopup.Instance.HideLoading();
-            _isBusy = false;
+                await Task.Run(() =>
+                {
+                    var temp = new ObservableCollection<Class>();
+                    foreach (var c in Classes)
+                    {
+                        c.CountStudent(Database);
+                        c.GetReportBySubject(Database, _subjectSelected.Id, _semester);
+                        temp.Add(c);
+                    }
+                    Classes = temp;
+                });
+
+                await Task.Delay(500);
+                LoadingPopup.Instance.HideLoading();
+                _isBusy = false;
+
+            }
+            catch (Exception e)
+            {
+                if(LoadingPopup.Instance.IsLoading)
+                    LoadingPopup.Instance.HideLoading();
+                Debug.WriteLine(e.Message);
+            }
         }
 
         public void ListClassItemTapped(Class c)

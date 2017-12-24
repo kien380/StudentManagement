@@ -13,6 +13,8 @@ namespace StudentManagement.Views.Popups
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LoadingPopup : PopupPage
     {
+        public bool IsLoading { get; private set; }
+
         public LoadingPopup()
         {
             InitializeComponent();
@@ -27,6 +29,7 @@ namespace StudentManagement.Views.Popups
         public LoadingPopup ShowLoading(string loadingMessage = null)
         {
             LoadingIndicator.IsRunning = true;
+            IsLoading = true;
             if (loadingMessage != null)
                 LabelLoadingMessage.Text = loadingMessage;
             App.Current.MainPage.Navigation.PushPopupAsync(this);
@@ -42,6 +45,7 @@ namespace StudentManagement.Views.Popups
             if(LoadingIndicator.IsRunning)
             {
                 LoadingIndicator.IsRunning = false;
+                IsLoading = false;
                 Navigation.PopPopupAsync();
             }
         }

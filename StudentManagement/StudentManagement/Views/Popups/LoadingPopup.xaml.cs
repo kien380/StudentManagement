@@ -20,6 +20,12 @@ namespace StudentManagement.Views.Popups
             InitializeComponent();
         }
 
+        protected override void OnDisappearing()
+        {
+            LoadingIndicator.IsRunning = false;
+            IsLoading = false;
+        }
+
         #region Instance
 
         private static LoadingPopup _instance;

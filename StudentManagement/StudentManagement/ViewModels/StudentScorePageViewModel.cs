@@ -66,9 +66,9 @@ namespace StudentManagement.ViewModels
 
         #region override
 
-        public override void OnNavigatedTo(NavigationParameters parameters)
+        public override void OnNavigatedNewTo(NavigationParameters parameters)
         {
-            base.OnNavigatedTo(parameters);
+            base.OnNavigatedNewTo(parameters);
 
             if (parameters != null)
             {

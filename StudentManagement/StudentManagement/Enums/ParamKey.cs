@@ -6,6 +6,7 @@
         DetailStudentPageType,
         ScoreBoardPageType,
         ClassInfo,
-        StudentInfo
+        StudentInfo,
+        NavigateBack
     }
 }

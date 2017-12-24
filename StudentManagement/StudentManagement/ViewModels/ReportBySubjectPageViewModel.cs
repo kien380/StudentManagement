@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Prism.Navigation;
 using Prism.Services;
 using StudentManagement.Enums;
+using StudentManagement.Helpers;
 using StudentManagement.Interfaces;
 using StudentManagement.Models;
 using StudentManagement.ViewModels.Base;
@@ -22,8 +23,6 @@ namespace StudentManagement.ViewModels
         private string _semesterName;
         private Subject _subjectSelected;
         private string _subjectNameSelected;
-        private ScoreBoardPageType _pageType;
-        private Class _class;
         private bool _isInitialized;
         private bool _isBusy;
 
@@ -97,21 +96,17 @@ namespace StudentManagement.ViewModels
         }
 
         #region Methods
-        private async void LoadListSubjects()
+        private void LoadListSubjects()
         {
-            await Task.Run(() => {
-                Subjects = new ObservableCollection<Subject>(Database.GetList<Subject>(s => s.Id > 0));
-                if (SubjectNames != null)
-                    if (SubjectNames.Count > 0)
-                        SubjectNameSelected = SubjectNames[0];
-            });
+            Subjects = new ObservableCollection<Subject>(Database.GetList<Subject>(s => s.Id > 0));
+            if (SubjectNames != null)
+                if (SubjectNames.Count > 0)
+                    SubjectNameSelected = SubjectNames[0];
         }
 
         private async void LoadListClasses()
         {
-            await Task.Run(() => {
-                Classes = new ObservableCollection<Class>(Database.GetList<Class>(c => c.Id > 0));
-            });
+            Classes = new ObservableCollection<Class>(Database.GetList<Class>(c => c.Id > 0));
         }
 
         private async void LoadListClassReport()
@@ -119,17 +114,16 @@ namespace StudentManagement.ViewModels
             if(_isBusy) return;
             _isBusy = true;
             LoadingPopup.Instance.ShowLoading();
-            await Task.Run(() =>
+
+            var temp = new ObservableCollection<Class>();
+            foreach (var c in Classes)
             {
-                var temp = new ObservableCollection<Class>();
-                foreach (var c in Classes)
-                {
-                    c.CountStudent(Database);
-                    c.GetReportBySubject(Database, _subjectSelected.Id, _semester);
-                    temp.Add(c);
-                }
-                Classes = temp;
-            });
+                c.CountStudent(Database);
+                c.GetReportBySubject(Database, _subjectSelected.Id, _semester);
+                temp.Add(c);
+            }
+            Classes = temp;
+
             await Task.Delay(500);
             LoadingPopup.Instance.HideLoading();
             _isBusy = false;
@@ -137,7 +131,12 @@ namespace StudentManagement.ViewModels
 
         public void ListClassItemTapped(Class c)
         {
-            Dialog.DisplayActionSheetAsync("", c.Name, "OK");
+            var navParam = new NavigationParameters
+            {
+                { ParamKey.ScoreBoardPageType.ToString(), ScoreBoardPageType.ViewScoreBoard },
+                { ParamKey.ClassInfo.ToString(), c }
+            };
+            NavigationService.NavigateAsync(PageManager.ScoreBoardPage, navParam);
         }
 
 

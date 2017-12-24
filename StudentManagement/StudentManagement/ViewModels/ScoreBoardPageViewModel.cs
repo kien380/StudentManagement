@@ -92,9 +92,9 @@ namespace StudentManagement.ViewModels
 
         #region Override
 
-        public override void OnNavigatedTo(NavigationParameters parameters)
+        public override void OnNavigatedNewTo(NavigationParameters parameters)
         {
-            base.OnNavigatedTo(parameters);
+            base.OnNavigatedNewTo(parameters);
 
             if (parameters != null)
             {
@@ -113,40 +113,32 @@ namespace StudentManagement.ViewModels
                 LoadListSubjects();
                 LoadListStudents();
                 LoadListScoreBoard();
-                _isInitialized = true;
             }
         }
 
-        private async void LoadListSubjects()
+        private void LoadListSubjects()
         {
-            await Task.Run(() => {
-                Subjects = new ObservableCollection<Subject>(Database.GetList<Subject>(s => s.Id > 0));
-                if (SubjectNames != null)
-                    if (SubjectNames.Count > 0)
-                        SubjectNameSelected = SubjectNames[0];
-            });
+            Subjects = new ObservableCollection<Subject>(Database.GetList<Subject>(s => s.Id > 0));
+            if (SubjectNames != null)
+                if (SubjectNames.Count > 0)
+                    SubjectNameSelected = SubjectNames[0];
         }
 
-        private async void LoadListStudents()
+        private void LoadListStudents()
         {
-            await Task.Run(() =>
-            {
-                Students = new ObservableCollection<Student>(Database.GetList<Student>(s => s.ClassId == _class.Id));
-            });
+            Students = new ObservableCollection<Student>(Database.GetList<Student>(s => s.ClassId == _class.Id));
         }
 
-        private async void LoadListScoreBoard()
+        private void LoadListScoreBoard()
         {
-            await Task.Run(() =>
+            var students = new ObservableCollection<Student>();
+            foreach (var student in Students)
             {
-                var students = new ObservableCollection<Student>();
-                foreach (var student in Students)
-                {
-                    student.GetScore(Database, _subjectSelected.Id, _semester);
-                    students.Add(student);
-                }
-                Students = students;
-            });
+                student.GetScore(Database, _subjectSelected.Id, _semester);
+                students.Add(student);
+            }
+            Students = students;
+            _isInitialized = true;
         }
 
         #endregion

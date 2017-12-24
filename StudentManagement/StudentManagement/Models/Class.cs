@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using SQLite.Net.Attributes;
 using StudentManagement.Interfaces;
 
@@ -26,6 +27,13 @@ namespace StudentManagement.Models
         [Ignore]
         public bool IsFull { get; private set; }
 
+
+        [Ignore]
+        public int Passes { get; private set; }
+
+        [Ignore]
+        public float PassesPercents { get; private set; }
+
         public void CountStudent(ISQLiteHelper db)
         {
             var students = db.GetList<Student>(s => s.ClassId == Id);
@@ -35,6 +43,23 @@ namespace StudentManagement.Models
 
             MaxStudents = db.GetSetting().MaxStudentPerClass;
             IsFull = Students >= MaxStudents;
+        }
+
+        public void GetReportBySubject(ISQLiteHelper db, int subjectId, int semester)
+        {
+            var students = db.GetList<Student>(s => s.ClassId == Id);
+            var settings = db.GetSetting();
+            Passes = 0;
+
+            foreach (var student in students)
+            {
+                student.GetScore(db, subjectId, semester);
+                if (student.Score.ScoreAverage >= settings.SubjectPassScore)
+                {
+                    this.Passes++;
+                }
+            }
+            PassesPercents = (float)Passes / Students * 100;
         }
     }
 }

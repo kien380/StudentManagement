@@ -13,7 +13,8 @@
         public static readonly string AddNewStudentPage = "AddNewStudentPage";
         public static readonly string ChooseClassPage = "ChooseClassPage";
         public static readonly string ScoreBoardPage = "ScoreBoardPage";
-        public static readonly string StudentScorePage = "StudentScorePage";
+        public static readonly string StudentScorePage = "StudentScorePage"; 
+        public static readonly string ReportBySubjectPage = "ReportBySubjectPage";
 
 
         public static string MultiplePage(string[] pages)

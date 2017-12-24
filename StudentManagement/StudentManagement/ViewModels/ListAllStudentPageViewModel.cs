@@ -68,7 +68,7 @@ namespace StudentManagement.ViewModels
                 var students = Database.GetList<Student>(s => s.Id > 0);
                 foreach (var student in students)
                 {
-                    student.GetAvgScore(Database.GetList<Score>(s => s.StudentId == student.Id).ToList());
+                    student.GetAvgScore(Database);
                 }
                 Students = _allStudents = new ObservableCollection<Student>(students);
             });

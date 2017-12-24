@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="StudentManagement.TestGui"
+             BackgroundColor="White">
+    <ContentPage.Content>
+        <Frame BackgroundColor="#c6f2f1"
+               Padding="20,10,10,10"
+               Margin="2,4"
+               CornerRadius="5"
+               VerticalOptions="Start">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <!--Lớp + Sĩ số + Số lượng đạt-->
+                <Grid VerticalOptions="End">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    
+                    <!--Lop-->
+                    <Label Text="Lớp 10A4"
+                           Grid.Row="0"
+                           Grid.Column="0"
+                           Grid.ColumnSpan="3"
+                           TextColor="#076f30"
+                           FontAttributes="Bold"
+                           FontSize="18"/>
+
+                    <!--Si So-->
+                    <Label Text="#"
+                           Grid.Row="1"
+                           Grid.Column="0"
+                           TextColor="#1f4788"/>
+                    <Label Text="Sĩ số:"
+                           Grid.Row="1"
+                           Grid.Column="1"
+                           TextColor="#1f4788"/>
+                    <Label Text="30"
+                           Grid.Row="1"
+                           Grid.Column="2"
+                           TextColor="#1f4788"/>
+
+                    <!--Đạt-->
+                    <Label Text="#"
+                           Grid.Row="2"
+                           Grid.Column="0"
+                           TextColor="#1f4788"/>
+                    <Label Text="Số lượng đạt:"
+                           Grid.Row="2"
+                           Grid.Column="1"
+                           Margin="0,0,5,0"
+                           TextColor="#1f4788"/>
+                    <Label Text="30"
+                           Grid.Row="2"
+                           Grid.Column="2"
+                           TextColor="#1f4788"/>
+                </Grid>
+
+                <BoxView Color="#4d8fac"
+                         WidthRequest="1"
+                         Margin="0,20,0,0"
+                         Grid.Column="1"/>
+                
+                <!--Tỷ lệ đạt-->
+                <StackLayout Grid.Column="2"
+                             VerticalOptions="End">
+                    <Label Text="Tỷ lệ"
+                           HorizontalOptions="Center"
+                           TextColor="#6e366f"
+                           FontSize="16"/>
+                    <Label Text="50%"
+                           FontAttributes="Bold"
+                           TextColor="#6e366f"
+                           HorizontalOptions="Center"
+                           FontSize="16"/>
+                </StackLayout>
+            </Grid>
+        </Frame>
+    </ContentPage.Content>
+</ContentPage>

@@ -63,8 +63,10 @@ namespace StudentManagement.Models
         [Ignore]
         public float ScoreAvg2 { get; private set; }
 
-        public void GetAvgScore(List<Score> scores)
+        public void GetAvgScore(ISQLiteHelper db)
         {
+            var scores = db.GetList<Score>(score => score.StudentId == this.Id).ToList();
+
             float totalScore1 = 0;
             float totalScore2 = 0;
             foreach (var score in scores)

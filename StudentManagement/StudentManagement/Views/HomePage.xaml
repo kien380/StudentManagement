@@ -112,6 +112,9 @@
                             <Label Grid.Column="1"
                                    Text="Báo cáo tổng kết"
                                    Style="{StaticResource MenuFeaturesLabelStyle}" />
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ShowReportCommand}"/>
+                            </Grid.GestureRecognizers>
                         </Grid>
 
                         <!--Thay doi quy dinh-->

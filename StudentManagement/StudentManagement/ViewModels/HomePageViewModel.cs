@@ -20,6 +20,7 @@ namespace StudentManagement.ViewModels
         public ICommand ListClassesCommand { get; set; }
         public ICommand ListAllStudentCommand { get; set; }
         public ICommand InputScoreBoardCommand { get; set; }
+        public ICommand ShowReportCommand { get; set; }
         public ICommand LogOutCommand { get; set; }
         #endregion
 
@@ -34,6 +35,8 @@ namespace StudentManagement.ViewModels
             ListClassesCommand = new DelegateCommand(ListClassesExecute);
             ListAllStudentCommand = new DelegateCommand(ListAllStudentExecute);
             InputScoreBoardCommand = new DelegateCommand(InputScoreBoardExecute);
+            ShowReportCommand = new DelegateCommand(ShowReportExecute);
+
             LogOutCommand = new DelegateCommand(LogOutExecute);
         }
 
@@ -81,6 +84,14 @@ namespace StudentManagement.ViewModels
             {
                 PageManager.NavigationPage, PageManager.ScoreBoardPage
             }), navParam);
+        }
+
+        private void ShowReportExecute()
+        {
+            NavigationService.NavigateAsync(PageManager.MultiplePage(new[]
+            {
+                PageManager.NavigationPage, PageManager.ReportBySubjectPage
+            }));
         }
 
         private void LogOutExecute()

@@ -136,7 +136,10 @@ namespace StudentManagement.ViewModels
                 { ParamKey.ScoreBoardPageType.ToString(), ScoreBoardPageType.ViewScoreBoard },
                 { ParamKey.ClassInfo.ToString(), c }
             };
-            NavigationService.NavigateAsync(PageManager.ScoreBoardPage, navParam);
+            NavigationService.NavigateAsync(PageManager.MultiplePage(new[]
+            {
+                PageManager.NavigationPage, PageManager.ScoreBoardPage
+            }), navParam);
         }
 
 

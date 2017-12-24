@@ -76,14 +76,17 @@ namespace StudentManagement.ViewModels
             _isBusy = true;
             LoadingPopup.Instance.ShowLoading();
 
-            var temp = new ObservableCollection<Class>();
-            foreach (var c in Classes)
+            await Task.Run(() =>
             {
-                c.CountStudent(Database);
-                c.GetReportBySemester(Database, _semester);
-                temp.Add(c);
-            }
-            Classes = temp;
+                var temp = new ObservableCollection<Class>();
+                foreach (var c in Classes)
+                {
+                    c.CountStudent(Database);
+                    c.GetReportBySemester(Database, _semester);
+                    temp.Add(c);
+                }
+                Classes = temp;
+            });
 
             await Task.Delay(500);
             LoadingPopup.Instance.HideLoading();

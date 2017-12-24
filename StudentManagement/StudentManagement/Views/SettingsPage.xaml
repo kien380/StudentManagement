@@ -23,11 +23,13 @@
 
             <!--Thông tin lớp-->
             <Label Text="Thông tin lớp:"/>
-            <Entry Text="10A4"/>
+            <Entry Text="(Coming soon)"
+                   IsEnabled="False"/>
 
             <!--Thông tin môn học-->
             <Label Text="Thông tin môn học:" />
-            <Entry Text="Toán"/>
+            <Entry Text="(Coming soon)"
+                   IsEnabled="False"/>
             
             <Button Text="Lưu"
                     VerticalOptions="EndAndExpand"

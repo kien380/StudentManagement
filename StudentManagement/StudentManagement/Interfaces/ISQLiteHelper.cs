@@ -14,6 +14,7 @@ namespace StudentManagement.Interfaces
         T Get<T>(Expression<Func<T, bool>> predicate) where T : class, new();
         IEnumerable<T> GetList<T>(Expression<Func<T, bool>> predicate) where T : class, new();
         Setting GetSetting();
+        User GetUser();
         #endregion
 
         #region Searchs

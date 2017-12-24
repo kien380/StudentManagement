@@ -28,8 +28,8 @@ namespace StudentManagement
             InitializeComponent();
             NavigationService.NavigateAsync(PageManager.MultiplePage(new[]
             {
-                //PageManager.LoginPage
-                PageManager.HomePage, PageManager.NavigationPage, PageManager.ListClassesPage
+                PageManager.LoginPage
+                //PageManager.HomePage, PageManager.NavigationPage, PageManager.ListClassesPage
             }));
         }
 

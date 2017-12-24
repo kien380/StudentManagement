@@ -40,9 +40,13 @@ namespace StudentManagement.Services.LocalDatabase
             Database = databaseConnection.DbConnection(DatabaseName);
 
             // Create database
-            var listTable = new List<Type>(){typeof(Class), typeof(Score),
-                                        typeof(Setting), typeof(Student),
-                                        typeof(Subject)
+            var listTable = new List<Type>{
+                typeof(Class),
+                typeof(Score),
+                typeof(Setting),
+                typeof(Student),
+                typeof(Subject),
+                typeof(User)
             };
 
             foreach (var table in listTable)
@@ -175,6 +179,20 @@ namespace StudentManagement.Services.LocalDatabase
                     MaxStudentPerClass = 40,
                     SubjectPassScore = 5.0f
                 };
+            }
+        }
+
+        public User GetUser()
+        {
+            try
+            {
+                var user = Database.Get<User>(s => s.Id == 1);
+                return user;
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e.Message);
+                return null;
             }
         }
 

@@ -17,6 +17,7 @@
         public static readonly string ReportHomePage = "ReportHomePage";
         public static readonly string ReportBySubjectPage = "ReportBySubjectPage";
         public static readonly string ReportBySemesterPage = "ReportBySemesterPage";
+        public static readonly string SettingsPage = "SettingsPage";
 
 
         public static string MultiplePage(string[] pages)

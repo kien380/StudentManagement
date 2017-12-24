@@ -116,7 +116,7 @@
                                 <TapGestureRecognizer Command="{Binding ShowReportCommand}"/>
                             </Grid.GestureRecognizers>
                         </Grid>
-
+                        
                         <!--Thay doi quy dinh-->
                         <Grid ColumnSpacing="{StaticResource MenuFeaturesColumnSpacing}">
                             <Grid.ColumnDefinitions>
@@ -129,6 +129,9 @@
                             <Label Grid.Column="1"
                                    Text="Thay đổi quy định"
                                    Style="{StaticResource MenuFeaturesLabelStyle}" />
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding SettingCommand}"/>
+                            </Grid.GestureRecognizers>
                         </Grid>
 
                         <!--Dang xuat-->

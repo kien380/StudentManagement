@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="StudentManagement.Views.SettingsPage"
+             Title="{Binding PageTitle}">
+    <ContentPage.Content>
+        <StackLayout Padding="20">
+            <!--Tuổi tối thiểu-->
+            <Label Text="Tuổi tối thiểu:" />
+            <Entry Text="{Binding Settings.MinStudentAge}"/>
+
+            <!--Tuổi tối đa-->
+            <Label Text="Tuổi tối đa:" />
+            <Entry Text="{Binding Settings.MaxStudentAge}"/>
+
+            <!--Số lượng học sinh tối đa mỗi lớp-->
+            <Label Text="Số lượng học sinh tối đa mỗi lớp:" />
+            <Entry Text="{Binding Settings.MaxStudentPerClass}"/>
+
+            <!--Điểm đạt môn-->
+            <Label Text="Điểm đạt môn:"/>
+            <Entry Text="{Binding Settings.SubjectPassScore}"/>
+
+            <!--Thông tin lớp-->
+            <Label Text="Thông tin lớp:"/>
+            <Entry Text="10A4"/>
+
+            <!--Thông tin môn học-->
+            <Label Text="Thông tin môn học:" />
+            <Entry Text="Toán"/>
+            
+            <Button Text="Lưu"
+                    VerticalOptions="EndAndExpand"
+                    Command="{Binding SaveCommand}"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

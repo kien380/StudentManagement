@@ -4,6 +4,8 @@ using Prism.Commands;
 using Prism.Navigation;
 using StudentManagement.Enums;
 using StudentManagement.Helpers;
+using StudentManagement.Interfaces;
+using StudentManagement.Models;
 using StudentManagement.ViewModels.Base;
 
 namespace StudentManagement.ViewModels
@@ -12,10 +14,17 @@ namespace StudentManagement.ViewModels
     {
         #region private properties
 
+        private User _currentUser;
 
         #endregion
 
         #region public properties
+        public User CurrentUser
+        {
+            get => _currentUser;
+            set => SetProperty(ref _currentUser, value);
+        }
+        // commads
         public ICommand AddNewStudentCommand { get; set; }
         public ICommand ListClassesCommand { get; set; }
         public ICommand ListAllStudentCommand { get; set; }
@@ -26,10 +35,12 @@ namespace StudentManagement.ViewModels
         #endregion
 
 
-        public HomePageViewModel(INavigationService navigationService) : base(navigationService)
+        public HomePageViewModel(INavigationService navigationService, ISQLiteHelper sqLiteHelper) 
+            : base(navigationService, sqLiteHelper: sqLiteHelper)
         {
             // Set values
             PageTitle = "Home Page";
+            CurrentUser = Database.GetUser();
 
             // Commands
             AddNewStudentCommand = new DelegateCommand(AddNewStudentExecute);
@@ -105,6 +116,8 @@ namespace StudentManagement.ViewModels
 
         private void LogOutExecute()
         {
+            CurrentUser = null;
+            UserHelper.Instance.Logout(Database);
             NavigationService.NavigateAsync(new Uri($"https://kienhht.com/{PageManager.LoginPage}"));
         }
 

@@ -25,12 +25,9 @@ namespace StudentManagement
         {
             InitDatabase();
             InitMockData();
+            GetLinkToFirstPage();
             InitializeComponent();
-            NavigationService.NavigateAsync(PageManager.MultiplePage(new[]
-            {
-                PageManager.LoginPage
-                //PageManager.HomePage, PageManager.NavigationPage, PageManager.ListClassesPage
-            }));
+            NavigationService.NavigateAsync(GetLinkToFirstPage());
         }
 
         protected override void RegisterTypes()
@@ -72,16 +69,24 @@ namespace StudentManagement
                     var mockData = new MockData(_sqLiteHelper);
                     mockData.InitMockData();
                 }
-                //else
-                //{
-                //    List<Score> scores = _sqLiteHelper.GetList<Score>(s => s.Id >= 0).ToList();
-                //}
             }
             else
             {
                 var mockData = new MockData(_sqLiteHelper);
                 mockData.InitMockData();
             }
+        }
+
+        private string GetLinkToFirstPage()
+        {
+            var user = _sqLiteHelper.GetUser();
+            if (user == null)
+                return PageManager.LoginPage;
+
+            return PageManager.MultiplePage(new[]
+            {
+                PageManager.HomePage, PageManager.NavigationPage, PageManager.ListClassesPage
+            });
         }
     }
 }

@@ -89,7 +89,8 @@
                 Placeholder="Email"
                 FontSize="{StaticResource MediumFontSize}"
                 Grid.Row="4"
-                Grid.Column="1"/>
+                Grid.Column="1"
+                Keyboard="Email"/>
 
             <!--Địa chỉ-->
             <Label Text="{StaticResource LocationIcon}"

@@ -2,7 +2,9 @@
 using Prism.Commands;
 using Prism.Navigation;
 using Prism.Services;
+using StudentManagement.Enums;
 using StudentManagement.Interfaces;
+using StudentManagement.Models;
 using StudentManagement.ViewModels.Base;
 
 namespace StudentManagement.ViewModels
@@ -10,8 +12,8 @@ namespace StudentManagement.ViewModels
     public class StudentScorePageViewModel : ViewModelBase
     {
         #region private properties
-        
-        private string _name;
+
+        private Student _studentInfo;
         private float _score15M;
         private float _score45M;
         private float _scoreFinal;
@@ -20,10 +22,10 @@ namespace StudentManagement.ViewModels
         #endregion
 
         #region public properties
-        public string Name
+        public Student StudentInfo
         {
-            get => _name;
-            set => SetProperty(ref _name, value);
+            get => _studentInfo;
+            set => SetProperty(ref _studentInfo, value);
         }
         public float Score15Mins
         {
@@ -56,12 +58,32 @@ namespace StudentManagement.ViewModels
         {
             // Set values
             PageTitle = "Bảng điểm cá nhân";
-            Name = "Nguyễn Văn A";
 
             // Commands
             ClearCommand = new DelegateCommand(ClearExecute);
             SaveCommand = new DelegateCommand(SaveExecute);
         }
+
+        #region override
+
+        public override void OnNavigatedTo(NavigationParameters parameters)
+        {
+            base.OnNavigatedTo(parameters);
+
+            if (parameters != null)
+            {
+                if (parameters.ContainsKey(ParamKey.StudentInfo.ToString()))
+                {
+                    StudentInfo = (Student)parameters[ParamKey.StudentInfo.ToString()];
+                    Score15Mins = StudentInfo.Score.Score15M;
+                    Score45Mins = StudentInfo.Score.Score45M;
+                    ScoreFinal = StudentInfo.Score.ScoreFinal;
+                    ScoreAvg = StudentInfo.Score.ScoreAverage;
+                }
+            }
+        }
+
+        #endregion
 
         #region Methods
 
@@ -76,7 +98,14 @@ namespace StudentManagement.ViewModels
         {
             bool isAccept = await Dialog.DisplayAlertAsync("Lưu điểm", "Bạn có muốn lưu điểm của học sinh?", "Có", "Không");
             if (isAccept)
-            { }
+            {
+                StudentInfo.Score.Score15M = Score15Mins;
+                StudentInfo.Score.Score45M = Score45Mins;
+                StudentInfo.Score.ScoreFinal = ScoreFinal;
+                Database.Update(StudentInfo.Score);
+
+                await Dialog.DisplayAlertAsync("Thông báo", "Lưu điểm học sinh thành công", "OK");
+            }
         }
 
         #endregion

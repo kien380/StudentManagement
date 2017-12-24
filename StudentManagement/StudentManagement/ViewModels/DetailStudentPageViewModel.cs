@@ -140,7 +140,12 @@ namespace StudentManagement.ViewModels
 
         private void ViewScoreBoardExecute()
         {
-
+            _student.GetScore(Database, 3001, 1); // Mockdata môn Toán, học kỳ 1
+            var navParam = new NavigationParameters
+            {
+                { ParamKey.StudentInfo.ToString(), _student }
+            };
+            NavigationService.NavigateAsync(PageManager.StudentScorePage, navParam);
         }
 
         private void SwitchPageMode(DetailStudentPageType type)

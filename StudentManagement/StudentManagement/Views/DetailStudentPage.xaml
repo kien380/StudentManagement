@@ -122,11 +122,11 @@
                 Grid.Column="0"
                 Grid.ColumnSpan="2"
                 VerticalOptions="End">
-                <!--Xem thong tin lop-->
+                <!--Xem thong tin lop--><!--
                 <Button Text="Xem thông tin lớp"
                         Command="{Binding ViewClassInfoCommand}"
                         Margin="20,0"
-                        IsVisible="{Binding IsStudentInfo}"/>
+                        IsVisible="{Binding IsStudentInfo}"/>-->
                 <!--Xem bang diem-->
                 <Button Text="Xem bảng điểm"
                         Command="{Binding ViewScoreBoardCommand}"

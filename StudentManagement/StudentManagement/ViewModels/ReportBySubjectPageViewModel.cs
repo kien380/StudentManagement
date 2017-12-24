@@ -87,19 +87,6 @@ namespace StudentManagement.ViewModels
         {
             PageTitle = "Theo Môn học";
             SemesterName = "Học kỳ 1";
-        }
-
-        #region override
-
-        public override void OnNavigatedTo(NavigationParameters parameters)
-        {
-            base.OnNavigatedTo(parameters);
-
-            if (parameters != null)
-            {
-                // Get params
-            }
-
             if (!_isInitialized)
             {
                 LoadListSubjects();
@@ -108,8 +95,6 @@ namespace StudentManagement.ViewModels
                 _isInitialized = true;
             }
         }
-
-        #endregion
 
         #region Methods
         private void LoadListSubjects()

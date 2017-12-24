@@ -16,5 +16,10 @@ namespace StudentManagement.Views
         {
             InitializeComponent();
         }
+
+        private void ListView_OnItemTapped(object sender, ItemTappedEventArgs e)
+        {
+
+        }
     }
 }

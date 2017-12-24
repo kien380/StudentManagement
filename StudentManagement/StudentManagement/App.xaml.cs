@@ -1,13 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using DryIoc;
+﻿using DryIoc;
 using Prism.DryIoc;
 using StudentManagement.Helpers;
 using StudentManagement.Interfaces;
 using StudentManagement.Models;
 using StudentManagement.Services.LocalDatabase;
 using StudentManagement.Views;
-using StudentManagement.Views.Popups;
 using Xamarin.Forms;
 
 namespace StudentManagement
@@ -52,6 +49,7 @@ namespace StudentManagement
             Container.RegisterTypeForNavigation<ScoreBoardPage>(PageManager.ScoreBoardPage);
             Container.RegisterTypeForNavigation<StudentScorePage>(PageManager.StudentScorePage);
             Container.RegisterTypeForNavigation<ReportBySubjectPage>(PageManager.ReportBySubjectPage);
+            Container.RegisterTypeForNavigation<ReportHomePage>(PageManager.ReportHomePage);
 
             // Register Services
             Container.Register<ISQLiteHelper, SQLiteHelper>(Reuse.ScopedOrSingleton);

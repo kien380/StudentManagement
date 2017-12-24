@@ -90,7 +90,7 @@ namespace StudentManagement.ViewModels
         {
             NavigationService.NavigateAsync(PageManager.MultiplePage(new[]
             {
-                PageManager.NavigationPage, PageManager.ReportBySubjectPage
+                PageManager.NavigationPage, PageManager.ReportHomePage
             }));
         }
 

@@ -1,9 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:controls="clr-namespace:StudentManagement.Controls;assembly=StudentManagement"
              x:Class="StudentManagement.Views.ReportBySubjectPage"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
              Title="{Binding PageTitle}">
     <ContentPage.Content>
         <Grid Padding="10">
@@ -12,7 +13,6 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
@@ -50,22 +50,13 @@
                 </controls:CustomPicker.Items>
             </controls:CustomPicker>
 
-            <Label Text="Báo cáo tổng kết môn"
-                   TextColor="{StaticResource Grade10ClassNameColor}"
-                   FontAttributes="Bold"
-                   FontSize="{StaticResource XLargeFontSize}"
-                   HorizontalOptions="Center"
-                   Grid.Row="2"
-                   Grid.Column="0"
-                   Grid.ColumnSpan="2" />
-
-            <!--List score board-->
+            <!--List Class Report-->
             <ListView x:Name="ListClass"
                       ItemsSource="{Binding Classes}"
                       SeparatorVisibility="None"
                       HasUnevenRows="True"
                       ItemTapped="ListView_OnItemTapped"
-                      Grid.Row="3"
+                      Grid.Row="2"
                       Grid.Column="0"
                       Grid.ColumnSpan="2">
                 <ListView.ItemTemplate>

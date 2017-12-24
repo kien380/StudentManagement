@@ -80,6 +80,7 @@
     <Compile Include="ViewModels\ListClassesPageViewModel.cs" />
     <Compile Include="ViewModels\ListStudentPageViewModel.cs" />
     <Compile Include="ViewModels\LoginPageViewModel.cs" />
+    <Compile Include="ViewModels\ReportBySemesterPageViewModel.cs" />
     <Compile Include="ViewModels\ReportBySubjectPageViewModel.cs" />
     <Compile Include="Views\ReportHomePage.xaml.cs">
       <DependentUpon>ReportHomePage.xaml</DependentUpon>

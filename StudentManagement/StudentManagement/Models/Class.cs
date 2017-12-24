@@ -61,5 +61,22 @@ namespace StudentManagement.Models
             }
             PassesPercents = (float)Passes / Students * 100;
         }
+
+        public void GetReportBySemester(ISQLiteHelper db, int semester)
+        {
+            var students = db.GetList<Student>(s => s.ClassId == Id);
+            var settings = db.GetSetting();
+            Passes = 0;
+
+            foreach (var student in students)
+            {
+                student.GetAvgScore(db);
+                if (settings.SubjectPassScore <= (semester == 1 ? student.ScoreAvg1 : student.ScoreAvg2))
+                {
+                    this.Passes++;
+                }
+            }
+            PassesPercents = (float)Passes / Students * 100;
+        }
     }
 }

@@ -11,18 +11,13 @@ using StudentManagement.Views.Popups;
 
 namespace StudentManagement.ViewModels
 {
-    public class ReportBySubjectPageViewModel : ViewModelBase
+    public class ReportBySemesterPageViewModel : ViewModelBase
     {
         #region private properties
 
         private ObservableCollection<Class> _classes;
-        private ObservableCollection<Subject> _subjects;
-        private ObservableCollection<string> _subjectNames;
         private int _semester;
         private string _semesterName;
-        private Subject _subjectSelected;
-        private string _subjectNameSelected;
-        private ScoreBoardPageType _pageType;
         private Class _class;
         private bool _isInitialized;
         private bool _isBusy;
@@ -34,37 +29,6 @@ namespace StudentManagement.ViewModels
         {
             get => _classes;
             set => SetProperty(ref _classes, value);
-        }
-        public ObservableCollection<Subject> Subjects
-        {
-            get => _subjects;
-            set
-            {
-                SetProperty(ref _subjects, value);
-                SubjectNames = new ObservableCollection<string>();
-                foreach (var s in value)
-                {
-                    SubjectNames.Add(s.Name);
-                }
-            }
-        }
-        public ObservableCollection<string> SubjectNames
-        {
-            get => _subjectNames;
-            private set => SetProperty(ref _subjectNames, value);
-        }
-        public string SubjectNameSelected
-        {
-            get => _subjectNameSelected;
-            set
-            {
-                SetProperty(ref _subjectNameSelected, value);
-                _subjectSelected = Subjects.FirstOrDefault(s => s.Name.Equals(value));
-                if (_isInitialized)
-                {
-                    LoadListClassReport();
-                }
-            }
         }
         public string SemesterName
         {
@@ -81,15 +45,18 @@ namespace StudentManagement.ViewModels
         }
         #endregion
 
-        public ReportBySubjectPageViewModel(INavigationService navigationService, IPageDialogService dialogService,
+        public ReportBySemesterPageViewModel(INavigationService navigationService, IPageDialogService dialogService,
             ISQLiteHelper sqLiteHelper)
             : base(navigationService, dialogService, sqLiteHelper)
         {
-            PageTitle = "Theo Môn học";
+            PageTitle = "Theo Học kỳ";
             SemesterName = "Học kỳ 1";
+        }
+
+        public void InitData()
+        {
             if (!_isInitialized)
             {
-                LoadListSubjects();
                 LoadListClasses();
                 LoadListClassReport();
                 _isInitialized = true;
@@ -97,13 +64,6 @@ namespace StudentManagement.ViewModels
         }
 
         #region Methods
-        private void LoadListSubjects()
-        {
-            Subjects = new ObservableCollection<Subject>(Database.GetList<Subject>(s => s.Id > 0));
-            if (SubjectNames != null)
-                if (SubjectNames.Count > 0)
-                    SubjectNameSelected = SubjectNames[0];
-        }
 
         private void LoadListClasses()
         {
@@ -112,7 +72,7 @@ namespace StudentManagement.ViewModels
 
         private async void LoadListClassReport()
         {
-            if(_isBusy) return;
+            if (_isBusy) return;
             _isBusy = true;
             LoadingPopup.Instance.ShowLoading();
             await Task.Run(() =>
@@ -121,7 +81,7 @@ namespace StudentManagement.ViewModels
                 foreach (var c in Classes)
                 {
                     c.CountStudent(Database);
-                    c.GetReportBySubject(Database, _subjectSelected.Id, _semester);
+                    c.GetReportBySemester(Database, _semester);
                     temp.Add(c);
                 }
                 Classes = temp;
@@ -131,11 +91,11 @@ namespace StudentManagement.ViewModels
             _isBusy = false;
         }
 
+
         public void ListClassItemTapped(Class c)
         {
             Dialog.DisplayActionSheetAsync("", c.Name, "OK");
         }
-
 
         #endregion
     }

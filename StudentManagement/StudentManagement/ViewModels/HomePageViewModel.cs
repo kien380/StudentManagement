@@ -229,50 +229,70 @@ namespace StudentManagement.ViewModels
 
         private void StudentDetailExecute()
         {
+            var navParam = new NavigationParameters
+            {
+                { ParamKey.StudentInfo.ToString(), Database.Get<Student>(s=>s.Id==CurrentUser.Id) },
+                { ParamKey.DetailStudentPageType.ToString(), DetailStudentPageType.StudentInfo }
+            };
             NavigationService.NavigateAsync(PageManager.MultiplePage(new[]
             {
-                PageManager.NavigationPage, PageManager.SettingsPage
-            }));
+                PageManager.NavigationPage, PageManager.DetailStudentPage
+            }), navParam);
         }
 
         private void StudentsInClassExecute()
         {
+            var navParam = new NavigationParameters
+            {
+                { ParamKey.ClassInfo.ToString(), Database.Get<Class>(c=>c.Id==CurrentUser.ClassId) }
+            };
             NavigationService.NavigateAsync(PageManager.MultiplePage(new[]
             {
-                PageManager.NavigationPage, PageManager.SettingsPage
-            }));
+                PageManager.NavigationPage, PageManager.ListStudentsPage
+            }),navParam);
         }
 
         private void ScoreSemester1Execute()
         {
-            NavigationService.NavigateAsync(PageManager.MultiplePage(new[]
-            {
-                PageManager.NavigationPage, PageManager.SettingsPage
-            }));
+            //NavigationService.NavigateAsync(PageManager.MultiplePage(new[]
+            //{
+            //    PageManager.NavigationPage, PageManager.SettingsPage
+            //}));
         }
 
         private void ScoreSemester2Execute()
         {
-            NavigationService.NavigateAsync(PageManager.MultiplePage(new[]
-            {
-                PageManager.NavigationPage, PageManager.SettingsPage
-            }));
+            //NavigationService.NavigateAsync(PageManager.MultiplePage(new[]
+            //{
+            //    PageManager.NavigationPage, PageManager.SettingsPage
+            //}));
         }
 
         private void ScoreInClassExecute()
         {
+            var navParam = new NavigationParameters
+            {
+                { ParamKey.ClassInfo.ToString(), Database.Get<Class>(c=>c.Id==CurrentUser.ClassId) }
+            };
             NavigationService.NavigateAsync(PageManager.MultiplePage(new[]
             {
-                PageManager.NavigationPage, PageManager.SettingsPage
-            }));
+                PageManager.NavigationPage, PageManager.ScoreBoardPage
+            }), navParam);
         }
 
         private void ClassDetailExecute()
         {
+            var classInfo = Database.Get<Class>(c => c.Id == CurrentUser.ClassId);
+            classInfo.CountStudent(Database);
+            var navParam = new NavigationParameters
+            {
+                { ParamKey.DetailClassPageType.ToString(), DetailClassPageType.ClassInfo },
+                { ParamKey.ClassInfo.ToString(), classInfo }
+            };
             NavigationService.NavigateAsync(PageManager.MultiplePage(new[]
             {
-                PageManager.NavigationPage, PageManager.SettingsPage
-            }));
+                PageManager.NavigationPage, PageManager.DetailClassPage
+            }), navParam);
         }
 
         #endregion

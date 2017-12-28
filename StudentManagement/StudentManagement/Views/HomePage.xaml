@@ -62,7 +62,7 @@
                                    Text="{StaticResource FlagIcon}"
                                    Style="{StaticResource MenuFeaturesIconStyle}" />
                             <Label Grid.Column="1"
-                                   Text="Thông tin cá nhân"
+                                   Text="Xem thông tin lớp"
                                    Style="{StaticResource MenuFeaturesLabelStyle}" />
                             <Grid.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding ClassDetailCommand}"/>

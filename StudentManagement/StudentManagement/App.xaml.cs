@@ -1,5 +1,8 @@
-﻿using DryIoc;
+﻿using System;
+using DryIoc;
 using Prism.DryIoc;
+using Prism.Navigation;
+using StudentManagement.Enums;
 using StudentManagement.Helpers;
 using StudentManagement.Interfaces;
 using StudentManagement.Models;
@@ -25,9 +28,8 @@ namespace StudentManagement
         {
             InitDatabase();
             InitMockData();
-            GetLinkToFirstPage();
             InitializeComponent();
-            NavigationService.NavigateAsync(GetLinkToFirstPage());
+            StartApp();
         }
 
         protected override void RegisterTypes()
@@ -77,16 +79,39 @@ namespace StudentManagement
             }
         }
 
-        private string GetLinkToFirstPage()
+        private async void StartApp()
         {
             var user = _sqLiteHelper.GetUser();
-            if (user == null)
-                return PageManager.LoginPage;
 
-            return PageManager.MultiplePage(new[]
+            string uri = PageManager.MultiplePage(new[]
             {
-                PageManager.HomePage, PageManager.NavigationPage, PageManager.ListClassesPage
+                PageManager.HomePage, PageManager.NavigationPage,
             });
+            var navParam = new NavigationParameters();
+
+            if (user == null)
+                uri = PageManager.LoginPage; 
+            // If PrincipalRole
+            else if (user.Role.Equals(RoleManager.PrincipalRole))
+                uri += "/" + PageManager.ListClassesPage;
+            // If TeacherRole
+            else if (user.Role.Equals(RoleManager.TeacherRole))
+            {
+                uri += "/" + PageManager.DetailClassPage;
+                var classInfo = _sqLiteHelper.Get<Class>(c => c.Id == user.ClassId);
+                classInfo.CountStudent(_sqLiteHelper);
+                navParam.Add(ParamKey.DetailClassPageType.ToString(), DetailClassPageType.ClassInfo);
+                navParam.Add(ParamKey.ClassInfo.ToString(), classInfo);
+            }
+            // If StudentRole
+            else
+            {
+                uri += "/" + PageManager.DetailStudentPage;
+                navParam.Add(ParamKey.DetailStudentPageType.ToString(), DetailStudentPageType.StudentInfo);
+                navParam.Add(ParamKey.StudentInfo.ToString(), _sqLiteHelper.Get<Student>(s => s.Id == user.Id));
+            }
+
+            await NavigationService.NavigateAsync(new Uri($"https://kienhht.com/{uri}"), navParam);
         }
     }
 }

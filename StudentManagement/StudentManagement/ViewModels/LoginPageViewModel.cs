@@ -4,8 +4,10 @@ using System.Windows.Input;
 using Prism.Commands;
 using Prism.Navigation;
 using Prism.Services;
+using StudentManagement.Enums;
 using StudentManagement.Helpers;
 using StudentManagement.Interfaces;
+using StudentManagement.Models;
 using StudentManagement.ViewModels.Base;
 using StudentManagement.Views.Popups;
 
@@ -65,12 +67,39 @@ namespace StudentManagement.ViewModels
             await Task.Delay(500);
             LoadingPopup.Instance.HideLoading();
 
-            //Login success ==> Go to home page
+            ChooseHomePage();
+        }
+
+        private async void ChooseHomePage()
+        {
+            var user = Database.GetUser();
             string uri = PageManager.MultiplePage(new[]
             {
-                PageManager.HomePage, PageManager.NavigationPage, PageManager.ListClassesPage
+                PageManager.HomePage, PageManager.NavigationPage, 
             });
-            await NavigationService.NavigateAsync(new Uri($"https://kienhht.com/{uri}"));
+            var navParam = new NavigationParameters();
+
+            // If PrincipalRole
+            if (user.Role.Equals(RoleManager.PrincipalRole))
+                uri += "/" + PageManager.ListClassesPage;
+            // If TeacherRole
+            else if (user.Role.Equals(RoleManager.TeacherRole))
+            {
+                uri += "/" + PageManager.DetailClassPage;
+                var classInfo = Database.Get<Class>(c => c.Id == user.ClassId);
+                classInfo.CountStudent(Database);
+                navParam.Add(ParamKey.DetailClassPageType.ToString(), DetailClassPageType.ClassInfo);
+                navParam.Add(ParamKey.ClassInfo.ToString(), classInfo);
+            }
+            // If StudentRole
+            else
+            {
+                uri += "/" + PageManager.DetailStudentPage;
+                navParam.Add(ParamKey.DetailStudentPageType.ToString(), DetailStudentPageType.StudentInfo);
+                navParam.Add(ParamKey.StudentInfo.ToString(), Database.Get<Student>(s => s.Id == user.Id));
+            }
+
+            await NavigationService.NavigateAsync(new Uri($"https://kienhht.com/{uri}"), navParam);
         }
 
         private async Task<bool> CheckEmpryUsernameOrPassword()

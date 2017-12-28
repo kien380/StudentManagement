@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Windows.Input;
 using Prism.Commands;
 using Prism.Navigation;
@@ -15,6 +16,18 @@ namespace StudentManagement.ViewModels
         #region private properties
 
         private User _currentUser;
+        private bool _isAddNewStudentVisible;
+        private bool _isListClassesVisible;
+        private bool _isListAllStudentVisible;
+        private bool _isInputScoreBoardVisible;
+        private bool _isShowReportVisible;
+        private bool _isSettingVisible;
+        private bool _isStudentDetailVisible;
+        private bool _isClassDetailVisible;
+        private bool _isStudentsInClassVisible;
+        private bool _isScoreInClassVisible;
+        private bool _isScoreSemester1Visible;
+        private bool _isScoreSemester2Visible;
 
         #endregion
 
@@ -24,6 +37,66 @@ namespace StudentManagement.ViewModels
             get => _currentUser;
             set => SetProperty(ref _currentUser, value);
         }
+        public bool IsAddNewStudentVisible
+        {
+            get => _isAddNewStudentVisible;
+            set => SetProperty(ref _isAddNewStudentVisible, value);
+        }
+        public bool IsListClassesVisible
+        {
+            get => _isListClassesVisible;
+            set => SetProperty(ref _isListClassesVisible, value);
+        }
+        public bool IsListAllStudentVisible
+        {
+            get => _isListAllStudentVisible;
+            set => SetProperty(ref _isListAllStudentVisible, value);
+        }
+        public bool IsInputScoreBoardVisible
+        {
+            get => _isInputScoreBoardVisible;
+            set => SetProperty(ref _isInputScoreBoardVisible, value);
+        }
+        public bool IsShowReportVisible
+        {
+            get => _isShowReportVisible;
+            set => SetProperty(ref _isShowReportVisible, value);
+        }
+        public bool IsSettingVisible
+        {
+            get => _isSettingVisible;
+            set => SetProperty(ref _isSettingVisible, value);
+        }
+        public bool IsStudentDetailVisible
+        {
+            get => _isStudentDetailVisible;
+            set => SetProperty(ref _isStudentDetailVisible, value);
+        }
+        public bool IsStudentsInClassVisible
+        {
+            get => _isStudentsInClassVisible;
+            set => SetProperty(ref _isStudentsInClassVisible, value);
+        }
+        public bool IsScoreSemester1Visible
+        {
+            get => _isScoreSemester1Visible;
+            set => SetProperty(ref _isScoreSemester1Visible, value);
+        }
+        public bool IsScoreSemester2Visible
+        {
+            get => _isScoreSemester2Visible;
+            set => SetProperty(ref _isScoreSemester2Visible, value);
+        }
+        public bool IsScoreInClassVisible
+        {
+            get => _isScoreInClassVisible;
+            set => SetProperty(ref _isScoreInClassVisible, value);
+        }
+        public bool IsClassDetailVisible
+        {
+            get => _isClassDetailVisible;
+            set => SetProperty(ref _isClassDetailVisible, value);
+        }
         // commads
         public ICommand AddNewStudentCommand { get; set; }
         public ICommand ListClassesCommand { get; set; }
@@ -31,6 +104,12 @@ namespace StudentManagement.ViewModels
         public ICommand InputScoreBoardCommand { get; set; }
         public ICommand ShowReportCommand { get; set; }
         public ICommand SettingCommand { get; set; }
+        public ICommand StudentDetailCommand { get; set; }
+        public ICommand StudentsInClassCommand { get; set; }
+        public ICommand ScoreSemester1Command { get; set; }
+        public ICommand ScoreSemester2Command { get; set; }
+        public ICommand ClassDetailCommand { get; set; }
+        public ICommand ScoreInClassCommand { get; set; }
         public ICommand LogOutCommand { get; set; }
         #endregion
 
@@ -40,7 +119,6 @@ namespace StudentManagement.ViewModels
         {
             // Set values
             PageTitle = "Home Page";
-            CurrentUser = Database.GetUser();
 
             // Commands
             AddNewStudentCommand = new DelegateCommand(AddNewStudentExecute);
@@ -49,7 +127,35 @@ namespace StudentManagement.ViewModels
             InputScoreBoardCommand = new DelegateCommand(InputScoreBoardExecute);
             ShowReportCommand = new DelegateCommand(ShowReportExecute);
             SettingCommand = new DelegateCommand(SettingExecute);
+            StudentDetailCommand = new DelegateCommand(StudentDetailExecute);
+            StudentsInClassCommand = new DelegateCommand(StudentsInClassExecute);
+            ScoreSemester1Command = new DelegateCommand(ScoreSemester1Execute);
+            ScoreSemester2Command = new DelegateCommand(ScoreSemester2Execute);
+            ClassDetailCommand = new DelegateCommand(ClassDetailExecute);
+            ScoreInClassCommand = new DelegateCommand(ScoreInClassExecute);
             LogOutCommand = new DelegateCommand(LogOutExecute);
+
+            InitUser();
+        }
+
+        private void InitUser()
+        {
+            CurrentUser = Database.GetUser();
+
+            // Set View depend on user's role
+            IsAddNewStudentVisible = CurrentUser.Role.Equals(RoleManager.PrincipalRole);
+            IsListClassesVisible = CurrentUser.Role.Equals(RoleManager.PrincipalRole);
+            IsListAllStudentVisible = CurrentUser.Role.Equals(RoleManager.PrincipalRole);
+            IsInputScoreBoardVisible = CurrentUser.Role.Equals(RoleManager.PrincipalRole);
+            IsShowReportVisible = CurrentUser.Role.Equals(RoleManager.PrincipalRole);
+            IsSettingVisible = CurrentUser.Role.Equals(RoleManager.PrincipalRole);
+            IsStudentDetailVisible = CurrentUser.Role.Equals(RoleManager.StudentRole);
+            IsStudentsInClassVisible = CurrentUser.Role.Equals(RoleManager.StudentRole)
+                || CurrentUser.Role.Equals(RoleManager.TeacherRole);
+            IsScoreSemester1Visible = CurrentUser.Role.Equals(RoleManager.StudentRole);
+            IsScoreSemester2Visible = CurrentUser.Role.Equals(RoleManager.StudentRole);
+            IsClassDetailVisible = CurrentUser.Role.Equals(RoleManager.TeacherRole);
+            IsScoreInClassVisible = CurrentUser.Role.Equals(RoleManager.TeacherRole);
         }
 
         #region Overrides
@@ -119,6 +225,54 @@ namespace StudentManagement.ViewModels
             CurrentUser = null;
             UserHelper.Instance.Logout(Database);
             NavigationService.NavigateAsync(new Uri($"https://kienhht.com/{PageManager.LoginPage}"));
+        }
+
+        private void StudentDetailExecute()
+        {
+            NavigationService.NavigateAsync(PageManager.MultiplePage(new[]
+            {
+                PageManager.NavigationPage, PageManager.SettingsPage
+            }));
+        }
+
+        private void StudentsInClassExecute()
+        {
+            NavigationService.NavigateAsync(PageManager.MultiplePage(new[]
+            {
+                PageManager.NavigationPage, PageManager.SettingsPage
+            }));
+        }
+
+        private void ScoreSemester1Execute()
+        {
+            NavigationService.NavigateAsync(PageManager.MultiplePage(new[]
+            {
+                PageManager.NavigationPage, PageManager.SettingsPage
+            }));
+        }
+
+        private void ScoreSemester2Execute()
+        {
+            NavigationService.NavigateAsync(PageManager.MultiplePage(new[]
+            {
+                PageManager.NavigationPage, PageManager.SettingsPage
+            }));
+        }
+
+        private void ScoreInClassExecute()
+        {
+            NavigationService.NavigateAsync(PageManager.MultiplePage(new[]
+            {
+                PageManager.NavigationPage, PageManager.SettingsPage
+            }));
+        }
+
+        private void ClassDetailExecute()
+        {
+            NavigationService.NavigateAsync(PageManager.MultiplePage(new[]
+            {
+                PageManager.NavigationPage, PageManager.SettingsPage
+            }));
         }
 
         #endregion

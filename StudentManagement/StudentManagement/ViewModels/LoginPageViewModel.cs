@@ -55,14 +55,14 @@ namespace StudentManagement.ViewModels
                 return;
 
             LoadingPopup.Instance.ShowLoading();
-            await Task.Delay(1000);
+            await Task.Delay(500);
             if (!UserHelper.Instance.Login(Database, Username, Password))
             {
                 LoadingPopup.Instance.HideLoading();
                 await Dialog.DisplayAlertAsync("Thông báo", "Tên đăng nhập hoặc mật khẩu chưa chính xác", "OK");
                 return;
             }
-            await Task.Delay(1000);
+            await Task.Delay(500);
             LoadingPopup.Instance.HideLoading();
 
             //Login success ==> Go to home page

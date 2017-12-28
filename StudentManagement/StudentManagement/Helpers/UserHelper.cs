@@ -23,6 +23,7 @@ namespace StudentManagement.Helpers
             if (user == null)
                 return false;
 
+            db.DeleteAll<User>();
             db.Insert(user);
 
             return true;
@@ -30,7 +31,7 @@ namespace StudentManagement.Helpers
 
         public void Logout(ISQLiteHelper db)
         {
-            db.Delete(db.GetUser());
+            db.DeleteAll<User>(); 
         }
 
         
@@ -40,21 +41,23 @@ namespace StudentManagement.Helpers
             {
                 new User
                 {
-                    Id = 1,
+                    Id = 10336,
                     Name = "Nguyễn Văn Bảo",
                     Avatar = "student_boy_1.png",
                     Role = RoleManager.StudentRole,
                     UserName = "baonv@gmail.com",
-                    Password = "bao123"
+                    Password = "bao123",
+                    ClassId = 2009,
                 },
                 new User
                 {
-                    Id = 1,
+                    Id = 10337,
                     Name = "Hồ Hoàng Khang",
                     Avatar = "student_boy.png",
                     Role = RoleManager.StudentRole,
                     UserName = "khanghh@gmail.com",
-                    Password = "khang123"
+                    Password = "khang123",
+                    ClassId = 2001
                 },
                 new User
                 {
@@ -63,7 +66,8 @@ namespace StudentManagement.Helpers
                     Avatar = "teacher_4.png",
                     Role = RoleManager.TeacherRole,
                     UserName = "thanhpt@gmail.com",
-                    Password = "thanh123"
+                    Password = "thanh123",
+                    ClassId = 2005
                 },
                 new User
                 {

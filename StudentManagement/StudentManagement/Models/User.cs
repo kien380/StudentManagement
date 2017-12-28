@@ -13,6 +13,8 @@ namespace StudentManagement.Models
 
         public string Avatar { get; set; }
 
+        public int ClassId { get; set; }
+
         [Ignore]
         public string UserName { get; set; }
 

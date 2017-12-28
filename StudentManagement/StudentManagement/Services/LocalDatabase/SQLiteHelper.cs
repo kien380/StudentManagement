@@ -186,7 +186,7 @@ namespace StudentManagement.Services.LocalDatabase
         {
             try
             {
-                var user = Database.Get<User>(s => s.Id == 1);
+                var user = Database.Get<User>(s => s.Id > 0);
                 return user;
             }
             catch (Exception e)
@@ -195,61 +195,6 @@ namespace StudentManagement.Services.LocalDatabase
                 return null;
             }
         }
-
-        #endregion
-
-        #region Searchs
-
-        //public IEnumerable<StudentModel> SearchStudents<TStudentModel>(string searchInfo, string classId)
-        //{
-        //    lock (Locker)
-        //    {
-        //        try
-        //        {
-        //            try
-        //            {
-        //                return Database.Table<StudentModel>().OrderBy(x => x.FirstName)
-        //                    .Where(x => x.Birthdate.CompareTo(Convert.ToDateTime(searchInfo)) == -1).ToList();
-        //            }
-        //            catch (Exception e)
-        //            {
-        //                return Database.Table<StudentModel>().OrderBy(x => x.FirstName)
-        //                    .Where(x => x.FirstName.Contains(searchInfo) || x.LastName.Contains(searchInfo)).ToList();
-        //            }
-        //        }
-        //        catch (Exception e)
-        //        {
-        //            Debug.WriteLine($"SQLiteHelper - Search: {e}");
-        //            return null;
-        //        }
-        //    }
-        //}
-
-        //public IEnumerable<ClassModel> SearchClasses<TClassModel>(string searchInfo, string classId)
-        //{
-        //    lock (Locker)
-        //    {
-        //        try
-        //        {
-        //            try
-        //            {
-        //                return Database.Table<ClassModel>().OrderBy(x => x.StartDate)
-        //                    .Where(x => x.EndDate.CompareTo(Convert.ToDateTime(searchInfo)) == 0
-        //                    || x.StartDate.CompareTo(Convert.ToDateTime(searchInfo)) == 0).ToList();
-        //            }
-        //            catch (Exception e)
-        //            {
-        //                return Database.Table<ClassModel>().OrderBy(x => x.Name)
-        //                    .Where(x => x.Name.Contains(searchInfo)).ToList();
-        //            }
-        //        }
-        //        catch (Exception e)
-        //        {
-        //            Debug.WriteLine($"SQLiteHelper - Search: {e}");
-        //            return null;
-        //        }
-        //    }
-        //}
 
         #endregion
 
@@ -404,54 +349,7 @@ namespace StudentManagement.Services.LocalDatabase
         }
 
         #endregion
-
-        #region Checks
-
-        //public bool CheckAccount(string username, string password)
-        //{
-        //    lock (Locker)
-        //    {
-        //        try
-        //        {
-        //            var user = Database.Table<UserInfoModel>().FirstOrDefault(x => x.UserName == username
-        //                                                                           && x.Hash256 ==
-        //                                                                           Crypto.EncryptAes(password,
-        //                                                                               x.Lecture.Token));
-
-        //            if (user != null)
-        //            {
-        //                return user.Hash256 == Crypto.EncryptAes(password, user.Lecture.Token);
-        //            }
-
-        //            return false;
-        //        }
-        //        catch (Exception e)
-        //        {
-        //            Debug.WriteLine($"CheckAccount: {e}");
-        //            return false;
-        //        }
-        //    }
-        //}
-
-        //public bool CheckLogin()
-        //{
-        //    lock (Locker)
-        //    {
-        //        try
-        //        {
-        //            return Database.Get<UserInfoModel>(Database.Table<UserInfoModel>()
-        //                       .FirstOrDefault(x => x.IsLogin)) != null;
-        //        }
-        //        catch (Exception e)
-        //        {
-        //            Debug.WriteLine($"CheckLogin: {e}");
-        //            return false;
-        //        }
-        //    }
-        //}
-
-        #endregion
-
+        
         #endregion
     }
 }

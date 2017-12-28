@@ -3,6 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="StudentManagement.Views.StudentScorePage"
              Title="{Binding PageTitle}">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Edit"
+                     Icon="ic_ic_edit_white.png"
+                     Command="{Binding EditCommand}"/>
+    </ContentPage.ToolbarItems>
+    
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
@@ -53,7 +59,8 @@
                    FontSize="{StaticResource LargeFontSize}"
                    Grid.Row="3"
                    Grid.Column="0"
-                   Margin="20,0,20,0"/>
+                   Margin="20,0,20,0"
+                   IsEnabled="{Binding IsEditMode}"/>
 
             <!--Diem 45 phut-->
             <Label Text="Điểm 45 phút:"
@@ -65,7 +72,8 @@
                    FontSize="{StaticResource LargeFontSize}"
                    Grid.Row="5"
                    Grid.Column="0"
-                   Margin="20,0,20,0"/>
+                   Margin="20,0,20,0"
+                   IsEnabled="{Binding IsEditMode}"/>
 
             <!--Diem cuoi ky-->
             <Label Text="Điểm cuối kỳ:"
@@ -77,7 +85,8 @@
                    FontSize="{StaticResource LargeFontSize}"
                    Grid.Row="7"
                    Grid.Column="0"
-                   Margin="20,0,20,0"/>
+                   Margin="20,0,20,0"
+                   IsEnabled="{Binding IsEditMode}"/>
 
             <!--Diem trung binh-->
             <Label Text="Điểm trung bình:"
@@ -115,7 +124,8 @@
                     Command="{Binding SaveCommand}"
                     Grid.Row="10"
                     Grid.Column="0"
-                    VerticalOptions="End"/>
+                    VerticalOptions="End"
+                    IsEnabled="{Binding IsEditMode}"/>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

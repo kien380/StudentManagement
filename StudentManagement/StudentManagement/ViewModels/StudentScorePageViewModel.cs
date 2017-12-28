@@ -1,4 +1,5 @@
-﻿using System.Windows.Input;
+﻿using System.Threading.Tasks;
+using System.Windows.Input;
 using Prism.Commands;
 using Prism.Navigation;
 using Prism.Services;
@@ -6,6 +7,7 @@ using StudentManagement.Enums;
 using StudentManagement.Interfaces;
 using StudentManagement.Models;
 using StudentManagement.ViewModels.Base;
+using StudentManagement.Views.Popups;
 
 namespace StudentManagement.ViewModels
 {
@@ -18,6 +20,7 @@ namespace StudentManagement.ViewModels
         private float _score45M;
         private float _scoreFinal;
         private float _scoreAvg;
+        private bool _isEditMode;
 
         #endregion
 
@@ -47,9 +50,15 @@ namespace StudentManagement.ViewModels
             get => _scoreAvg;
             set => SetProperty(ref _scoreAvg, value);
         }
+        public bool IsEditMode
+        {
+            get => _isEditMode;
+            set => SetProperty(ref _isEditMode, value);
+        }
         // Commands
         public ICommand ClearCommand { get; set; }
         public ICommand SaveCommand { get; set; }
+        public ICommand EditCommand { get; set; }
         #endregion
 
         public StudentScorePageViewModel(INavigationService navigationService, IPageDialogService dialogService,
@@ -62,6 +71,7 @@ namespace StudentManagement.ViewModels
             // Commands
             ClearCommand = new DelegateCommand(ClearExecute);
             SaveCommand = new DelegateCommand(SaveExecute);
+            EditCommand = new DelegateCommand(EditExecute);
         }
 
         #region override
@@ -103,11 +113,19 @@ namespace StudentManagement.ViewModels
                 StudentInfo.Score.Score45M = Score45Mins;
                 StudentInfo.Score.ScoreFinal = ScoreFinal;
                 Database.Update(StudentInfo.Score);
-
+                
+                LoadingPopup.Instance.ShowLoading();
+                await Task.Delay(1000);
+                LoadingPopup.Instance.HideLoading();
                 await Dialog.DisplayAlertAsync("Thông báo", "Lưu điểm học sinh thành công", "OK");
+                await NavigationService.GoBackAsync();
             }
         }
 
+        private void EditExecute()
+        {
+            IsEditMode = true;
+        }
         #endregion
     }
 }

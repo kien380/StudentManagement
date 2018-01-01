@@ -254,18 +254,28 @@ namespace StudentManagement.ViewModels
 
         private void ScoreSemester1Execute()
         {
-            //NavigationService.NavigateAsync(PageManager.MultiplePage(new[]
-            //{
-            //    PageManager.NavigationPage, PageManager.SettingsPage
-            //}));
+            var navParam = new NavigationParameters
+            {
+                { ParamKey.Semester.ToString(), 1 },
+                { ParamKey.StudentInfo.ToString(), Database.Get<Student>(s=>s.Id==CurrentUser.Id) }
+            };
+            NavigationService.NavigateAsync(PageManager.MultiplePage(new[]
+            {
+                PageManager.NavigationPage, PageManager.PersonalScoreListPage
+            }), navParam);
         }
 
         private void ScoreSemester2Execute()
         {
-            //NavigationService.NavigateAsync(PageManager.MultiplePage(new[]
-            //{
-            //    PageManager.NavigationPage, PageManager.SettingsPage
-            //}));
+            var navParam = new NavigationParameters
+            {
+                { ParamKey.Semester.ToString(), 2 },
+                { ParamKey.StudentInfo.ToString(), Database.Get<Student>(s=>s.Id==CurrentUser.Id) }
+            };
+            NavigationService.NavigateAsync(PageManager.MultiplePage(new[]
+            {
+                PageManager.NavigationPage, PageManager.PersonalScoreListPage
+            }), navParam);
         }
 
         private void ScoreInClassExecute()

@@ -18,6 +18,7 @@
         public static readonly string ReportBySubjectPage = "ReportBySubjectPage";
         public static readonly string ReportBySemesterPage = "ReportBySemesterPage";
         public static readonly string SettingsPage = "SettingsPage";
+        public static readonly string PersonalScoreListPage = "PersonalScoreListPage";
 
 
         public static string MultiplePage(string[] pages)

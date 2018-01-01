@@ -7,6 +7,8 @@
         ScoreBoardPageType,
         ClassInfo,
         StudentInfo,
-        NavigateBack
+        NavigateBack,
+        Semester,
+        PageTitle
     }
 }

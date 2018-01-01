@@ -43,7 +43,7 @@ namespace StudentManagement.Helpers
                 {
                     Id = 10336,
                     Name = "Nguyễn Văn Bảo",
-                    Avatar = "student_boy_1.png",
+                    Avatar = "student_boy.png",
                     Role = RoleManager.StudentRole,
                     UserName = "baonv@gmail.com",
                     Password = "bao123",

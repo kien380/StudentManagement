@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Windows.Input;
 using Prism.Commands;
 using Prism.Navigation;
@@ -26,6 +27,10 @@ namespace StudentManagement.ViewModels
         private string _avatar;
         private bool _isStudentInfo;
         private bool _isAddNewStudent;
+
+        private const string Semseter1 = "Học kỳ 1";
+        private const string Semseter2 = "Học kỳ 2";
+        private const string AllYear = "Cả năm";
 
         #endregion
 
@@ -138,14 +143,26 @@ namespace StudentManagement.ViewModels
             NavigationService.NavigateAsync(PageManager.DetailClassPage, navParam);
         }
 
-        private void ViewScoreBoardExecute()
+        private async void ViewScoreBoardExecute()
         {
+            // Choose semester
+            var action = await Dialog.DisplayActionSheetAsync("Chọn học kỳ", "Hủy", null, Semseter1, Semseter2, AllYear);
+            int semester;
+            switch (action)
+            {
+                case Semseter1: semester = 1; break;
+                case Semseter2: semester = 2; break;
+                case AllYear: semester = 0; break;
+                default: return;
+            }
+
+            // Navigate to PersonalScoreListPage
             var navParam = new NavigationParameters
             {
-                { ParamKey.Semester.ToString(), 0 },
+                { ParamKey.Semester.ToString(), semester },
                 { ParamKey.StudentInfo.ToString(), _student }
             };
-            NavigationService.NavigateAsync(PageManager.PersonalScoreListPage, navParam);
+            await NavigationService.NavigateAsync(PageManager.PersonalScoreListPage, navParam);
         }
 
         private void SwitchPageMode(DetailStudentPageType type)

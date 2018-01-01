@@ -123,6 +123,24 @@
                             </Grid.GestureRecognizers>
                         </Grid>
 
+                        <!--Xem bảng điểm cả năm-->
+                        <Grid ColumnSpacing="{StaticResource MenuFeaturesColumnSpacing}"
+                              IsVisible="{Binding IsScoreSemesterAllYearVisible}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="{StaticResource MenuFeaturesIconWidth}" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0"
+                                   Text="{StaticResource DocumentTextIcon}"
+                                   Style="{StaticResource MenuFeaturesIconStyle}" />
+                            <Label Grid.Column="1"
+                                   Text="Xem bảng điểm cả năm"
+                                   Style="{StaticResource MenuFeaturesLabelStyle}" />
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ScoreSemesterAllYearCommand}"/>
+                            </Grid.GestureRecognizers>
+                        </Grid>
+
                         <!--Xem bảng điểm lớp-->
                         <Grid ColumnSpacing="{StaticResource MenuFeaturesColumnSpacing}"
                               IsVisible="{Binding IsScoreInClassVisible}">

@@ -99,7 +99,7 @@ namespace StudentManagement.ViewModels
         #region Methods
         public void ScoreItemTapped(Subject subject)
         {
-            if(_semester != 1 || _semester != 2)
+            if(_semester != 1 && _semester != 2)
                 return;
 
             _student.GetScore(Database, subject.Id, _semester); 

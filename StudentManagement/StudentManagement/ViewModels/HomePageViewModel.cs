@@ -28,6 +28,7 @@ namespace StudentManagement.ViewModels
         private bool _isScoreInClassVisible;
         private bool _isScoreSemester1Visible;
         private bool _isScoreSemester2Visible;
+        private bool _isScoreSemesterAllYearVisible;
 
         #endregion
 
@@ -87,6 +88,11 @@ namespace StudentManagement.ViewModels
             get => _isScoreSemester2Visible;
             set => SetProperty(ref _isScoreSemester2Visible, value);
         }
+        public bool IsScoreSemesterAllYearVisible
+        {
+            get => _isScoreSemesterAllYearVisible;
+            set => SetProperty(ref _isScoreSemesterAllYearVisible, value);
+        }
         public bool IsScoreInClassVisible
         {
             get => _isScoreInClassVisible;
@@ -108,6 +114,7 @@ namespace StudentManagement.ViewModels
         public ICommand StudentsInClassCommand { get; set; }
         public ICommand ScoreSemester1Command { get; set; }
         public ICommand ScoreSemester2Command { get; set; }
+        public ICommand ScoreSemesterAllYearCommand { get; set; }
         public ICommand ClassDetailCommand { get; set; }
         public ICommand ScoreInClassCommand { get; set; }
         public ICommand LogOutCommand { get; set; }
@@ -131,6 +138,7 @@ namespace StudentManagement.ViewModels
             StudentsInClassCommand = new DelegateCommand(StudentsInClassExecute);
             ScoreSemester1Command = new DelegateCommand(ScoreSemester1Execute);
             ScoreSemester2Command = new DelegateCommand(ScoreSemester2Execute);
+            ScoreSemesterAllYearCommand = new DelegateCommand(ScoreSemesterAllYearExecute);
             ClassDetailCommand = new DelegateCommand(ClassDetailExecute);
             ScoreInClassCommand = new DelegateCommand(ScoreInClassExecute);
             LogOutCommand = new DelegateCommand(LogOutExecute);
@@ -154,6 +162,7 @@ namespace StudentManagement.ViewModels
                 || CurrentUser.Role.Equals(RoleManager.TeacherRole);
             IsScoreSemester1Visible = CurrentUser.Role.Equals(RoleManager.StudentRole);
             IsScoreSemester2Visible = CurrentUser.Role.Equals(RoleManager.StudentRole);
+            IsScoreSemesterAllYearVisible = CurrentUser.Role.Equals(RoleManager.StudentRole);
             IsClassDetailVisible = CurrentUser.Role.Equals(RoleManager.TeacherRole);
             IsScoreInClassVisible = CurrentUser.Role.Equals(RoleManager.TeacherRole);
         }
@@ -270,6 +279,19 @@ namespace StudentManagement.ViewModels
             var navParam = new NavigationParameters
             {
                 { ParamKey.Semester.ToString(), 2 },
+                { ParamKey.StudentInfo.ToString(), Database.Get<Student>(s=>s.Id==CurrentUser.Id) }
+            };
+            NavigationService.NavigateAsync(PageManager.MultiplePage(new[]
+            {
+                PageManager.NavigationPage, PageManager.PersonalScoreListPage
+            }), navParam);
+        }
+
+        private void ScoreSemesterAllYearExecute()
+        {
+            var navParam = new NavigationParameters
+            {
+                { ParamKey.Semester.ToString(), 0 },
                 { ParamKey.StudentInfo.ToString(), Database.Get<Student>(s=>s.Id==CurrentUser.Id) }
             };
             NavigationService.NavigateAsync(PageManager.MultiplePage(new[]

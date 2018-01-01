@@ -7,9 +7,9 @@ namespace StudentManagement.ViewModels.Base
 {
     public class ViewModelBase : BindableBase, INavigationAware
     {
-        protected INavigationService NavigationService;
-        protected IPageDialogService Dialog;
-        protected ISQLiteHelper Database;
+        public INavigationService NavigationService { get; private set; }
+        public IPageDialogService Dialog { get; private set; }
+        public ISQLiteHelper Database { get; private set; }
 
         public ViewModelBase(
             INavigationService navigationService = null,

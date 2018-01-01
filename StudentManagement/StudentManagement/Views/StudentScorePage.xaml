@@ -3,11 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="StudentManagement.Views.StudentScorePage"
              Title="{Binding PageTitle}">
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Edit"
-                     Icon="ic_ic_edit_white.png"
-                     Command="{Binding EditCommand}"/>
-    </ContentPage.ToolbarItems>
     
     <ContentPage.Content>
         <Grid>

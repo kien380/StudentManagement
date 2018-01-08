@@ -92,6 +92,18 @@ namespace StudentManagement.ViewModels
 
         #region Override
 
+        public override void OnNavigatedBackTo(NavigationParameters parameters)
+        {
+            if (parameters != null)
+            {
+                if (parameters.ContainsKey(ParamKey.NeedReload.ToString()))
+                {
+                    if((bool)parameters[ParamKey.NeedReload.ToString()])
+                        LoadListScoreBoard();
+                }
+            }
+        }
+
         public override void OnNavigatedNewTo(NavigationParameters parameters)
         {
             base.OnNavigatedNewTo(parameters);

@@ -11,6 +11,7 @@ namespace StudentManagement.ViewModels
             ISQLiteHelper sqLiteHelper)
             : base(navigationService, dialogService, sqLiteHelper)
         {
+            PageTitle = "Thay đổi thông tin lớp";
         }
     }
 }

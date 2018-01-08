@@ -21,18 +21,14 @@
             <Label Text="Điểm đạt môn:"/>
             <Entry Text="{Binding Settings.SubjectPassScore}"/>
 
-            <!--Thông tin lớp-->
-            <Label Text="Thông tin lớp:"/>
-            <Entry Text="(Coming soon)"
-                   IsEnabled="False"/>
-
-            <!--Thông tin môn học-->
-            <Label Text="Thông tin môn học:" />
-            <Entry Text="(Coming soon)"
-                   IsEnabled="False"/>
-            
-            <Button Text="Lưu"
+            <Button Text="Thay đổi thông tin lớp"
                     VerticalOptions="EndAndExpand"
+                    Command="{Binding ChangeClassesInfoCommand}"/>
+
+            <Button Text="Thay đổi thông tin môn học"
+                    Command="{Binding ChangeSubjectsInfoCommand}"/>
+
+            <Button Text="Lưu"
                     Command="{Binding SaveCommand}"/>
         </StackLayout>
     </ContentPage.Content>

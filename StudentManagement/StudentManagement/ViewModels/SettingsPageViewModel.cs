@@ -28,6 +28,8 @@ namespace StudentManagement.ViewModels
 
         // Commands
         public ICommand SaveCommand { get; }
+        public ICommand ChangeClassesInfoCommand { get; }
+        public ICommand ChangeSubjectsInfoCommand { get; }
 
         #endregion
 
@@ -37,6 +39,8 @@ namespace StudentManagement.ViewModels
         {
             PageTitle = "Quy định";
             SaveCommand = new DelegateCommand(SaveExecute);
+            ChangeClassesInfoCommand = new DelegateCommand(ChangeClassesInfoExecute);
+            ChangeSubjectsInfoCommand = new DelegateCommand(ChangeSubjectsInfoExecute);
         }
 
         #region override
@@ -66,6 +70,16 @@ namespace StudentManagement.ViewModels
                 PageManager.HomePage, PageManager.NavigationPage, PageManager.ListClassesPage
             });
             await NavigationService.NavigateAsync(new Uri($"https://kienhht.com/{uri}"));
+        }
+
+        private void ChangeClassesInfoExecute()
+        {
+            NavigationService.NavigateAsync(PageManager.ChangeClassesInfoPage);
+        }
+
+        private void ChangeSubjectsInfoExecute()
+        {
+            NavigationService.NavigateAsync(PageManager.ChangeSubjectsInfoPage);
         }
 
         #endregion

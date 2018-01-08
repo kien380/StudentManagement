@@ -52,6 +52,8 @@ namespace StudentManagement
             Container.RegisterTypeForNavigation<ReportHomePage>(PageManager.ReportHomePage);
             Container.RegisterTypeForNavigation<SettingsPage>(PageManager.SettingsPage);
             Container.RegisterTypeForNavigation<PersonalScoreListPage>(PageManager.PersonalScoreListPage);
+            Container.RegisterTypeForNavigation<ChangeClassesInfoPage>(PageManager.ChangeClassesInfoPage);
+            Container.RegisterTypeForNavigation<ChangeSubjectsInfoPage>(PageManager.ChangeSubjectsInfoPage);
 
             // Register Services
             Container.Register<ISQLiteHelper, SQLiteHelper>(Reuse.ScopedOrSingleton);

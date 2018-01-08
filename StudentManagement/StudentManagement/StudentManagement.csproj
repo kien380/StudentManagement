@@ -75,6 +75,8 @@
     </Compile>
     <Compile Include="ViewModels\AddNewStudentPageViewModel.cs" />
     <Compile Include="ViewModels\Base\ViewModelBase.cs" />
+    <Compile Include="ViewModels\ChangeClassesInfoPageViewModel.cs" />
+    <Compile Include="ViewModels\ChangeSubjectsInfoPageViewModel.cs" />
     <Compile Include="ViewModels\ChooseClassPageViewModel.cs" />
     <Compile Include="ViewModels\DetailClassPageViewModel.cs" />
     <Compile Include="ViewModels\DetailStudentPageViewModel.cs" />
@@ -87,6 +89,12 @@
     <Compile Include="ViewModels\ReportBySemesterPageViewModel.cs" />
     <Compile Include="ViewModels\ReportBySubjectPageViewModel.cs" />
     <Compile Include="ViewModels\SettingsPageViewModel.cs" />
+    <Compile Include="Views\ChangeClassesInfoPage.xaml.cs">
+      <DependentUpon>ChangeClassesInfoPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ChangeSubjectsInfoPage.xaml.cs">
+      <DependentUpon>ChangeSubjectsInfoPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\PersonalScoreListPage.xaml.cs">
       <DependentUpon>PersonalScoreListPage.xaml</DependentUpon>
     </Compile>
@@ -308,6 +316,18 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\Popups\ConfirmPasswordPopup.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\ChangeClassesInfoPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\ChangeSubjectsInfoPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

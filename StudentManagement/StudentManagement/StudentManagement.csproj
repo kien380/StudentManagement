@@ -98,8 +98,14 @@
     <Compile Include="Views\PersonalScoreListPage.xaml.cs">
       <DependentUpon>PersonalScoreListPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Popups\AddSubjectPopup.xaml.cs">
+      <DependentUpon>AddSubjectPopup.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Popups\ConfirmPasswordPopup.xaml.cs">
       <DependentUpon>ConfirmPasswordPopup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Popups\EditSubjectPopup.xaml.cs">
+      <DependentUpon>EditSubjectPopup.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ReportHomePage.xaml.cs">
       <DependentUpon>ReportHomePage.xaml</DependentUpon>
@@ -328,6 +334,18 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\ChangeSubjectsInfoPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Popups\EditSubjectPopup.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Popups\AddSubjectPopup.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

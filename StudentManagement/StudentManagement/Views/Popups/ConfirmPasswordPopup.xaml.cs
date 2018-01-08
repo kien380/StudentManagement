@@ -33,6 +33,7 @@ namespace StudentManagement.Views.Popups
             _isFinishConfirm = false;
             _isDisappeared = false;
             _username = username;
+            LabelWrongPasswordConfirm.IsVisible = false;
             App.Current.MainPage.Navigation.PushPopupAsync(this);
         }
         #endregion

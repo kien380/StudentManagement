@@ -63,7 +63,7 @@ namespace StudentManagement.ViewModels
 
         #endregion
 
-        #region
+        #region ClassesItemTapped
         public void ClassesItemTapped(Class _class)
         {
             if (_class.IsFull)

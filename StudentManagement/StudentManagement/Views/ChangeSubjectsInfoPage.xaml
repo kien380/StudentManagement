@@ -5,6 +5,11 @@
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              prism:ViewModelLocator.AutowireViewModel="True"
              Title="{Binding PageTitle}">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add"
+                     Icon="ic_add_white.png"
+                     Command="{Binding AddCommand}"/>
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <ListView
             x:Name="ListSubjects"

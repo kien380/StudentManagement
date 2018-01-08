@@ -84,6 +84,7 @@ namespace StudentManagement.ViewModels
                     var score = Database.Get<Score>(s => s.SubjectId == subject.Id
                                                          && s.Semester == _semester
                                                          && s.StudentId == _student.Id);
+                    if(score == null) continue;
                     subject.Semester = _semester;
                     subject.ScoreAvg = score.ScoreAverage;
                 }
@@ -95,6 +96,7 @@ namespace StudentManagement.ViewModels
                     var score1 = Database.Get<Score>(s => s.SubjectId == subject.Id
                                                          && s.Semester == 1
                                                          && s.StudentId == _student.Id);
+                    if (score1 == null) continue;
                     var score2 = Database.Get<Score>(s => s.SubjectId == subject.Id
                                                           && s.Semester == 2
                                                           && s.StudentId == _student.Id);

@@ -6,6 +6,7 @@ using Prism.Services;
 using StudentManagement.Interfaces;
 using StudentManagement.Models;
 using StudentManagement.ViewModels.Base;
+using StudentManagement.Views.Popups;
 
 namespace StudentManagement.ViewModels
 {
@@ -19,7 +20,9 @@ namespace StudentManagement.ViewModels
         }
 
         public ICommand AddCommand { get; set; }
-        
+
+        public static ChangeSubjectsInfoPageViewModel Instance { get; set; }
+
 
         public ChangeSubjectsInfoPageViewModel(INavigationService navigationService, IPageDialogService dialogService,
             ISQLiteHelper sqLiteHelper)
@@ -28,11 +31,17 @@ namespace StudentManagement.ViewModels
             PageTitle = "Thay đổi thông tin môn học";
             AddCommand = new DelegateCommand(AddExecute);
             Subjects = new ObservableCollection<Subject>(Database.GetList<Subject>(s => s.Id > 0));
+            Instance = this;
         }
 
         public void EditExecute(Subject subject)
         {
-            Dialog.DisplayAlertAsync("", subject.Name, "Ok");
+            EditSubjectPopup.Instance.Show(Database, subject);
+        }
+
+        public void EditSuccessfullyExecute()
+        {
+            Subjects = new ObservableCollection<Subject>(Database.GetList<Subject>(s => s.Id > 0));
         }
 
         public async void RemoveExecute(Subject subject)
@@ -55,7 +64,12 @@ namespace StudentManagement.ViewModels
 
         public void AddExecute()
         {
+            AddSubjectPopup.Instance.Show(Database);
+        }
 
+        public void AddSuccessfullyExecute()
+        {
+            Subjects = new ObservableCollection<Subject>(Database.GetList<Subject>(s => s.Id > 0));
         }
     }
 }

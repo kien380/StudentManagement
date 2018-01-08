@@ -9,6 +9,7 @@
         StudentInfo,
         NavigateBack,
         Semester,
-        PageTitle
+        PageTitle,
+        NeedReload
     }
 }

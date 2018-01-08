@@ -54,6 +54,7 @@
                    FontSize="{StaticResource LargeFontSize}"
                    Grid.Row="3"
                    Grid.Column="0"
+                   Keyboard="Numeric"
                    Margin="20,0,20,0"
                    IsEnabled="{Binding IsEditMode}"/>
 
@@ -67,6 +68,7 @@
                    FontSize="{StaticResource LargeFontSize}"
                    Grid.Row="5"
                    Grid.Column="0"
+                   Keyboard="Numeric"
                    Margin="20,0,20,0"
                    IsEnabled="{Binding IsEditMode}"/>
 
@@ -80,6 +82,7 @@
                    FontSize="{StaticResource LargeFontSize}"
                    Grid.Row="7"
                    Grid.Column="0"
+                   Keyboard="Numeric"
                    Margin="20,0,20,0"
                    IsEnabled="{Binding IsEditMode}"/>
 

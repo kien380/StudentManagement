@@ -106,6 +106,16 @@ namespace StudentManagement.ViewModels
 
         private async void SaveExecute()
         {
+            if (Score15Mins > 10 || Score15Mins < 0
+                                 || Score45Mins > 10
+                                 || Score45Mins < 0
+                                 || ScoreFinal > 10
+                                 || ScoreFinal < 0)
+            {
+                await Dialog.DisplayAlertAsync("Thông báo", "Điểm của học sinh không được nằm ngoài khoảng từ 0 đến 10", "OK");
+                return;
+            }
+
             bool isAccept = await Dialog.DisplayAlertAsync("Lưu điểm", "Bạn có muốn lưu điểm của học sinh?", "Có", "Không");
             if (isAccept)
             {
@@ -118,7 +128,10 @@ namespace StudentManagement.ViewModels
                 await Task.Delay(1000);
                 LoadingPopup.Instance.HideLoading();
                 await Dialog.DisplayAlertAsync("Thông báo", "Lưu điểm học sinh thành công", "OK");
-                await NavigationService.GoBackAsync();
+                await NavigationService.GoBackAsync(new NavigationParameters
+                {
+                    { ParamKey.NeedReload.ToString(), true }
+                });
             }
         }
 

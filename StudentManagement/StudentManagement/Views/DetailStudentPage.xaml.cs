@@ -32,9 +32,15 @@ namespace StudentManagement.Views
                     {
                         this.ToolbarItems.Add(new ToolbarItem
                         {
-                            Text = "Edit",
+                            Text = "Remove",
                             Icon = "ic_remove_student.png",
                             Command = vm.RemoveStudentCommand
+                        });
+                        this.ToolbarItems.Add(new ToolbarItem
+                        {
+                            Text = "Edit",
+                            Icon = "ic_ic_edit_white.png",
+                            Command = vm.EditStudentCommand
                         });
                     }
                 }

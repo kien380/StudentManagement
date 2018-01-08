@@ -88,6 +88,7 @@ namespace StudentManagement.ViewModels
         public ICommand ViewClassInfoCommand { get; set; }
         public ICommand ViewScoreBoardCommand { get; set; }
         public ICommand RemoveStudentCommand { get; set; }
+        public ICommand EditStudentCommand { get; set; }
         #endregion
 
         public DetailStudentPageViewModel(INavigationService navigationService, IPageDialogService dialogService,
@@ -102,14 +103,27 @@ namespace StudentManagement.ViewModels
             ViewClassInfoCommand = new DelegateCommand(ViewClassInfoExecute);
             ViewScoreBoardCommand = new DelegateCommand(ViewScoreBoardExecute);
             RemoveStudentCommand = new DelegateCommand(RemoveStudentExecute);
+            EditStudentCommand = new DelegateCommand(EditStudentExecute);
         }
 
         #region Instance
-        
+
         public static DetailStudentPageViewModel Instance;
         #endregion
 
         #region override
+
+        public override void OnNavigatedBackTo(NavigationParameters parameters)
+        {
+            if (parameters != null)
+            {
+                if (parameters.ContainsKey(ParamKey.NeedReload.ToString()))
+                {
+                    if ((bool) parameters[ParamKey.NeedReload.ToString()])
+                        SetStudentInfo(Database.Get<Student>(s => s.Id == _student.Id));
+                }
+            }
+        }
 
         public override void OnNavigatedNewTo(NavigationParameters parameters)
         {
@@ -215,6 +229,18 @@ namespace StudentManagement.ViewModels
             }
 
             //await Dialog.DisplayAlertAsync("Thông báo", "Mật khẩu không chính xác hoặc người dùng không tồn tại. Vui lòng thử lại", "OK");
+        }
+
+
+
+        private void EditStudentExecute()
+        {
+            var navParam = new NavigationParameters
+            {
+                { ParamKey.AddNewStudentType.ToString(), AddNewStudentType.UpdateInfo },
+                { ParamKey.StudentInfo.ToString(), _student }
+            };
+            NavigationService.NavigateAsync(PageManager.AddNewStudentPage, navParam);
         }
         #endregion
     }

@@ -5,6 +5,7 @@
         DetailClassPageType,
         DetailStudentPageType,
         ScoreBoardPageType,
+        AddNewStudentType,
         ClassInfo,
         StudentInfo,
         NavigateBack,

@@ -23,7 +23,10 @@ namespace StudentManagement.ViewModels
         private string _gender;
         private string _email;
         private string _address;
+        private AddNewStudentType _type;
 
+        private string _buttonName;
+        private Student _student;
         #endregion
 
         #region public properties
@@ -52,6 +55,11 @@ namespace StudentManagement.ViewModels
             get => _address;
             set => SetProperty(ref _address, value);
         }
+        public string ButtonName
+        {
+            get => _buttonName;
+            set => SetProperty(ref _buttonName, value);
+        }
 
         // Commands
         public ICommand ContinueCommand { get; set; }
@@ -62,11 +70,30 @@ namespace StudentManagement.ViewModels
             : base(navigationService, dialogService, sqLiteHelper)
         {
             // Set values
-            PageTitle = "Tiếp nhận học sinh";
-            DoB = new DateTime(2001,1,1);
 
             // Commands
             ContinueCommand = new DelegateCommand(ContinueExecute);
+        }
+
+        public override void OnNavigatedNewTo(NavigationParameters parameters)
+        {
+            if (parameters != null)
+            {
+                if (parameters.ContainsKey(ParamKey.StudentInfo.ToString()))
+                {
+                    _student = (Student)parameters[ParamKey.StudentInfo.ToString()];
+                    FullName = _student.FullName;
+                    DoB = _student.DoB;
+                    Gender = _student.GenderString;
+                    Email = _student.Email;
+                    Address = _student.Address;
+                }
+
+                if (parameters.ContainsKey(ParamKey.AddNewStudentType.ToString()))
+                {
+                    SwitchPageType((AddNewStudentType)parameters[ParamKey.AddNewStudentType.ToString()]);
+                }
+            }
         }
 
         #region Methods
@@ -88,32 +115,65 @@ namespace StudentManagement.ViewModels
                 return;
             }
 
-            LoadingPopup.Instance.ShowLoading();
-            var student = new Student();
 
-            // Get student ID
-            await Task.Run(() =>
+            if (_type == AddNewStudentType.AddNew)
             {
-                var students = Database.GetList<Student>(s => s.Id > 0);
-                int idMax = students.Select(s => s.Id).Concat(new[] {0}).Max();
+                var student = new Student();
 
-                student.Id = ++idMax;
-                student.FullName = FullName;
-                student.DoB = DoB;
-                student.Gender = Gender == "Nam" ? 1 : 0;
-                student.Email = Email;
-                student.Address = Address;
+                // Get student ID
+                await Task.Run(() =>
+                {
+                    var students = Database.GetList<Student>(s => s.Id > 0);
+                    int idMax = students.Select(s => s.Id).Concat(new[] {0}).Max();
 
-            });
-            LoadingPopup.Instance.HideLoading();
-
-            var navParam = new NavigationParameters
+                    student.Id = ++idMax;
+                    student.FullName = FullName;
+                    student.DoB = DoB;
+                    student.Gender = Gender == "Nam" ? 1 : 0;
+                    student.Email = Email;
+                    student.Address = Address;
+                });
+                var navParam = new NavigationParameters
+                {
+                    {ParamKey.StudentInfo.ToString(), student}
+                };
+                await NavigationService.NavigateAsync(PageManager.ChooseClassPage, navParam);
+            }
+            else
             {
-                { ParamKey.StudentInfo.ToString(), student }
-            };
-            await NavigationService.NavigateAsync(PageManager.ChooseClassPage, navParam);
+                _student.FullName = FullName;
+                _student.DoB = DoB;
+                _student.Gender = Gender == "Nam" ? 1 : 0;
+                _student.Email = Email;
+                _student.Address = Address;
+
+                Database.Update(_student);
+                await Dialog.DisplayAlertAsync("Thông báo", "Lưu thông tin học sinh thành công", "OK");
+                await NavigationService.GoBackAsync(new NavigationParameters
+                {
+                    { ParamKey.NeedReload.ToString(), true }
+                });
+            }
         }
 
+
+        private void SwitchPageType(AddNewStudentType type)
+        {
+            _type = type;
+            switch (type)
+            {
+                case AddNewStudentType.AddNew:
+                    PageTitle = "Tiếp nhận học sinh";
+                    DoB = new DateTime(2001, 1, 1);
+                    ButtonName = "Tiếp theo";
+                    break;
+
+                case AddNewStudentType.UpdateInfo:
+                    PageTitle = "Sửa thông tin học sinh";
+                    ButtonName = "Lưu";
+                    break;
+            }
+        }
         #endregion
     }
 }

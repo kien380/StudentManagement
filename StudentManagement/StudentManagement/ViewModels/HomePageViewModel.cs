@@ -182,7 +182,10 @@ namespace StudentManagement.ViewModels
             NavigationService.NavigateAsync(PageManager.MultiplePage(new []
             {
                 PageManager.NavigationPage, PageManager.AddNewStudentPage
-            }));
+            }), new NavigationParameters
+            {
+                {ParamKey.AddNewStudentType.ToString(), AddNewStudentType.AddNew }
+            });
         }
 
         private void ListClassesExecute()

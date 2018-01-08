@@ -44,6 +44,7 @@
     <Compile Include="Controls\CustomPicker.cs" />
     <Compile Include="Converters\BoolToColorConverter.cs" />
     <Compile Include="Converters\BoolToStringConverter.cs" />
+    <Compile Include="Enums\AddNewStudentType.cs" />
     <Compile Include="Enums\BorderType.cs" />
     <Compile Include="Enums\DetailClassPageType.cs" />
     <Compile Include="Enums\DetailStudentPageType.cs" />

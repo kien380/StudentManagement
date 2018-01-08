@@ -29,6 +29,19 @@ namespace StudentManagement.Helpers
             return true;
         }
 
+        public bool ConfirmPassword(string name, string password)
+        {
+            var user = _users.FirstOrDefault(u => u.Name.ToLower().Equals(name.Trim().ToLower()));
+
+            if (user == null)
+                return false;
+
+            if (user.Password.Equals(password))
+                return true;
+
+            return false;
+        }
+
         public void Logout(ISQLiteHelper db)
         {
             db.DeleteAll<User>(); 

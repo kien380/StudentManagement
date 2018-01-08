@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Prism.Commands;
 using Prism.Navigation;
@@ -10,6 +11,7 @@ using StudentManagement.Helpers;
 using StudentManagement.Interfaces;
 using StudentManagement.Models;
 using StudentManagement.ViewModels.Base;
+using StudentManagement.Views.Popups;
 
 namespace StudentManagement.ViewModels
 {
@@ -85,6 +87,7 @@ namespace StudentManagement.ViewModels
         // Commands
         public ICommand ViewClassInfoCommand { get; set; }
         public ICommand ViewScoreBoardCommand { get; set; }
+        public ICommand RemoveStudentCommand { get; set; }
         #endregion
 
         public DetailStudentPageViewModel(INavigationService navigationService, IPageDialogService dialogService,
@@ -93,11 +96,18 @@ namespace StudentManagement.ViewModels
         {
             // Set values
             PageTitle = "Thông tin học sinh";
+            Instance = this;
 
             // Commands
             ViewClassInfoCommand = new DelegateCommand(ViewClassInfoExecute);
             ViewScoreBoardCommand = new DelegateCommand(ViewScoreBoardExecute);
+            RemoveStudentCommand = new DelegateCommand(RemoveStudentExecute);
         }
+
+        #region Instance
+        
+        public static DetailStudentPageViewModel Instance;
+        #endregion
 
         #region override
 
@@ -179,6 +189,32 @@ namespace StudentManagement.ViewModels
                     IsStudentInfo = false;
                     break;
             }
+        }
+
+        private async void RemoveStudentExecute()
+        {
+            bool isAccept = await Dialog.DisplayAlertAsync("Xóa học sinh", "Bạn có chắc muốn xóa học sinh này?", "Có", "Không");
+            if (isAccept)
+            {
+                var user = Database.GetUser();
+                ConfirmPasswordPopup.Instance.Show(user.Name);
+            }
+        }
+
+        public async void OnReceiveConfirmPasswordResult(bool isCorrectPassword)
+        {
+            if (isCorrectPassword)
+            {
+                Database.Delete(_student);
+                await Dialog.DisplayAlertAsync("Thông báo", "Xóa học sinh thành công", "OK");
+                string uri = PageManager.MultiplePage(new[]
+                {
+                    PageManager.HomePage, PageManager.NavigationPage, PageManager.ListClassesPage
+                });
+                await NavigationService.NavigateAsync(new Uri($"https://kienhht.com/{uri}"));
+            }
+
+            //await Dialog.DisplayAlertAsync("Thông báo", "Mật khẩu không chính xác hoặc người dùng không tồn tại. Vui lòng thử lại", "OK");
         }
         #endregion
     }

@@ -28,7 +28,7 @@
                      Grid.ColumnSpan="2"/>
             
             <!--Avatar-->
-            <Image Source="student_boy.png"
+            <Image Source="{Binding Avatar}"
                    HorizontalOptions="Center"
                    WidthRequest="100"
                    HeightRequest="100"
@@ -41,7 +41,7 @@
                    TextColor="{StaticResource Grade10ClassNameColor}"
                    FontAttributes="Bold"
                    FontSize="{StaticResource XLargeFontSize}"
-                   HorizontalTextAlignment="Center"
+                   HorizontalOptions="Center"
                    Grid.Row="1"
                    Grid.Column="0"
                    Grid.ColumnSpan="2"
@@ -122,14 +122,16 @@
                 Grid.Column="0"
                 Grid.ColumnSpan="2"
                 VerticalOptions="End">
-                <!--Xem thong tin lop-->
+                <!--Xem thong tin lop--><!--
                 <Button Text="Xem thông tin lớp"
                         Command="{Binding ViewClassInfoCommand}"
-                        Margin="20,0"/>
+                        Margin="20,0"
+                        IsVisible="{Binding IsStudentInfo}"/>-->
                 <!--Xem bang diem-->
                 <Button Text="Xem bảng điểm"
                         Command="{Binding ViewScoreBoardCommand}"
-                        Margin="20,0,20,20"/>
+                        Margin="20,0,20,20"
+                        IsVisible="{Binding IsStudentInfo}"/>
             </StackLayout>
         </Grid>
     </ContentPage.Content>

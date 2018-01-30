@@ -43,6 +43,7 @@
             <x:String x:Key="CircleNoticeIcon">&#xF35B;</x:String>
             <x:String x:Key="CircleCheckIcon">&#xF120;</x:String>
             <x:String x:Key="StarIcon">&#xF2FC;</x:String>
+            <x:String x:Key="DocumentTextIcon">&#xf12e;</x:String>
             <!--#endregion-->
             
             <!--#region Text Size-->

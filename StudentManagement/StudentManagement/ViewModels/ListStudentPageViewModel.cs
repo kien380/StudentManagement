@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using Prism.Navigation;
 using Prism.Services;
+using StudentManagement.Enums;
 using StudentManagement.Helpers;
 using StudentManagement.Interfaces;
 using StudentManagement.Models;
@@ -14,6 +15,7 @@ namespace StudentManagement.ViewModels
 
         private string _className;
         private ObservableCollection<Student> _students;
+        private Class _class;
 
         #endregion
 
@@ -36,17 +38,44 @@ namespace StudentManagement.ViewModels
         {
             // Set values
             PageTitle = "Danh sách lớp";
-            ClassName = "10A4";
-            Students = new ObservableCollection<Student>{ new Student(), new Student(), new Student(), new Student(), new Student(), new Student()};
-
+            
             // Commands
         }
+
+        #region override
+
+        public override void OnNavigatedNewTo(NavigationParameters parameters)
+        {
+            base.OnNavigatedNewTo(parameters);
+
+            if (parameters != null)
+            {
+                if (parameters.ContainsKey(ParamKey.ClassInfo.ToString()))
+                {
+                    SetClassInfo((Class)parameters[ParamKey.ClassInfo.ToString()]);
+                }
+            }
+        }
+
+        private void SetClassInfo(Class classInfo)
+        {
+            _class = classInfo;
+            ClassName = classInfo.Name;
+            Students = new ObservableCollection<Student>(Database.GetList<Student>(s=>s.ClassId == _class.Id));
+        }
+
+        #endregion
 
         #region Methods
 
         public void StudentItemTapped(Student student)
         {
-            NavigationService.NavigateAsync(PageManager.DetailStudentPage);
+            var navParam = new NavigationParameters
+            {
+                { ParamKey.StudentInfo.ToString(), student },
+                { ParamKey.DetailStudentPageType.ToString(), DetailStudentPageType.StudentInfo }
+            };
+            NavigationService.NavigateAsync(PageManager.DetailStudentPage, navParam);
         }
 
         #endregion

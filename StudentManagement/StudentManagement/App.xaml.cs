@@ -1,7 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System;
 using DryIoc;
 using Prism.DryIoc;
+using Prism.Navigation;
+using StudentManagement.Enums;
 using StudentManagement.Helpers;
 using StudentManagement.Interfaces;
 using StudentManagement.Models;
@@ -28,11 +29,7 @@ namespace StudentManagement
             InitDatabase();
             InitMockData();
             InitializeComponent();
-            NavigationService.NavigateAsync(PageManager.MultiplePage(new[]
-            {
-                //PageManager.LoginPage
-                PageManager.HomePage, PageManager.NavigationPage, PageManager.ListClassesPage
-            }));
+            StartApp();
         }
 
         protected override void RegisterTypes()
@@ -50,6 +47,13 @@ namespace StudentManagement
             Container.RegisterTypeForNavigation<ChooseClassPage>(PageManager.ChooseClassPage);
             Container.RegisterTypeForNavigation<ScoreBoardPage>(PageManager.ScoreBoardPage);
             Container.RegisterTypeForNavigation<StudentScorePage>(PageManager.StudentScorePage);
+            Container.RegisterTypeForNavigation<ReportBySubjectPage>(PageManager.ReportBySubjectPage);
+            Container.RegisterTypeForNavigation<ReportBySemesterPage>(PageManager.ReportBySemesterPage);
+            Container.RegisterTypeForNavigation<ReportHomePage>(PageManager.ReportHomePage);
+            Container.RegisterTypeForNavigation<SettingsPage>(PageManager.SettingsPage);
+            Container.RegisterTypeForNavigation<PersonalScoreListPage>(PageManager.PersonalScoreListPage);
+            Container.RegisterTypeForNavigation<ChangeClassesInfoPage>(PageManager.ChangeClassesInfoPage);
+            Container.RegisterTypeForNavigation<ChangeSubjectsInfoPage>(PageManager.ChangeSubjectsInfoPage);
 
             // Register Services
             Container.Register<ISQLiteHelper, SQLiteHelper>(Reuse.ScopedOrSingleton);
@@ -71,17 +75,47 @@ namespace StudentManagement
                     var mockData = new MockData(_sqLiteHelper);
                     mockData.InitMockData();
                 }
-                //else
-                //{
-                //    List<Student> students = _sqLiteHelper.GetList<Student>(s => s.Id > 0).ToList();
-                //    var student = _sqLiteHelper.Get<Student>("10008");
-                //}
             }
             else
             {
                 var mockData = new MockData(_sqLiteHelper);
                 mockData.InitMockData();
             }
+        }
+
+        private async void StartApp()
+        {
+            var user = _sqLiteHelper.GetUser();
+
+            string uri = PageManager.MultiplePage(new[]
+            {
+                PageManager.HomePage, PageManager.NavigationPage,
+            });
+            var navParam = new NavigationParameters();
+
+            if (user == null)
+                uri = PageManager.LoginPage; 
+            // If PrincipalRole
+            else if (user.Role.Equals(RoleManager.PrincipalRole))
+                uri += "/" + PageManager.ListClassesPage;
+            // If TeacherRole
+            else if (user.Role.Equals(RoleManager.TeacherRole))
+            {
+                uri += "/" + PageManager.DetailClassPage;
+                var classInfo = _sqLiteHelper.Get<Class>(c => c.Id == user.ClassId);
+                classInfo.CountStudent(_sqLiteHelper);
+                navParam.Add(ParamKey.DetailClassPageType.ToString(), DetailClassPageType.ClassInfo);
+                navParam.Add(ParamKey.ClassInfo.ToString(), classInfo);
+            }
+            // If StudentRole
+            else
+            {
+                uri += "/" + PageManager.DetailStudentPage;
+                navParam.Add(ParamKey.DetailStudentPageType.ToString(), DetailStudentPageType.StudentInfo);
+                navParam.Add(ParamKey.StudentInfo.ToString(), _sqLiteHelper.Get<Student>(s => s.Id == user.Id));
+            }
+
+            await NavigationService.NavigateAsync(new Uri($"https://kienhht.com/{uri}"), navParam);
         }
     }
 }

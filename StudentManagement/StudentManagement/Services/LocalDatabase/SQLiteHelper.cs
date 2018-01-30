@@ -40,9 +40,13 @@ namespace StudentManagement.Services.LocalDatabase
             Database = databaseConnection.DbConnection(DatabaseName);
 
             // Create database
-            var listTable = new List<Type>(){typeof(Class), typeof(Score),
-                                        typeof(Setting), typeof(Student),
-                                        typeof(Subject)
+            var listTable = new List<Type>{
+                typeof(Class),
+                typeof(Score),
+                typeof(Setting),
+                typeof(Student),
+                typeof(Subject),
+                typeof(User)
             };
 
             foreach (var table in listTable)
@@ -146,60 +150,51 @@ namespace StudentManagement.Services.LocalDatabase
                 }
             }
         }
-        #endregion
 
-        #region Searchs
+        public Setting GetSetting()
+        {
+            try
+            {
+                var setting = Database.Get<Setting>(s => s.Id == 1);
+                if (setting == null)
+                    return new Setting
+                    {
+                        Id = 1,
+                        IsInitData = true,
+                        MinStudentAge = 15,
+                        MaxStudentAge = 20,
+                        MaxStudentPerClass = 40,
+                        SubjectPassScore = 5.0f
+                    };
+                return setting;
+            }
+            catch (Exception e)
+            {
+                return new Setting
+                {
+                    Id = 1,
+                    IsInitData = true,
+                    MinStudentAge = 15,
+                    MaxStudentAge = 20,
+                    MaxStudentPerClass = 40,
+                    SubjectPassScore = 5.0f
+                };
+            }
+        }
 
-        //public IEnumerable<StudentModel> SearchStudents<TStudentModel>(string searchInfo, string classId)
-        //{
-        //    lock (Locker)
-        //    {
-        //        try
-        //        {
-        //            try
-        //            {
-        //                return Database.Table<StudentModel>().OrderBy(x => x.FirstName)
-        //                    .Where(x => x.Birthdate.CompareTo(Convert.ToDateTime(searchInfo)) == -1).ToList();
-        //            }
-        //            catch (Exception e)
-        //            {
-        //                return Database.Table<StudentModel>().OrderBy(x => x.FirstName)
-        //                    .Where(x => x.FirstName.Contains(searchInfo) || x.LastName.Contains(searchInfo)).ToList();
-        //            }
-        //        }
-        //        catch (Exception e)
-        //        {
-        //            Debug.WriteLine($"SQLiteHelper - Search: {e}");
-        //            return null;
-        //        }
-        //    }
-        //}
-
-        //public IEnumerable<ClassModel> SearchClasses<TClassModel>(string searchInfo, string classId)
-        //{
-        //    lock (Locker)
-        //    {
-        //        try
-        //        {
-        //            try
-        //            {
-        //                return Database.Table<ClassModel>().OrderBy(x => x.StartDate)
-        //                    .Where(x => x.EndDate.CompareTo(Convert.ToDateTime(searchInfo)) == 0
-        //                    || x.StartDate.CompareTo(Convert.ToDateTime(searchInfo)) == 0).ToList();
-        //            }
-        //            catch (Exception e)
-        //            {
-        //                return Database.Table<ClassModel>().OrderBy(x => x.Name)
-        //                    .Where(x => x.Name.Contains(searchInfo)).ToList();
-        //            }
-        //        }
-        //        catch (Exception e)
-        //        {
-        //            Debug.WriteLine($"SQLiteHelper - Search: {e}");
-        //            return null;
-        //        }
-        //    }
-        //}
+        public User GetUser()
+        {
+            try
+            {
+                var user = Database.Get<User>(s => s.Id > 0);
+                return user;
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e.Message);
+                return null;
+            }
+        }
 
         #endregion
 
@@ -354,54 +349,7 @@ namespace StudentManagement.Services.LocalDatabase
         }
 
         #endregion
-
-        #region Checks
-
-        //public bool CheckAccount(string username, string password)
-        //{
-        //    lock (Locker)
-        //    {
-        //        try
-        //        {
-        //            var user = Database.Table<UserInfoModel>().FirstOrDefault(x => x.UserName == username
-        //                                                                           && x.Hash256 ==
-        //                                                                           Crypto.EncryptAes(password,
-        //                                                                               x.Lecture.Token));
-
-        //            if (user != null)
-        //            {
-        //                return user.Hash256 == Crypto.EncryptAes(password, user.Lecture.Token);
-        //            }
-
-        //            return false;
-        //        }
-        //        catch (Exception e)
-        //        {
-        //            Debug.WriteLine($"CheckAccount: {e}");
-        //            return false;
-        //        }
-        //    }
-        //}
-
-        //public bool CheckLogin()
-        //{
-        //    lock (Locker)
-        //    {
-        //        try
-        //        {
-        //            return Database.Get<UserInfoModel>(Database.Table<UserInfoModel>()
-        //                       .FirstOrDefault(x => x.IsLogin)) != null;
-        //        }
-        //        catch (Exception e)
-        //        {
-        //            Debug.WriteLine($"CheckLogin: {e}");
-        //            return false;
-        //        }
-        //    }
-        //}
-
-        #endregion
-
+        
         #endregion
     }
 }

@@ -14,6 +14,13 @@
         public static readonly string ChooseClassPage = "ChooseClassPage";
         public static readonly string ScoreBoardPage = "ScoreBoardPage";
         public static readonly string StudentScorePage = "StudentScorePage";
+        public static readonly string ReportHomePage = "ReportHomePage";
+        public static readonly string ReportBySubjectPage = "ReportBySubjectPage";
+        public static readonly string ReportBySemesterPage = "ReportBySemesterPage";
+        public static readonly string SettingsPage = "SettingsPage";
+        public static readonly string PersonalScoreListPage = "PersonalScoreListPage";
+        public static readonly string ChangeClassesInfoPage = "ChangeClassesInfoPage";
+        public static readonly string ChangeSubjectsInfoPage = "ChangeSubjectsInfoPage";
 
 
         public static string MultiplePage(string[] pages)

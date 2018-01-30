@@ -55,7 +55,7 @@
                                    CornerRadius="5">
                                 <StackLayout Orientation="Horizontal">
                                     <!--Class name-->
-                                    <Label Text="10A4"
+                                    <Label Text="{Binding Name}"
                                            TextColor="{StaticResource Grade10ClassNameColor}"
                                            FontSize="{StaticResource LargeFontSize}"
                                            FontAttributes="Bold"
@@ -68,7 +68,7 @@
                                            TextColor="Purple"
                                            Style="{StaticResource ListSmallItemIconStyle}"
                                            Margin="0,3,0,0"/>
-                                    <Label Text="30"
+                                    <Label Text="{Binding Students}"
                                            Style="{StaticResource ListSmallItemLabelStyle}"/>
 
                                     <!--Nam-->
@@ -76,7 +76,7 @@
                                            TextColor="Green"
                                            Style="{StaticResource ListSmallItemIconStyle}"
                                            FontSize="{StaticResource LargeFontSize}"/>
-                                    <Label Text="10"
+                                    <Label Text="{Binding Boys}"
                                            Style="{StaticResource ListSmallItemLabelStyle}"/>
 
                                     <!--Nu-->
@@ -84,7 +84,7 @@
                                            TextColor="{StaticResource PinkColor}"
                                            Style="{StaticResource ListSmallItemIconStyle}"
                                            FontSize="{StaticResource LargeFontSize}"/>
-                                    <Label Text="20"
+                                    <Label Text="{Binding Girls}"
                                            Style="{StaticResource ListSmallItemLabelStyle}"/>
                                 </StackLayout>
                             </Frame>

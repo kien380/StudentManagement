@@ -3,6 +3,14 @@
     public enum ParamKey
     {
         DetailClassPageType,
-        ScoreBoardPageType
+        DetailStudentPageType,
+        ScoreBoardPageType,
+        AddNewStudentType,
+        ClassInfo,
+        StudentInfo,
+        NavigateBack,
+        Semester,
+        PageTitle,
+        NeedReload
     }
 }

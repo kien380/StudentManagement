@@ -11,20 +11,21 @@
                     <!--Header-->
                     <StackLayout BackgroundColor="{StaticResource MenuBackgroundHeaderColor}"
                                  Padding="30">
-                        <Image Source="teacher_3.png"
+                        <Image Source="{Binding CurrentUser.Avatar}"
                                WidthRequest="100"
                                HeightRequest="100"
                                HorizontalOptions="Center"
                                Margin="0,20,0,10" />
-                        <Label Text="Giáo viên"
-                               TextColor="{StaticResource MenuHeaderJobColor}"
-                               FontSize="{StaticResource MediumFontSize}"
-                               HorizontalTextAlignment="Center" />
-                        <Label Text="Nguyễn Thị Lung Linh"
+                        <Label Text="{Binding CurrentUser.Name}"
                                TextColor="White"
                                FontSize="{StaticResource XLargeFontSize}"
                                FontAttributes="Bold"
                                HorizontalTextAlignment="Center" />
+                        <Label Text="{Binding CurrentUser.Role}"
+                               TextColor="{StaticResource MenuHeaderJobColor}"
+                               FontSize="{StaticResource MediumFontSize}"
+                               HorizontalTextAlignment="Center"
+                               FontAttributes="Italic"/>
                     </StackLayout>
 
                     <!--Features-->
@@ -32,8 +33,135 @@
                                  BackgroundColor="{StaticResource MenuBackgroundFeaturesColor}"
                                  Padding="20"
                                  Spacing="25">
+                        <!--Thông tin cá nhân-->
+                        <Grid ColumnSpacing="{StaticResource MenuFeaturesColumnSpacing}"
+                              IsVisible="{Binding IsStudentDetailVisible}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="{StaticResource MenuFeaturesIconWidth}" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0"
+                                   Text="{StaticResource PersonIcon}"
+                                   Style="{StaticResource MenuFeaturesIconStyle}" />
+                            <Label Grid.Column="1"
+                                   Text="Thông tin cá nhân"
+                                   Style="{StaticResource MenuFeaturesLabelStyle}" />
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding StudentDetailCommand}"/>
+                            </Grid.GestureRecognizers>
+                        </Grid>
+
+                        <!--Xem thông tin lớp-->
+                        <Grid ColumnSpacing="{StaticResource MenuFeaturesColumnSpacing}"
+                              IsVisible="{Binding IsClassDetailVisible}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="{StaticResource MenuFeaturesIconWidth}" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0"
+                                   Text="{StaticResource FlagIcon}"
+                                   Style="{StaticResource MenuFeaturesIconStyle}" />
+                            <Label Grid.Column="1"
+                                   Text="Xem thông tin lớp"
+                                   Style="{StaticResource MenuFeaturesLabelStyle}" />
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ClassDetailCommand}"/>
+                            </Grid.GestureRecognizers>
+                        </Grid>
+
+                        <!--Xem danh sách lớp-->
+                        <Grid ColumnSpacing="{StaticResource MenuFeaturesColumnSpacing}"
+                              IsVisible="{Binding IsStudentsInClassVisible}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="{StaticResource MenuFeaturesIconWidth}" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0"
+                                   Text="{StaticResource ListIcon}"
+                                   Style="{StaticResource MenuFeaturesIconStyle}" />
+                            <Label Grid.Column="1"
+                                   Text="Xem danh sách lớp"
+                                   Style="{StaticResource MenuFeaturesLabelStyle}" />
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding StudentsInClassCommand}"/>
+                            </Grid.GestureRecognizers>
+                        </Grid>
+
+                        <!--Xem bảng điểm HK 1-->
+                        <Grid ColumnSpacing="{StaticResource MenuFeaturesColumnSpacing}"
+                              IsVisible="{Binding IsScoreSemester1Visible}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="{StaticResource MenuFeaturesIconWidth}" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0"
+                                   Text="{StaticResource DocumentTextIcon}"
+                                   Style="{StaticResource MenuFeaturesIconStyle}" />
+                            <Label Grid.Column="1"
+                                   Text="Xem bảng điểm HK 1"
+                                   Style="{StaticResource MenuFeaturesLabelStyle}" />
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ScoreSemester1Command}"/>
+                            </Grid.GestureRecognizers>
+                        </Grid>
+
+                        <!--Xem bảng điểm HK 2-->
+                        <Grid ColumnSpacing="{StaticResource MenuFeaturesColumnSpacing}"
+                              IsVisible="{Binding IsScoreSemester2Visible}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="{StaticResource MenuFeaturesIconWidth}" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0"
+                                   Text="{StaticResource DocumentTextIcon}"
+                                   Style="{StaticResource MenuFeaturesIconStyle}" />
+                            <Label Grid.Column="1"
+                                   Text="Xem bảng điểm HK 2"
+                                   Style="{StaticResource MenuFeaturesLabelStyle}" />
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ScoreSemester2Command}"/>
+                            </Grid.GestureRecognizers>
+                        </Grid>
+
+                        <!--Xem bảng điểm cả năm-->
+                        <Grid ColumnSpacing="{StaticResource MenuFeaturesColumnSpacing}"
+                              IsVisible="{Binding IsScoreSemesterAllYearVisible}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="{StaticResource MenuFeaturesIconWidth}" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0"
+                                   Text="{StaticResource DocumentTextIcon}"
+                                   Style="{StaticResource MenuFeaturesIconStyle}" />
+                            <Label Grid.Column="1"
+                                   Text="Xem bảng điểm cả năm"
+                                   Style="{StaticResource MenuFeaturesLabelStyle}" />
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ScoreSemesterAllYearCommand}"/>
+                            </Grid.GestureRecognizers>
+                        </Grid>
+
+                        <!--Xem bảng điểm lớp-->
+                        <Grid ColumnSpacing="{StaticResource MenuFeaturesColumnSpacing}"
+                              IsVisible="{Binding IsScoreInClassVisible}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="{StaticResource MenuFeaturesIconWidth}" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0"
+                                   Text="{StaticResource DocumentTextIcon}"
+                                   Style="{StaticResource MenuFeaturesIconStyle}" />
+                            <Label Grid.Column="1"
+                                   Text="Xem bảng điểm lớp"
+                                   Style="{StaticResource MenuFeaturesLabelStyle}" />
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ScoreInClassCommand}"/>
+                            </Grid.GestureRecognizers>
+                        </Grid>
+
                         <!--Tiep nhan hoc sinh-->
-                        <Grid ColumnSpacing="{StaticResource MenuFeaturesColumnSpacing}">
+                        <Grid ColumnSpacing="{StaticResource MenuFeaturesColumnSpacing}"
+                              IsVisible="{Binding IsAddNewStudentVisible}">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="{StaticResource MenuFeaturesIconWidth}" />
                                 <ColumnDefinition Width="*" />
@@ -49,8 +177,9 @@
                             </Grid.GestureRecognizers>
                         </Grid>
 
-                        <!--Danh sach lop-->
-                        <Grid ColumnSpacing="{StaticResource MenuFeaturesColumnSpacing}">
+                        <!--Danh sach cac lop-->
+                        <Grid ColumnSpacing="{StaticResource MenuFeaturesColumnSpacing}"
+                              IsVisible="{Binding IsListClassesVisible}">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="{StaticResource MenuFeaturesIconWidth}" />
                                 <ColumnDefinition Width="*" />
@@ -59,7 +188,7 @@
                                    Text="{StaticResource ListIcon}"
                                    Style="{StaticResource MenuFeaturesIconStyle}" />
                             <Label Grid.Column="1"
-                                   Text="Danh sách lớp"
+                                   Text="Danh sách các lớp"
                                    Style="{StaticResource MenuFeaturesLabelStyle}" />
                             <Grid.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding ListClassesCommand}"/>
@@ -67,7 +196,8 @@
                         </Grid>
 
                         <!--Danh sach hoc sinh-->
-                        <Grid ColumnSpacing="{StaticResource MenuFeaturesColumnSpacing}">
+                        <Grid ColumnSpacing="{StaticResource MenuFeaturesColumnSpacing}"
+                              IsVisible="{Binding IsListAllStudentVisible}">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="{StaticResource MenuFeaturesIconWidth}" />
                                 <ColumnDefinition Width="*" />
@@ -101,7 +231,8 @@
                         </Grid>-->
 
                         <!--Bao cao tong ket-->
-                        <Grid ColumnSpacing="{StaticResource MenuFeaturesColumnSpacing}">
+                        <Grid ColumnSpacing="{StaticResource MenuFeaturesColumnSpacing}"
+                              IsVisible="{Binding IsShowReportVisible}">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="{StaticResource MenuFeaturesIconWidth}" />
                                 <ColumnDefinition Width="*" />
@@ -112,10 +243,14 @@
                             <Label Grid.Column="1"
                                    Text="Báo cáo tổng kết"
                                    Style="{StaticResource MenuFeaturesLabelStyle}" />
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ShowReportCommand}"/>
+                            </Grid.GestureRecognizers>
                         </Grid>
-
+                        
                         <!--Thay doi quy dinh-->
-                        <Grid ColumnSpacing="{StaticResource MenuFeaturesColumnSpacing}">
+                        <Grid ColumnSpacing="{StaticResource MenuFeaturesColumnSpacing}"
+                              IsVisible="{Binding IsSettingVisible}">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="{StaticResource MenuFeaturesIconWidth}" />
                                 <ColumnDefinition Width="*" />
@@ -126,6 +261,9 @@
                             <Label Grid.Column="1"
                                    Text="Thay đổi quy định"
                                    Style="{StaticResource MenuFeaturesLabelStyle}" />
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding SettingCommand}"/>
+                            </Grid.GestureRecognizers>
                         </Grid>
 
                         <!--Dang xuat-->

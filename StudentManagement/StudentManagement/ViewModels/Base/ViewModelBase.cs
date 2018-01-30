@@ -7,9 +7,9 @@ namespace StudentManagement.ViewModels.Base
 {
     public class ViewModelBase : BindableBase, INavigationAware
     {
-        protected INavigationService NavigationService;
-        protected IPageDialogService Dialog;
-        protected ISQLiteHelper Database;
+        public INavigationService NavigationService { get; private set; }
+        public IPageDialogService Dialog { get; private set; }
+        public ISQLiteHelper Database { get; private set; }
 
         public ViewModelBase(
             INavigationService navigationService = null,
@@ -20,18 +20,39 @@ namespace StudentManagement.ViewModels.Base
             if (dialogService != null) Dialog = dialogService;
             if (sqLiteHelper != null) Database = sqLiteHelper;
         }
-
+        
         public virtual void OnNavigatedFrom(NavigationParameters parameters)
         {
-            
-        }
 
-        public virtual void OnNavigatedTo(NavigationParameters parameters)
-        {
-            
         }
 
         public virtual void OnNavigatingTo(NavigationParameters parameters)
+        {
+
+        }
+
+        public void OnNavigatedTo(NavigationParameters parameters)
+        {
+            if (parameters != null)
+            {
+                if (parameters.ContainsKey("__NavigationMode"))
+                {
+                    var navMode = (NavigationMode) parameters["__NavigationMode"];
+                    switch (navMode)
+                    {
+                        case NavigationMode.New: OnNavigatedNewTo(parameters); break;
+                        case NavigationMode.Back: OnNavigatedBackTo(parameters); break;
+                    }
+                }
+            }
+        }
+
+        public virtual void OnNavigatedNewTo(NavigationParameters parameters)
+        {
+            
+        }
+
+        public virtual void OnNavigatedBackTo(NavigationParameters parameters)
         {
 
         }

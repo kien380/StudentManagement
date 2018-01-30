@@ -1,10 +1,16 @@
 ﻿using System.Collections.ObjectModel;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Input;
+using Prism.Commands;
 using Prism.Navigation;
 using Prism.Services;
+using StudentManagement.Enums;
 using StudentManagement.Helpers;
 using StudentManagement.Interfaces;
 using StudentManagement.Models;
 using StudentManagement.ViewModels.Base;
+using StudentManagement.Views.Popups;
 
 namespace StudentManagement.ViewModels
 {
@@ -13,6 +19,9 @@ namespace StudentManagement.ViewModels
         #region private properties
         
         private ObservableCollection<Student> _students;
+        private ObservableCollection<Student> _allStudents;
+        private bool _showSearchBox;
+        private string _searchText;
 
         #endregion
 
@@ -22,20 +31,70 @@ namespace StudentManagement.ViewModels
             get => _students;
             set => SetProperty(ref _students, value);
         }
+        public string SearchText
+        {
+            get => _searchText;
+            set => SetProperty(ref _searchText, value);
+        }
+
+        public bool ShowSearchBox
+        {
+            get => _showSearchBox;
+            set => SetProperty(ref _showSearchBox, value);
+        }
+
+        // Commands
+        public ICommand SearchToolbarItemsCommand { get; set; }
+        public ICommand SearchIconCommand { get; set; }
         #endregion
+
         public ListAllStudentPageViewModel(INavigationService navigationService, IPageDialogService dialogService,
             ISQLiteHelper sqLiteHelper)
             : base(navigationService, dialogService, sqLiteHelper)
         {
             PageTitle = "Danh sách học sinh";
-            Students = new ObservableCollection<Student> { new Student(), new Student(), new Student(), new Student(), new Student(), new Student() };
+            SetListStudentData();
+
+            // Commands
+            SearchToolbarItemsCommand = new DelegateCommand(SearchToolbarItemsExecute);
+            SearchIconCommand = new DelegateCommand(SearchIconExecute);
+        }
+
+        private async void SetListStudentData()
+        {
+            LoadingPopup.Instance.ShowLoading();
+            await Task.Run(() =>
+            {
+                var students = Database.GetList<Student>(s => s.Id > 0);
+                foreach (var student in students)
+                {
+                    student.GetAvgScore(Database);
+                }
+                Students = _allStudents = new ObservableCollection<Student>(students);
+            });
+            LoadingPopup.Instance.HideLoading();
         }
 
         #region Methods
 
         public void StudentItemTapped(Student student)
         {
-            NavigationService.NavigateAsync(PageManager.DetailStudentPage);
+            var navParam = new NavigationParameters
+            {
+                { ParamKey.StudentInfo.ToString(), student }
+            };
+            NavigationService.NavigateAsync(PageManager.DetailStudentPage, navParam);
+        }
+
+        private void SearchToolbarItemsExecute()
+        {
+            ShowSearchBox = !ShowSearchBox;
+        }
+
+        private void SearchIconExecute()
+        {
+            var serchResult = _allStudents.Where(s => StringHelper.RemoveUnicodeCharacter(s.FullName.ToLower()).Contains(StringHelper.RemoveUnicodeCharacter(SearchText.ToLower())));
+            Students = new ObservableCollection<Student>(serchResult);
         }
 
         #endregion

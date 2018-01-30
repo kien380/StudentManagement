@@ -17,15 +17,18 @@ namespace StudentManagement.Services.LocalDatabase
 
         public void InitMockData()
         {
-            InitSetting();
             InitStudent();
+            InitClass();
             InitSubject();
             InitScore();
-            InitClass();
+            InitSetting();
         }
 
         private void InitClass()
         {
+            // Insert or Replace Class
+            MockClassData mockClassData = new MockClassData();
+            _db.InsertAll(mockClassData.Classes);
         }
 
         private void InitStudent()
@@ -37,12 +40,16 @@ namespace StudentManagement.Services.LocalDatabase
 
         private void InitSubject()
         {
-            
+            // Insert or Replace Subject
+            MockSubjectData mockSubjectData = new MockSubjectData();
+            _db.InsertAll(mockSubjectData.Subjects);
         }
 
         private void InitScore()
         {
-            
+            // Insert or Replace Score
+            MockScoreData mockScoreData = new MockScoreData();
+            _db.InsertAll(mockScoreData.Scores);
         }
 
         private void InitSetting()

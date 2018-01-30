@@ -1,29 +1,34 @@
-﻿using System.Windows.Input;
+﻿using System.Threading.Tasks;
+using System.Windows.Input;
 using Prism.Commands;
 using Prism.Navigation;
 using Prism.Services;
+using StudentManagement.Enums;
 using StudentManagement.Interfaces;
+using StudentManagement.Models;
 using StudentManagement.ViewModels.Base;
+using StudentManagement.Views.Popups;
 
 namespace StudentManagement.ViewModels
 {
     public class StudentScorePageViewModel : ViewModelBase
     {
         #region private properties
-        
-        private string _name;
+
+        private Student _studentInfo;
         private float _score15M;
         private float _score45M;
         private float _scoreFinal;
         private float _scoreAvg;
+        private bool _isEditMode;
 
         #endregion
 
         #region public properties
-        public string Name
+        public Student StudentInfo
         {
-            get => _name;
-            set => SetProperty(ref _name, value);
+            get => _studentInfo;
+            set => SetProperty(ref _studentInfo, value);
         }
         public float Score15Mins
         {
@@ -45,9 +50,15 @@ namespace StudentManagement.ViewModels
             get => _scoreAvg;
             set => SetProperty(ref _scoreAvg, value);
         }
+        public bool IsEditMode
+        {
+            get => _isEditMode;
+            set => SetProperty(ref _isEditMode, value);
+        }
         // Commands
         public ICommand ClearCommand { get; set; }
         public ICommand SaveCommand { get; set; }
+        public ICommand EditCommand { get; set; }
         #endregion
 
         public StudentScorePageViewModel(INavigationService navigationService, IPageDialogService dialogService,
@@ -56,12 +67,33 @@ namespace StudentManagement.ViewModels
         {
             // Set values
             PageTitle = "Bảng điểm cá nhân";
-            Name = "Nguyễn Văn A";
 
             // Commands
             ClearCommand = new DelegateCommand(ClearExecute);
             SaveCommand = new DelegateCommand(SaveExecute);
+            EditCommand = new DelegateCommand(EditExecute);
         }
+
+        #region override
+
+        public override void OnNavigatedNewTo(NavigationParameters parameters)
+        {
+            base.OnNavigatedNewTo(parameters);
+
+            if (parameters != null)
+            {
+                if (parameters.ContainsKey(ParamKey.StudentInfo.ToString()))
+                {
+                    StudentInfo = (Student)parameters[ParamKey.StudentInfo.ToString()];
+                    Score15Mins = StudentInfo.Score.Score15M;
+                    Score45Mins = StudentInfo.Score.Score45M;
+                    ScoreFinal = StudentInfo.Score.ScoreFinal;
+                    ScoreAvg = StudentInfo.Score.ScoreAverage;
+                }
+            }
+        }
+
+        #endregion
 
         #region Methods
 
@@ -74,11 +106,39 @@ namespace StudentManagement.ViewModels
 
         private async void SaveExecute()
         {
+            if (Score15Mins > 10 || Score15Mins < 0
+                                 || Score45Mins > 10
+                                 || Score45Mins < 0
+                                 || ScoreFinal > 10
+                                 || ScoreFinal < 0)
+            {
+                await Dialog.DisplayAlertAsync("Thông báo", "Điểm của học sinh không được nằm ngoài khoảng từ 0 đến 10", "OK");
+                return;
+            }
+
             bool isAccept = await Dialog.DisplayAlertAsync("Lưu điểm", "Bạn có muốn lưu điểm của học sinh?", "Có", "Không");
             if (isAccept)
-            { }
+            {
+                StudentInfo.Score.Score15M = Score15Mins;
+                StudentInfo.Score.Score45M = Score45Mins;
+                StudentInfo.Score.ScoreFinal = ScoreFinal;
+                Database.Update(StudentInfo.Score);
+                
+                LoadingPopup.Instance.ShowLoading();
+                await Task.Delay(1000);
+                LoadingPopup.Instance.HideLoading();
+                await Dialog.DisplayAlertAsync("Thông báo", "Lưu điểm học sinh thành công", "OK");
+                await NavigationService.GoBackAsync(new NavigationParameters
+                {
+                    { ParamKey.NeedReload.ToString(), true }
+                });
+            }
         }
 
+        private void EditExecute()
+        {
+            IsEditMode = true;
+        }
         #endregion
     }
 }

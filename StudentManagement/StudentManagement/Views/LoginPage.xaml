@@ -46,7 +46,8 @@
                         Text="{Binding Username}"
                         Placeholder="Tên đăng nhập"
                         FontSize="{StaticResource MediumFontSize}"
-                        HorizontalOptions="FillAndExpand"/>
+                        HorizontalOptions="FillAndExpand"
+                        Keyboard="Email"/>
                 </StackLayout>
             </Frame>
 

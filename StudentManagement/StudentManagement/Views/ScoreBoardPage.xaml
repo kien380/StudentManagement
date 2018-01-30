@@ -24,6 +24,8 @@
                    Grid.Column="0"/>
             <controls:CustomPicker
                 Title="Chọn môn học"
+                ItemsSource="{Binding SubjectNames}"
+                SelectedItem="{Binding SubjectNameSelected}"
                 FontSize="{StaticResource MediumFontSize}"
                 Border="Normal"
                 Grid.Row="1"
@@ -36,16 +38,22 @@
                    Grid.Column="1"/>
             <controls:CustomPicker
                 Title="Chọn học kỳ"
+                SelectedItem="{Binding SemesterName}"
                 FontSize="{StaticResource MediumFontSize}"
                 Border="Normal"
                 Grid.Row="1"
-                Grid.Column="1"/>
+                Grid.Column="1">
+                <controls:CustomPicker.Items>
+                    <x:String>Học kỳ 1</x:String>
+                    <x:String>Học kỳ 2</x:String>
+                </controls:CustomPicker.Items>
+            </controls:CustomPicker>
 
             <Label Text="Bảng điểm môn:"
                    TextColor="{StaticResource Grade10ClassNameColor}"
                    FontAttributes="Bold"
                    FontSize="{StaticResource XLargeFontSize}"
-                   HorizontalTextAlignment="Center"
+                   HorizontalOptions="Center"
                    Grid.Row="2"
                    Grid.Column="0"
                    Grid.ColumnSpan="2"/>
@@ -88,13 +96,13 @@
                                         <Frame BackgroundColor="Pink"
                                                CornerRadius="3"
                                                Padding="0"
-                                               WidthRequest="30"
+                                               WidthRequest="45"
                                                VerticalOptions="Center">
-                                            <Label Text="1"
+                                            <Label Text="{Binding Id}"
                                                    FontSize="{StaticResource SmallFontSize}"
-                                                   HorizontalTextAlignment="Center" />
+                                                   HorizontalOptions="Center" />
                                         </Frame>
-                                        <Label Text="Nguyễn Văn A"
+                                        <Label Text="{Binding FullName}"
                                                TextColor="{StaticResource Grade10ClassNameColor}"
                                                FontSize="{StaticResource LargeFontSize}"
                                                FontAttributes="Bold" />
@@ -109,9 +117,9 @@
                                         <Label Text="Điểm 15 phút"
                                                TextColor="Black"
                                                FontSize="{StaticResource SmallFontSize}"
-                                               HorizontalTextAlignment="Center" />
+                                               HorizontalOptions="Center" />
                                     </Frame>
-                                    <Label Text="9.0"
+                                    <Label Text="{Binding Score.Score15M}"
                                            FontSize="{StaticResource MediumFontSize}"
                                            VerticalTextAlignment="Center"
                                            Margin="10,0,0,0"
@@ -127,9 +135,9 @@
                                         <Label Text="Điểm 45 phút"
                                                TextColor="Black"
                                                FontSize="{StaticResource SmallFontSize}"
-                                               HorizontalTextAlignment="Center" />
+                                               HorizontalOptions="Center" />
                                     </Frame>
-                                    <Label Text="9.0"
+                                    <Label Text="{Binding Score.Score45M}"
                                            FontSize="{StaticResource MediumFontSize}"
                                            VerticalTextAlignment="Center"
                                            Margin="10,0,0,0"
@@ -145,9 +153,9 @@
                                         <Label Text="Điểm cuối kỳ"
                                                TextColor="Black"
                                                FontSize="{StaticResource SmallFontSize}"
-                                               HorizontalTextAlignment="Center" />
+                                               HorizontalOptions="Center" />
                                     </Frame>
-                                    <Label Text="9.0"
+                                    <Label Text="{Binding Score.ScoreFinal}"
                                            FontSize="{StaticResource MediumFontSize}"
                                            VerticalTextAlignment="Center"
                                            Margin="10,0,0,0"
@@ -167,15 +175,15 @@
                                            FontSize="{StaticResource SmallFontSize}"
                                            Grid.Row="1"
                                            Grid.Column="3"
-                                           HorizontalTextAlignment="Center" />
-                                    <Label Text="9.0"
+                                           HorizontalOptions="Center" />
+                                    <Label Text="{Binding Score.ScoreAverage, StringFormat='{0:0.0}'}"
                                            TextColor="Blue"
                                            FontAttributes="Bold"
                                            FontSize="{StaticResource XLargeFontSize}"
                                            Grid.Row="2"
                                            Grid.RowSpan="2"
                                            Grid.Column="3"
-                                           HorizontalTextAlignment="Center"
+                                           HorizontalOptions="Center"
                                            VerticalTextAlignment="Center" />
                                 </Grid>
                             </Frame>
